@@ -4,10 +4,11 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom'
+import HomePage from './components/pages/homePage/HomePage'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<div>Hello</div>}>
+    <Route path="/" element={<HomePage />}>
       <Route index element={<></>} />
     </Route>,
   ),

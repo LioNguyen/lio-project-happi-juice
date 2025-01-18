@@ -1,5 +1,5 @@
 - [Demo](https://happi-juice.vercel.app/)
-- [Vercel](https://vercel.com/lionguyens-projects/lio-project-happi-juice)
+- [Vercel](https://vercel.com/lionguyens-projects/happi-juice)
 
 # 1. Overview
 
