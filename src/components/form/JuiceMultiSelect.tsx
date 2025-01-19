@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import _ from 'lodash'
 import { Check, ChevronsUpDown, Minus, Plus, Trash2 } from 'lucide-react'
 import { memo, useEffect, useState } from 'react'
-import _ from 'lodash'
 
-import { Button } from '@designSystem/components/button'
+import { cn } from '@/shared/utils'
 import { Badge } from '@designSystem/components/badge'
+import { Button } from '@designSystem/components/button'
 import {
   Command,
   CommandEmpty,
@@ -19,7 +20,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@designSystem/components/popover'
-import { cn } from '@/lib/utils'
 
 interface Option {
   value: string

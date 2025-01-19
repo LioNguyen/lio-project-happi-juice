@@ -1,9 +1,11 @@
 import { useState } from 'react'
 
+import { HappiIcon } from '@/components/common'
+import FormInput from '@/components/form/FormInput'
 import JuiceMultiSelect from '@/components/form/JuiceMultiSelect'
+import { SHEET_NAME, useGlobal } from '@/domains/global'
 import { useOrder } from '@/domains/order'
 import { Button } from '@designSystem/components/button'
-import FormInput from '@/components/form/FormInput'
 
 interface Option {
   value: string
@@ -23,8 +25,7 @@ export default function HomePage() {
     items: [],
   })
 
-  console.log('🚀 @log ~ file: HomePage.tsx:26 ~ formData:', formData)
-
+  const { openSheet, showToast } = useGlobal()
   const { useCreateOrder } = useOrder()
   const { mutate: createOrder, isPending } = useCreateOrder()
 
@@ -58,7 +59,24 @@ export default function HomePage() {
       id="home-page"
       className="flex items-center justify-center h-full w-full"
     >
-      <div className="home-page__left-side flex-1 flex flex-col items-start justify-center h-full p-4 gap-2">
+      <div className="home-page__left-side flex-1 flex flex-col items-center justify-center gap-2 h-full">
+        <HappiIcon />
+        <Button
+          onClick={() => {
+            openSheet({ name: SHEET_NAME.orderForm })
+          }}
+        >
+          Open Sheet
+        </Button>
+        <Button
+          onClick={() => {
+            showToast({ message: 'ok', type: 'success' })
+          }}
+        >
+          Show toast
+        </Button>
+      </div>
+      <div className="home-page__right-side flex-1 hidden lg:flex flex-col items-start justify-center h-full p-4 gap-2">
         <FormInput
           placeholder="Name"
           value={formData.name}
@@ -90,12 +108,13 @@ export default function HomePage() {
             })
           }
         />
-        <Button isLoading={isPending} onClick={handleSubmit}>
+        <Button
+          className="w-[150px]"
+          isLoading={isPending}
+          onClick={handleSubmit}
+        >
           Đặt đơn hàng
         </Button>
-      </div>
-      <div className="home-page__right-side flex-1 hidden lg:flex items-center justify-center h-full">
-        Right
       </div>
     </div>
   )

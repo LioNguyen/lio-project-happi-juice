@@ -1,0 +1,16 @@
+{
+  "errors": {
+    "required": "Required."
+  },
+  "form": {},
+  "messageCode": {},
+  "modal": {},
+  "title": "Happi Juice",
+  "clear_all": "Clear all",
+  "empty": "Empty",
+  "loading": "Loading...",
+  "no_results": "No Results",
+  "successful": "Successful",
+  "yes": "Yes",
+  "no": "No"
+}
