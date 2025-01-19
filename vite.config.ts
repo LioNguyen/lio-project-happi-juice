@@ -8,6 +8,7 @@ export default defineConfig({
     alias: [
       { find: '@', replacement: '/src' },
       { find: '@public', replacement: '/public' },
+      { find: '@designSystem', replacement: '/designSystem' },
     ],
   },
 })

@@ -1,15 +1,16 @@
+import { MainLayout } from '@/components/layout/mainLayout'
 import {
   Route,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom'
-import HomePage from './components/pages/homePage/HomePage'
+import HomePage from './pages/homePage/HomePage'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<HomePage />}>
-      <Route index element={<></>} />
+    <Route path="/" element={<MainLayout />}>
+      <Route index element={<HomePage />} />
     </Route>,
   ),
 )
