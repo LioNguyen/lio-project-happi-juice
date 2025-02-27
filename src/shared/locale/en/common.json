@@ -1,16 +1,104 @@
 {
   "errors": {
-    "required": "Required."
+    "required": "You forgot to fill this out!",
+    "validation": {
+      "id": {
+        "required": "ID is required"
+      },
+      "name": {
+        "required": "Which drink would you like?"
+      },
+      "date": {
+        "format": "Date must be YYYY-MM-DD format"
+      },
+      "quantity": {
+        "min": "Quantity must be at least 1",
+        "integer": "Quantity must be a whole number"
+      },
+      "price": {
+        "min": "Price cannot be negative"
+      },
+      "contact": {
+        "required": "We need your contact info",
+        "format": "Please enter a valid phone number or email"
+      },
+      "orderedBy": {
+        "required": "Who is ordering?"
+      }
+    }
   },
-  "form": {},
+  "form": {
+    "date_picker_placeholder": "Pick your delivery time",
+    "date_picker_option_today": "Right today",
+    "date_picker_option_tomorrow": "Tomorrow please",
+    "date_picker_option_next_week": "Next week",
+    "inputs": {
+      "name": "What's your name?",
+      "contact": "Your contact info",
+      "delivery_date": "When would you like your drinks?",
+      "note": "Any special requests?"
+    }
+  },
   "messageCode": {},
-  "modal": {},
+  "modal": {
+    "orderSuccess": {
+      "title": "Woohoo! Order Confirmed! 🎉",
+      "description": "Thanks for choosing Happi! 💚 We're super excited to serve you!",
+      "phoneNotice": "Don't worry! We'll call you right away to confirm your awesome order! ✨📱",
+      "action": {
+        "cancel": "Order more",
+        "confirm": "Got it!"
+      }
+    }
+  },
   "title": "Happi Juice",
   "clear_all": "Clear all",
-  "empty": "Empty",
-  "loading": "Loading...",
-  "no_results": "No Results",
-  "successful": "Successful",
-  "yes": "Yes",
-  "no": "No"
+  "empty": "Nothing here yet",
+  "loading": "Just a sec...",
+  "no_results": "No matches found",
+  "successful": "All done!",
+  "yes": "Yeah!",
+  "no": "Nope",
+  "menu": {
+    "title": "Available Menu",
+    "drinks_menu": "Happi's Drinks",
+    "mix_drink": {
+      "title": "Create Your Own Mix",
+      "placeholder": "What would you like to mix?",
+      "price_text": "Mix price: {{price}}đ/cup"
+    },
+    "drinks": {
+      "orange": "Fresh Orange",
+      "apple": "Green Apple",
+      "watermelon": "Watermelon",
+      "pineapple": "Sweet Pineapple",
+      "celery": "Celery",
+      "descriptions": {
+        "orange": "100% fresh orange juice, packed with vitamin C goodness",
+        "apple": "Fresh green apple blended with yogurt, super refreshing",
+        "watermelon": "Fresh watermelon juice, love at first sip",
+        "pineapple": "Sweet pineapple juice, rich in digestive enzymes",
+        "celery": "Organic celery juice, ultimate detox drink"
+      }
+    }
+  },
+  "order": {
+    "title": "Let's Order!",
+    "selected_drinks": "Your chosen drinks:",
+    "item": {
+      "subtotal": "Total:"
+    },
+    "total": "Grand total:",
+    "submit": "Order now",
+    "quantity": "Quantity",
+    "date": "Delivery date",
+    "note": "Note",
+    "delete": "Remove this",
+    "price": "Price",
+    "actions": {
+      "increase": "Add one more",
+      "decrease": "One less",
+      "remove": "Remove this drink"
+    }
+  }
 }

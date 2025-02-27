@@ -6,7 +6,7 @@ import commonEn from './en/common.json'
 import commonVi from './vi/common.json'
 
 i18n.use(initReactI18next).init({
-  fallbackLng: 'en',
+  fallbackLng: 'vi',
   interpolation: {
     escapeValue: false,
   },
@@ -16,7 +16,7 @@ i18n.use(initReactI18next).init({
     en: {
       common: commonEn,
     },
-    kr: {
+    vi: {
       common: commonVi,
     },
   },

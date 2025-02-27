@@ -1,16 +1,104 @@
 {
   "errors": {
-    "required": "Required."
+    "required": "Bạn quên điền chỗ này rồi!",
+    "validation": {
+      "id": {
+        "required": "Bạn quên nhập ID rồi nè"
+      },
+      "name": {
+        "required": "Bạn chưa chọn loại nước nha"
+      },
+      "date": {
+        "format": "Ngày phải theo định dạng YYYY-MM-DD nha"
+      },
+      "quantity": {
+        "min": "Số lượng phải ít nhất 1 ly nha",
+        "integer": "Số lượng phải là số nguyên thôi nha"
+      },
+      "price": {
+        "min": "Giá không thể âm được nha bạn"
+      },
+      "contact": {
+        "required": "Cho mình xin thông tin liên hệ với",
+        "format": "Bạn nhập số điện thoại hoặc email chưa đúng định dạng"
+      },
+      "orderedBy": {
+        "required": "Cho mình biết ai đặt nước với nha"
+      }
+    }
   },
-  "form": {},
+  "form": {
+    "date_picker_placeholder": "Chọn ngày nhận nước nhé",
+    "date_picker_option_today": "Hôm nay luôn",
+    "date_picker_option_tomorrow": "Ngày mai nha",
+    "date_picker_option_next_week": "Tuần sau",
+    "inputs": {
+      "name": "Cho mình xin tên bạn",
+      "contact": "Thông tin liên hệ của bạn",
+      "delivery_date": "Bạn muốn nhận nước khi nào?",
+      "note": "Ghi chú thêm nếu có nha"
+    }
+  },
   "messageCode": {},
-  "modal": {},
+  "modal": {
+    "orderSuccess": {
+      "title": "Yeahhh! Đặt hàng thành công rồi! 🎉",
+      "description": "Cảm ơn bạn đã chọn Happi nha! 💚 Chúng mình rất vui được phục vụ bạn!",
+      "phoneNotice": "Đừng lo nha! Happi sẽ gọi cho bạn trong thời gian sớm nhất để xác nhận đơn hàng xinh xắn này! ✨📱",
+      "action": {
+        "cancel": "Đặt thêm",
+        "confirm": "OK nha!"
+      }
+    }
+  },
   "title": "Happi Juice",
-  "clear_all": "Clear all",
-  "empty": "Empty",
-  "loading": "Loading...",
-  "no_results": "No Results",
-  "successful": "Successful",
-  "yes": "Yes",
-  "no": "No"
+  "clear_all": "Xóa hết",
+  "empty": "Chưa có gì cả",
+  "loading": "Đợi xíu nha...",
+  "no_results": "Không tìm thấy kết quả",
+  "successful": "Xong rồi đó!",
+  "yes": "OK luôn",
+  "no": "Thôi nha",
+  "menu": {
+    "title": "Menu Có Sẵn",
+    "drinks_menu": "Thức Uống Của Happi",
+    "mix_drink": {
+      "title": "Tự Mix Nước Theo Ý Bạn",
+      "placeholder": "Bạn muốn mix gì nào?",
+      "price_text": "Giá: {{price}}đ/ly"
+    },
+    "drinks": {
+      "orange": "Cam tươi",
+      "apple": "Táo xanh",
+      "watermelon": "Dưa hấu",
+      "pineapple": "Thơm ngọt",
+      "celery": "Cần tây",
+      "descriptions": {
+        "orange": "Nước cam tươi nguyên chất 100%, siêu vitamin C luôn",
+        "apple": "Táo xanh xay với sữa chua, thanh mát cực kỳ",
+        "watermelon": "Dưa hấu tươi mát, uống là thích ngay",
+        "pineapple": "Thơm ngọt mát, giàu enzyme tốt cho tiêu hóa",
+        "celery": "Nước ép cần tây organic, detox cực đỉnh"
+      }
+    }
+  },
+  "order": {
+    "title": "Đặt Nước Nào!",
+    "selected_drinks": "Những món bạn đã chọn:",
+    "item": {
+      "subtotal": "Tổng:"
+    },
+    "total": "Tổng bill:",
+    "submit": "Đặt liền",
+    "quantity": "Số lượng",
+    "date": "Ngày nhận",
+    "note": "Ghi chú",
+    "delete": "Bỏ món này",
+    "price": "Giá",
+    "actions": {
+      "increase": "Thêm 1 ly nữa",
+      "decrease": "Bớt 1 ly",
+      "remove": "Bỏ món này"
+    }
+  }
 }

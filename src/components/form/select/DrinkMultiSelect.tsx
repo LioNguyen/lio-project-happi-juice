@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import _ from 'lodash'
-import { Check, ChevronsUpDown, Minus, Plus, Trash2 } from 'lucide-react'
-import { memo, useEffect, useState } from 'react'
+import { Check, ChevronsUpDown, Plus } from 'lucide-react'
+import { memo, useState } from 'react'
 
-import { cn } from '@/shared/utils'
+import { useOrderStore } from '@/domains/order'
+import { MIXED_DRINK_PRICE } from '@/shared/constants'
+import { cn, transformToSortedString } from '@/shared/utils'
 import { Badge } from '@designSystem/components/badge'
 import { Button } from '@designSystem/components/button'
 import {
@@ -14,7 +16,6 @@ import {
   CommandItem,
   CommandList,
 } from '@designSystem/components/command'
-import { Input } from '@designSystem/components/input'
 import {
   Popover,
   PopoverContent,
@@ -26,40 +27,30 @@ interface Option {
   label: string
 }
 
-interface RowItem {
-  items: Option[]
-  quantity: number
-  note: string
-}
-
-interface JuiceMultiSelectProps {
+interface IDrinkMultiSelectProps {
   options: Option[]
-  defaultRows?: RowItem[]
-  onChange?: (rows: RowItem[]) => void
+  onChange?: (newItem: {
+    items: Option[]
+    quantity: number
+    note: string
+    price: number
+  }) => void
   placeholder?: string
   error?: string
   className?: string
 }
 
-const JuiceMultiSelect = ({
+const DrinkMultiSelect = ({
   options = [],
-  defaultRows,
-  onChange,
   placeholder = 'Chọn loại nước',
   error,
   className,
-}: JuiceMultiSelectProps) => {
+}: IDrinkMultiSelectProps) => {
   const [open, setOpen] = useState<boolean>(false)
   const [searchValue, setSearchValue] = useState<string>('')
   const [selectedItems, setSelectedItems] = useState<Option[]>([])
-  const [rows, setRows] = useState<RowItem[]>(defaultRows || [])
 
-  // Đồng bộ defaultRows với state nội bộ
-  useEffect(() => {
-    if (defaultRows && !_.isEqual(defaultRows, rows)) {
-      setRows(defaultRows)
-    }
-  }, [defaultRows])
+  const { addOrder } = useOrderStore()
 
   const filteredOptions = options.filter((option) =>
     option.label.toLowerCase().includes(searchValue.toLowerCase()),
@@ -78,45 +69,21 @@ const JuiceMultiSelect = ({
   const handleAddRow = () => {
     if (selectedItems.length === 0) return
 
-    setRows((prev) => [
-      ...prev,
-      {
-        items: [...selectedItems],
-        quantity: 1,
-        note: '',
-      },
-    ])
+    addOrder({
+      name: transformToSortedString(selectedItems, 'label', ' + '),
+      value: transformToSortedString(selectedItems),
+      quantity: 1,
+      price: MIXED_DRINK_PRICE, // Fixed price for mixed drinks
+      date: '',
+      note: '',
+      contact: '',
+      orderedBy: '',
+    })
+
+    // Reset selection
     setSelectedItems([])
     setOpen(false)
   }
-
-  const updateQuantity = (index: number, increment: number) => {
-    setRows((prev) =>
-      prev.map((row, i) => {
-        if (i === index) {
-          return {
-            ...row,
-            quantity: Math.max(1, row.quantity + increment),
-          }
-        }
-        return row
-      }),
-    )
-  }
-
-  const updateNote = (index: number, note: string) => {
-    setRows((prev) =>
-      prev.map((row, i) => (i === index ? { ...row, note } : row)),
-    )
-  }
-
-  const removeRow = (index: number) => {
-    setRows((prev) => prev.filter((_, i) => i !== index))
-  }
-
-  useEffect(() => {
-    onChange?.(rows)
-  }, [rows])
 
   return (
     <div className={cn('w-full space-y-4', className)}>
@@ -186,58 +153,9 @@ const JuiceMultiSelect = ({
           <Plus className="h-4 w-4" />
         </Button>
       </div>
-
-      <div className="space-y-3">
-        {rows.map((row, index) => (
-          <div
-            key={index}
-            className="flex items-center gap-3 p-3 border rounded-lg"
-          >
-            <div className="flex gap-1 flex-wrap flex-1">
-              {row.items.map((item) => (
-                <Badge key={item.value} variant="secondary">
-                  {item.label}
-                </Badge>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => updateQuantity(index, -1)}
-              >
-                <Minus className="h-4 w-4" />
-              </Button>
-              <span className="w-8 text-center">{row.quantity}</span>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => updateQuantity(index, 1)}
-              >
-                <Plus className="h-4 w-4" />
-              </Button>
-            </div>
-
-            <Input
-              value={row.note}
-              onChange={(e) => updateNote(index, e.target.value)}
-              placeholder="Ghi chú..."
-              className="w-40"
-            />
-
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => removeRow(index)}
-            >
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          </div>
-        ))}
-      </div>
     </div>
   )
 }
 
-export default memo(JuiceMultiSelect, _.isEqual)
+export default memo(DrinkMultiSelect, _.isEqual)
+export type { IDrinkMultiSelectProps }
