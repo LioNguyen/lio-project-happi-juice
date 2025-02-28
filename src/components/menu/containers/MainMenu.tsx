@@ -180,7 +180,7 @@ function MainMenu() {
           </SheetTrigger>
           <SheetContent
             side="bottom"
-            className="h-[95vh] lg:hidden px-4 py-6 rounded-t-2xl"
+            className="h-[85vh] lg:hidden px-4 py-6 rounded-t-2xl"
           >
             <OrderForm onSubmit={() => setIsOrderSheetOpen(false)} />
           </SheetContent>

@@ -64,12 +64,12 @@ const OrderConfirmModal: FC<IOrderConfirmModalProps> = ({ isOpen, data }) => {
     <AppModal
       open={isOpen}
       onOpenChange={handleModalClose}
-      className="sm:max-w-[425px] px-8 pt-6 pb-12"
+      className="sm:max-w-[425px] px-8 pt-4 pb-12 rounded-2xl"
     >
       <div className="flex flex-col items-center text-center">
         {/* Success Icon */}
         <div className="rounded-full bg-green-100 p-3 mb-4">
-          <PartyPopper className="h-8 w-8 p-1 text-green-600" />
+          <PartyPopper className="h-10 w-10 p-1 text-green-600" />
         </div>
 
         {/* Title */}
