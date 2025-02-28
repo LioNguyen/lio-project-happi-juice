@@ -74,6 +74,7 @@
     "drinks": {
       "orange": "Cam tươi",
       "apple": "Táo",
+      "pomelo": "Bưởi",
       "watermelon": "Dưa hấu",
       "pineapple": "Thơm",
       "celery": "Cần tây",
@@ -81,6 +82,7 @@
       "descriptions": {
         "orange": "Nước cam tươi nguyên chất 100%, siêu vitamin C luôn",
         "apple": "Nước ép táo xanh, thanh mát cực kỳ",
+        "pomelo": "Nước ép bưởi tươi ngọt thanh, giàu vitamin C và chất chống oxy hóa",
         "watermelon": "Dưa hấu tươi mát, uống là thích ngay",
         "pineapple": "Thơm ngọt mát, giàu enzyme tốt cho tiêu hóa",
         "celery": "Nước ép cần tây organic, detox cực đỉnh",

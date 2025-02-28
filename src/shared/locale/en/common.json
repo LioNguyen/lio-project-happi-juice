@@ -73,22 +73,24 @@
     },
     "drinks": {
       "orange": "Fresh Orange",
-      "apple": "Green Apple",
+      "apple": "Apple",
+      "pomelo": "Pomelo",
       "watermelon": "Watermelon",
       "pineapple": "Pineapple",
       "celery": "Celery",
       "guava": "Guava",
       "descriptions": {
-        "orange": "100% fresh orange juice, packed with vitamin C goodness",
-        "apple": "Fresh green apple juice, super refreshing",
-        "watermelon": "Fresh watermelon juice, love at first sip",
-        "pineapple": "Sweet pineapple juice, rich in digestive enzymes",
-        "celery": "Organic celery juice, ultimate detox drink",
-        "guava": "Fresh guava juice, naturally rich in vitamins",
+        "orange": "100% pure fresh orange juice, packed with vitamin C",
+        "apple": "Refreshing green apple juice, perfectly crisp and cool",
+        "pomelo": "Fresh pomelo juice, rich in vitamin C and antioxidants",
+        "watermelon": "Fresh watermelon juice, instantly refreshing",
+        "pineapple": "Sweet and refreshing pineapple juice, rich in digestive enzymes",
+        "celery": "Organic celery juice, perfect for detox",
+        "guava": "Fresh guava juice rich in vitamin C, delicious and nutritious",
         "appleorange": "Perfect blend of apple and orange, refreshingly sweet and tangy",
-        "appleguava": "Apple guava mix, double boost of natural goodness",
-        "applepineapple": "Apple pineapple blend, tropical refreshment in every sip",
-        "applecelery": "Apple celery fusion, cleansing detox blend"
+        "appleguava": "Apple and guava mix, double boost for your immune system",
+        "applepineapple": "Sweet apple and pineapple blend, ultimate refreshment",
+        "applecelery": "Apple celery detox, effective body cleansing"
       }
     }
   },
