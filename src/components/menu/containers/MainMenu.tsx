@@ -7,20 +7,22 @@ import { DrinkMultiSelect, OrderForm } from '@/components/form'
 import { DrinkMenu } from '@/components/menu/contents'
 import { DRINK_MENU, DRINK_TYPE, useOrderStore } from '@/domains/order'
 import { MIXED_DRINK_PRICE } from '@/shared/constants'
+import { useIsMobile } from '@/shared/hooks/useMobile'
 import { transformToSortedString } from '@/shared/utils'
-import { Text } from '@designSystem/components/text'
+import { Badge } from '@designSystem/components/badge'
+import { Button } from '@designSystem/components/button'
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
 } from '@designSystem/components/sheet'
+import { Text } from '@designSystem/components/text'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@designSystem/components/tooltip'
-import { useIsMobile } from '@/shared/hooks/useMobile'
 
 interface IMainMenuProps {}
 
@@ -41,7 +43,7 @@ const MIN_MIXED_ITEMS = 1
 
 function MainMenu() {
   const { t } = useTranslation()
-  const { addOrder } = useOrderStore()
+  const { addOrder, orders } = useOrderStore()
   const [isOrderSheetOpen, setIsOrderSheetOpen] = useState(false)
 
   const mainMenuRef = useRef<HTMLDivElement>(null)
@@ -52,7 +54,7 @@ function MainMenu() {
     const calculateDrinkMenuHeight = () => {
       if (!mainMenuRef.current) return
       const mainMenuHeight = mainMenuRef.current.clientHeight
-      setDrinkMenuHeight(Math.max(mainMenuHeight - (isMobile ? 230 : 350), 200)) // Minimum height 200px
+      setDrinkMenuHeight(Math.max(mainMenuHeight - (isMobile ? 220 : 220), 200)) // Minimum height 200px
     }
 
     calculateDrinkMenuHeight()
@@ -167,14 +169,20 @@ function MainMenu() {
 
         <Sheet open={isOrderSheetOpen} onOpenChange={setIsOrderSheetOpen}>
           <SheetTrigger asChild>
-            <button className="p-2 rounded-full bg-primary/10 text-primary lg:hidden">
+            <Button className="p-2 rounded-full bg-primary/10 text-primary lg:hidden relative hover:bg-primary/10">
               <ShoppingCart size={18} />
-            </button>
+              {orders.items.length > 0 && (
+                <Badge className="absolute -top-1.5 -right-1.5 h-4 w-4 p-0 flex items-center justify-center text-[10px] bg-teal-500 border border-white shadow-sm text-white rounded-full">
+                  {orders.items.length}
+                </Badge>
+              )}
+            </Button>
           </SheetTrigger>
-          <SheetContent side="bottom" className="h-[80vh] lg:hidden px-4 py-6">
-            <OrderForm
-            // onComplete={() => setIsOrderSheetOpen(false)}
-            />
+          <SheetContent
+            side="bottom"
+            className="h-[80vh] lg:hidden px-4 py-6 rounded-t-2xl"
+          >
+            <OrderForm onSubmit={() => setIsOrderSheetOpen(false)} />
           </SheetContent>
         </Sheet>
       </div>
@@ -191,7 +199,10 @@ function MainMenu() {
   return (
     <div ref={mainMenuRef} className="flex flex-col h-full">
       <div className="flex-none">
-        <Text as="h1" className="text-xl font-bold text-center mb-4">
+        <Text
+          as="h1"
+          className="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-6"
+        >
           {t('menu.drinks_menu')}
         </Text>
 

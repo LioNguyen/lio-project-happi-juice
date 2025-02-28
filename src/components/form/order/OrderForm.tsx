@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash'
 import { Minus, Plus, Trash2 } from 'lucide-react'
-import { memo, useState } from 'react'
+import { FC, memo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 // Form Components
@@ -13,16 +13,18 @@ import { ScrollArea } from '@designSystem/components/scrollArea'
 import { Text } from '@designSystem/components/text'
 
 // Domain & Utils
+import { MODAL_NAME, useGlobal } from '@/domains/global'
 import { IOrderItem, useOrder, useOrderStore } from '@/domains/order'
 import {
   calculateTotalPrice,
   getLocalStorage,
   setLocalStorage,
 } from '@/shared/utils'
-import { MODAL_NAME, useGlobal } from '@/domains/global'
 
 // Types
-interface IOrderFormProps {}
+interface IOrderFormProps {
+  onSubmit?: () => void
+}
 
 interface IFormErrors {
   orderedBy?: string
@@ -169,7 +171,7 @@ const OrderItem = ({
  * Manages the ordering process including customer information,
  * order items, and total calculation
  */
-function OrderForm() {
+const OrderForm: FC<IOrderFormProps> = ({ onSubmit }) => {
   const { t } = useTranslation()
   const [errors, setErrors] = useState<IFormErrors>({})
 
@@ -271,6 +273,7 @@ function OrderForm() {
 
         // Show confirmation modal
         openModal({ name: MODAL_NAME.orderConfirm })
+        onSubmit?.()
       },
     })
   }
