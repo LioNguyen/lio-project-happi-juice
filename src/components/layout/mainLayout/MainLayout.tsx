@@ -8,7 +8,7 @@ export default function MainLayout() {
     >
       <div
         id="main-body"
-        className="bg-white rounded-2xl h-[95vh] md:h-[85vh] w-[95vw]"
+        className="bg-white rounded-2xl h-[95vh] md:h-[90vh] w-[95vw]"
       >
         <Outlet />
       </div>

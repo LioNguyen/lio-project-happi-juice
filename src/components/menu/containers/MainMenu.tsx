@@ -169,7 +169,7 @@ function MainMenu() {
 
         <Sheet open={isOrderSheetOpen} onOpenChange={setIsOrderSheetOpen}>
           <SheetTrigger asChild>
-            <Button className="p-2 rounded-full bg-primary/10 text-primary lg:hidden relative hover:bg-primary/10">
+            <Button className="relative p-2 rounded-full bg-primary/10 text-primary w-9 lg:hidden hover:bg-primary/10">
               <ShoppingCart size={18} />
               {orders.items.length > 0 && (
                 <Badge className="absolute -top-1.5 -right-1.5 h-4 w-4 p-0 flex items-center justify-center text-[10px] bg-teal-500 border border-white shadow-sm text-white rounded-full">

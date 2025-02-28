@@ -20,6 +20,7 @@ import {
   getLocalStorage,
   setLocalStorage,
 } from '@/shared/utils'
+import { Badge } from '@designSystem/components/badge'
 
 interface IOrderFormProps {
   onSubmit?: () => void
@@ -124,9 +125,9 @@ const OrderItemControls = ({
             {t('order.date')}:
           </Text>
           <FormDatePicker
+            className="flex-1 max-w-[180px]"
             value={item.date}
             onChange={(value) => onUpdate(item.id, { date: value })}
-            className="flex-1"
           />
         </div>
       </div>
@@ -315,7 +316,14 @@ const OrderForm: FC<IOrderFormProps> = ({ onSubmit }) => {
         <div className="flex-none mt-2">
           {orders.items.length > 0 && (
             <div className="border-t mt-3 py-3 flex justify-between items-center">
-              <Text className="font-bold">{t('order.total')}</Text>
+              <div className="flex items-center gap-1">
+                <Text className="font-bold">{t('order.total')}</Text>
+                {orders.items.length > 0 && (
+                  <Badge className=" h-6 w-6 p-1 flex items-center justify-center text-[10px] bg-primary border border-white shadow-sm text-white font-bold rounded-full hover:bg-primary">
+                    {orders.items.length}
+                  </Badge>
+                )}
+              </div>
               <Text className="text-xl font-bold text-primary">
                 {calculateTotalPrice(orders.items).toLocaleString()}đ
               </Text>
