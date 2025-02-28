@@ -62,7 +62,7 @@
   "no": "Nope",
   "menu": {
     "title": "Available Menu",
-    "drinks_menu": "Happi Juice 🍹",
+    "drinks_menu": "Vibe with Happi 🍹",
     "mix_drink": {
       "title": "Create Your Own Mix",
       "placeholder": "What would you like to mix?",
@@ -95,7 +95,7 @@
     }
   },
   "order": {
-    "title": "Let's Order!",
+    "title": "Let's Mix & Match! 🍹",
     "selected_drinks": "Your chosen drinks:",
     "empty_state": "No drinks selected yet. Pick some delicious ones! 😋",
     "item": {

@@ -54,7 +54,7 @@ function MainMenu() {
     const calculateDrinkMenuHeight = () => {
       if (!mainMenuRef.current) return
       const mainMenuHeight = mainMenuRef.current.clientHeight
-      setDrinkMenuHeight(Math.max(mainMenuHeight - (isMobile ? 220 : 220), 200)) // Minimum height 200px
+      setDrinkMenuHeight(Math.max(mainMenuHeight - (isMobile ? 250 : 220), 200)) // Minimum height 200px
     }
 
     calculateDrinkMenuHeight()
@@ -201,7 +201,7 @@ function MainMenu() {
       <div className="flex-none">
         <Text
           as="h1"
-          className="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-6"
+          className="text-2xl md:text-3xl font-bold text-center mt-4 mb-4 lg:mt-0 lg:mb-5"
         >
           {t('menu.drinks_menu')}
         </Text>
