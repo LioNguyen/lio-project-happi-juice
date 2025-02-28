@@ -216,7 +216,9 @@ const FormDatePicker: FC<IFormDatePickerProps> = ({
             >
               <Select onValueChange={handleQuickSelect}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Quick select" />
+                  <SelectValue
+                    placeholder={t('form.date_picker_quick_select')}
+                  />
                 </SelectTrigger>
                 <SelectContent position="popper">
                   {DATE_PICKER_OPTIONS.map((option) => (

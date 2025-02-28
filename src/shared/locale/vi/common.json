@@ -29,6 +29,7 @@
   },
   "form": {
     "date_picker_placeholder": "Chọn ngày nhận nước nhé",
+    "date_picker_quick_select": "Chọn nhanh",
     "date_picker_option_today": "Hôm nay luôn",
     "date_picker_option_tomorrow": "Ngày mai nha",
     "date_picker_option_next_week": "Tuần sau",
@@ -61,24 +62,33 @@
   "no": "Thôi nha",
   "menu": {
     "title": "Menu Có Sẵn",
-    "drinks_menu": "Thức Uống Của Happi",
+    "drinks_menu": "Happi Juice",
     "mix_drink": {
       "title": "Tự Mix Nước Theo Ý Bạn",
       "placeholder": "Bạn muốn mix gì nào?",
-      "price_text": "Giá: {{price}}đ/ly"
+      "price_text": "Giá: {{price}}đ/ly",
+      "info_tooltip": "Mix từ {{min}} đến {{max}} loại đồ uống để tạo thức uống độc đáo của riêng bạn",
+      "price_unit": "đ/chai",
+      "popular_mixes": "Mix phổ biến"
     },
     "drinks": {
       "orange": "Cam tươi",
-      "apple": "Táo xanh",
+      "apple": "Táo",
       "watermelon": "Dưa hấu",
-      "pineapple": "Thơm ngọt",
+      "pineapple": "Thơm",
       "celery": "Cần tây",
+      "guava": "Ổi",
       "descriptions": {
         "orange": "Nước cam tươi nguyên chất 100%, siêu vitamin C luôn",
-        "apple": "Táo xanh xay với sữa chua, thanh mát cực kỳ",
+        "apple": "Nước ép táo xanh, thanh mát cực kỳ",
         "watermelon": "Dưa hấu tươi mát, uống là thích ngay",
         "pineapple": "Thơm ngọt mát, giàu enzyme tốt cho tiêu hóa",
-        "celery": "Nước ép cần tây organic, detox cực đỉnh"
+        "celery": "Nước ép cần tây organic, detox cực đỉnh",
+        "guava": "Ổi tươi giàu vitamin C, thơm ngon bổ dưỡng",
+        "appleorange": "Kết hợp hoàn hảo giữa táo và cam, chua ngọt sảng khoái",
+        "appleguava": "Mix táo ổi thơm ngon, tăng cường đề kháng gấp đôi",
+        "applepineapple": "Táo thơm ngọt thanh, giải nhiệt cực đã",
+        "applecelery": "Táo cần tây detox, thanh lọc cơ thể hiệu quả"
       }
     }
   },

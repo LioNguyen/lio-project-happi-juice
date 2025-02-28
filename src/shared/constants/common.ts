@@ -4,6 +4,15 @@ const MIXED_DRINK_PRICE = 25000
 
 const SHEET_OFFSET = 32
 
+/**
+ * Responsive design breakpoints
+ */
+const SCREEN_BREAKPOINTS = {
+  MOBILE: 768,
+  TABLET: 1024,
+  DESKTOP: 1280,
+} as const
+
 // =============================================================================
 // DOMAIN CONSTANTS
 // Business logic related constants
@@ -27,4 +36,9 @@ const DATE_PICKER_OPTIONS = [
   },
 ] as const
 
-export { DATE_PICKER_OPTIONS, MIXED_DRINK_PRICE, SHEET_OFFSET }
+export {
+  DATE_PICKER_OPTIONS,
+  MIXED_DRINK_PRICE,
+  SCREEN_BREAKPOINTS,
+  SHEET_OFFSET,
+}

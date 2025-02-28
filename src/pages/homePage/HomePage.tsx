@@ -3,14 +3,14 @@ import { MainMenu } from '@/components/menu'
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col md:flex-row h-full w-full border rounded-2xl overflow-hidden">
+    <div className="flex flex-col lg:flex-row h-full w-full border rounded-2xl overflow-hidden">
       {/* Menu Section */}
-      <div className="w-full md:w-1/2 border-b md:border-b-0 md:border-r bg-gray-50 p-4 md:p-8">
+      <div className="w-full h-screen lg:w-1/2 border-b lg:border-b-0 lg:border-r bg-gray-50 p-3 lg:p-6">
         <MainMenu />
       </div>
 
-      {/* Order Form Section */}
-      <div className="h-full w-full md:w-1/2 p-4 md:p-8">
+      {/* Order Form Section - Visible on desktop */}
+      <div className="hidden lg:block h-screen w-full lg:w-1/2 p-4 lg:p-6 overflow-auto">
         <OrderForm />
       </div>
     </div>

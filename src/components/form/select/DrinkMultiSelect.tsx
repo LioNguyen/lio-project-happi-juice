@@ -112,7 +112,14 @@ const DrinkMultiSelect = ({
               <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+          <PopoverContent
+            className="w-[--radix-popover-trigger-width] p-0"
+            side="bottom" // Always show below the trigger
+            align="start" // Left align with trigger
+            sideOffset={4} // Space between trigger and content
+            collisionPadding={8} // Padding when close to viewport edges
+            avoidCollisions={false} // Disable automatic repositioning
+          >
             <Command>
               <CommandInput
                 placeholder="Tìm kiếm..."

@@ -29,6 +29,7 @@
   },
   "form": {
     "date_picker_placeholder": "Pick your delivery time",
+    "date_picker_quick_select": "Quick select",
     "date_picker_option_today": "Right today",
     "date_picker_option_tomorrow": "Tomorrow please",
     "date_picker_option_next_week": "Next week",
@@ -61,24 +62,33 @@
   "no": "Nope",
   "menu": {
     "title": "Available Menu",
-    "drinks_menu": "Happi's Drinks",
+    "drinks_menu": "Happi Juice",
     "mix_drink": {
       "title": "Create Your Own Mix",
       "placeholder": "What would you like to mix?",
-      "price_text": "Mix price: {{price}}đ/cup"
+      "price_text": "Price: {{price}}đ/drink",
+      "info_tooltip": "Mix between {{min}} to {{max}} drinks to create your unique beverage",
+      "price_unit": "đ/bottle",
+      "popular_mixes": "Popular Mixes"
     },
     "drinks": {
       "orange": "Fresh Orange",
       "apple": "Green Apple",
       "watermelon": "Watermelon",
-      "pineapple": "Sweet Pineapple",
+      "pineapple": "Pineapple",
       "celery": "Celery",
+      "guava": "Guava",
       "descriptions": {
         "orange": "100% fresh orange juice, packed with vitamin C goodness",
-        "apple": "Fresh green apple blended with yogurt, super refreshing",
+        "apple": "Fresh green apple juice, super refreshing",
         "watermelon": "Fresh watermelon juice, love at first sip",
         "pineapple": "Sweet pineapple juice, rich in digestive enzymes",
-        "celery": "Organic celery juice, ultimate detox drink"
+        "celery": "Organic celery juice, ultimate detox drink",
+        "guava": "Fresh guava juice, naturally rich in vitamins",
+        "appleorange": "Perfect blend of apple and orange, refreshingly sweet and tangy",
+        "appleguava": "Apple guava mix, double boost of natural goodness",
+        "applepineapple": "Apple pineapple blend, tropical refreshment in every sip",
+        "applecelery": "Apple celery fusion, cleansing detox blend"
       }
     }
   },

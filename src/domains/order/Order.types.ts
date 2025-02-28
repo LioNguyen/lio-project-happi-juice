@@ -11,6 +11,7 @@ interface IMenuItem
   > {
   description: string
   image: string
+  type: string
 }
 
 interface IOrderItemOld {

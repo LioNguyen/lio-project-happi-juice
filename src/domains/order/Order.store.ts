@@ -14,7 +14,7 @@ const useOrderStore = create<IOrderStore>((set) => ({
     set((state) => {
       // Find order has the same name in items array
       const existingOrder = state.orders.items.find(
-        (item) => item.name === order.name,
+        (item) => item.value === order.value,
       )
 
       if (existingOrder) {

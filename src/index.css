@@ -140,6 +140,7 @@
     --scrollbar-width: 8px;
     --scrollbar-track-bg: transparent;
     --scrollbar-thumb-bg: hsl(var(--color-border));
+    --scrollbar-gap: 1px;
   }
 
   .custom-scrollbar::-webkit-scrollbar {
@@ -154,6 +155,8 @@
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background: var(--scrollbar-thumb-bg);
     border-radius: 4px;
+    /* Thêm border phía trên */
+    border-top: var(--scrollbar-gap) solid transparent;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {

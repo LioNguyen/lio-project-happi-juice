@@ -1,5 +1,10 @@
 import { i18n } from '@/shared/locale'
 
+const DRINK_TYPE = {
+  mix: 'mix',
+  original: 'original',
+}
+
 const DRINK_MENU = [
   {
     id: '1',
@@ -8,6 +13,7 @@ const DRINK_MENU = [
     price: 20000,
     description: i18n.t('menu.drinks.descriptions.orange'),
     image: '/api/placeholder/300/200',
+    type: DRINK_TYPE.original,
   },
   {
     id: '2',
@@ -16,6 +22,7 @@ const DRINK_MENU = [
     price: 25000,
     description: i18n.t('menu.drinks.descriptions.apple'),
     image: '/api/placeholder/300/200',
+    type: DRINK_TYPE.original,
   },
   {
     id: '3',
@@ -24,6 +31,7 @@ const DRINK_MENU = [
     price: 25000,
     description: i18n.t('menu.drinks.descriptions.pineapple'),
     image: '/api/placeholder/300/200',
+    type: DRINK_TYPE.original,
   },
   {
     id: '4',
@@ -32,6 +40,7 @@ const DRINK_MENU = [
     price: 25000,
     description: i18n.t('menu.drinks.descriptions.watermelon'),
     image: '/api/placeholder/300/200',
+    type: DRINK_TYPE.original,
   },
   {
     id: '5',
@@ -40,7 +49,53 @@ const DRINK_MENU = [
     price: 25000,
     description: i18n.t('menu.drinks.descriptions.celery'),
     image: '/api/placeholder/300/200',
+    type: DRINK_TYPE.original,
+  },
+  {
+    id: '8',
+    name: i18n.t('menu.drinks.guava'),
+    value: 'guava',
+    price: 25000,
+    description: i18n.t('menu.drinks.descriptions.guava'),
+    image: '/api/placeholder/300/200',
+    type: DRINK_TYPE.original,
+  },
+  {
+    id: '6',
+    name: `${i18n.t('menu.drinks.apple')} + ${i18n.t('menu.drinks.orange')}`,
+    value: 'apple,orange',
+    price: 25000,
+    description: i18n.t('menu.drinks.descriptions.appleorange'),
+    image: '/api/placeholder/300/200',
+    type: DRINK_TYPE.mix,
+  },
+  {
+    id: '7',
+    name: `${i18n.t('menu.drinks.apple')} + ${i18n.t('menu.drinks.guava')}`,
+    value: 'apple,guava',
+    price: 25000,
+    description: i18n.t('menu.drinks.descriptions.appleguava'),
+    image: '/api/placeholder/300/200',
+    type: DRINK_TYPE.mix,
+  },
+  {
+    id: '9',
+    name: `${i18n.t('menu.drinks.apple')} + ${i18n.t('menu.drinks.pineapple')}`,
+    value: 'apple,pineapple',
+    price: 25000,
+    description: i18n.t('menu.drinks.descriptions.applepineapple'),
+    image: '/api/placeholder/300/200',
+    type: DRINK_TYPE.mix,
+  },
+  {
+    id: '10',
+    name: `${i18n.t('menu.drinks.apple')} + ${i18n.t('menu.drinks.celery')}`,
+    value: 'apple,celery',
+    price: 25000,
+    description: i18n.t('menu.drinks.descriptions.applecelery'),
+    image: '/api/placeholder/300/200',
+    type: DRINK_TYPE.mix,
   },
 ]
 
-export { DRINK_MENU }
+export { DRINK_MENU, DRINK_TYPE }

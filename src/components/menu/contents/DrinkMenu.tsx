@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash'
 import { Plus } from 'lucide-react'
-import { memo } from 'react'
+import { FC, memo } from 'react'
 
 import {
   Card,
@@ -17,9 +17,10 @@ import {
   IOrderItem,
   useOrderStore,
 } from '@/domains/order'
-import { formatNumber } from '@/shared/utils'
+import { IComponentBase } from '@/shared/types'
+import { cn, formatNumber } from '@/shared/utils'
 
-interface IDrinkMenuProps {}
+interface IDrinkMenuProps extends IComponentBase {}
 
 interface IDrinkCardProps {
   drink: IMenuItem
@@ -27,10 +28,6 @@ interface IDrinkCardProps {
   onAddDrink: (e: React.MouseEvent) => void
 }
 
-// ==================== Utility Functions ====================
-/**
- * Calculate total quantity for a specific drink from orders
- */
 const getQuantityForDrink = (
   drinkName: string,
   orders: IOrderItem[],
@@ -43,19 +40,12 @@ const getQuantityForDrink = (
   }, 0)
 }
 
-// ==================== Component Functions ====================
-/**
- * Renders the drink image with proper aspect ratio
- */
 const DrinkImage = memo(({ image, name }: { image: string; name: string }) => (
   <div className="aspect-video relative">
     <img src={image} alt={name} className="object-cover w-full h-full" />
   </div>
 ))
 
-/**
- * Button component for adding drinks to order
- */
 const AddButton = memo(
   ({
     quantity,
@@ -66,13 +56,12 @@ const AddButton = memo(
   }) => (
     <div
       onClick={onClick}
-      className={`
-        flex items-center justify-center 
-        h-8 w-8 md:h-9 md:w-9 rounded-full
-        ${quantity > 0 ? 'bg-green-100' : 'hover:bg-green-100'}
-        transition-all duration-200
-        cursor-pointer
-      `}
+      className={cn(
+        'flex items-center justify-center',
+        'h-6 w-6 md:h-9 md:w-9 rounded-full',
+        'transition-all duration-200 cursor-pointer',
+        quantity > 0 ? 'bg-green-100' : 'hover:bg-green-100',
+      )}
     >
       {quantity > 0 ? (
         <span className="text-green-600 font-semibold">{quantity}</span>
@@ -83,9 +72,6 @@ const AddButton = memo(
   ),
 )
 
-/**
- * Displays drink information and add button
- */
 const DrinkContent = memo(
   ({
     drink,
@@ -118,34 +104,27 @@ const DrinkContent = memo(
   ),
 )
 
-/**
- * Individual drink card component
- */
 const DrinkCard = memo(({ drink, quantity, onAddDrink }: IDrinkCardProps) => (
   <Card
     role="button"
     key={drink.id}
-    className={`
-      overflow-hidden hover:shadow-lg transition-all 
-      cursor-pointer flex flex-col min-h-[300px]
-      active:scale-[0.99] duration-100
-    `}
+    className={cn(
+      'overflow-hidden hover:shadow-lg transition-all',
+      'cursor-pointer flex flex-col',
+      'active:scale-[0.99] duration-100',
+      'min-h-[320px] md:min-h-[320px]',
+    )}
   >
     <DrinkImage image={drink.image} name={drink.name} />
     <DrinkContent drink={drink} quantity={quantity} onAddDrink={onAddDrink} />
   </Card>
 ))
 
-/**
- * Main drink menu component displaying all available drinks
- */
-function DrinkMenu() {
-  // ==================== Hooks ====================
+const DrinkMenu: FC<IDrinkMenuProps> = ({ className }) => {
   const { addOrder, orders } = useOrderStore()
 
-  // ==================== Handlers ====================
   const handleAddDrink = (e: React.MouseEvent, drink: IMenuItem) => {
-    e.stopPropagation() // Prevent card click when adding drink
+    e.stopPropagation()
     addOrder({
       name: drink.name,
       value: drink.value,
@@ -158,10 +137,9 @@ function DrinkMenu() {
     })
   }
 
-  // ==================== Render ====================
   return (
-    <div className="drink-menu pr-2 md:pr-4">
-      <div className="grid grid-cols-2 md:grid-cols-3  gap-3 md:gap-4">
+    <div className={cn('drink-menu h-full', className)}>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
         {DRINK_MENU.map((drink) => (
           <DrinkCard
             key={drink.id}
