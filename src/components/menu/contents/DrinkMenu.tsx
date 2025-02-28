@@ -58,15 +58,17 @@ const AddButton = memo(
       onClick={onClick}
       className={cn(
         'flex items-center justify-center',
-        'h-6 w-6 md:h-9 md:w-9 rounded-full',
+        'h-7 w-7 md:h-9 md:w-9 rounded-full',
         'transition-all duration-200 cursor-pointer',
         quantity > 0 ? 'bg-green-100' : 'hover:bg-green-100',
       )}
     >
       {quantity > 0 ? (
-        <span className="text-green-600 font-semibold">{quantity}</span>
+        <span className="text-primary text-sm lg:text-base font-semibold">
+          {quantity}
+        </span>
       ) : (
-        <Plus className="text-green-600 w-5 h-5" />
+        <Plus className="text-primary w-5 h-5" />
       )}
     </div>
   ),
@@ -91,10 +93,7 @@ const DrinkContent = memo(
       </CardHeader>
       <CardContent className="mt-auto p-3 md:p-4 border-t">
         <div className="flex justify-between items-center">
-          <Text
-            as="p"
-            className="text-green-600 font-bold text-sm md:text-base"
-          >
+          <Text as="p" className="text-primary font-bold text-sm md:text-base">
             {formatNumber(drink.price)}đ
           </Text>
           <AddButton quantity={quantity} onClick={onAddDrink} />

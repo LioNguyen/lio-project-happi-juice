@@ -95,6 +95,7 @@
   "order": {
     "title": "Đặt Nước Nào!",
     "selected_drinks": "Những món bạn đã chọn:",
+    "empty_state": "Chưa chọn món nào hết nè. Chọn vài món ngon đi bạn ơi! 😋",
     "item": {
       "subtotal": "Tổng:"
     },

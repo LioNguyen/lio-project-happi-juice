@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import _ from 'lodash'
 import { Check, ChevronsUpDown, Plus } from 'lucide-react'
 import { memo, useState } from 'react'
@@ -73,21 +72,62 @@ const DrinkMultiSelect = ({
       name: transformToSortedString(selectedItems, 'label', ' + '),
       value: transformToSortedString(selectedItems),
       quantity: 1,
-      price: MIXED_DRINK_PRICE, // Fixed price for mixed drinks
+      price: MIXED_DRINK_PRICE,
       date: '',
       note: '',
       contact: '',
       orderedBy: '',
     })
 
-    // Reset selection
     setSelectedItems([])
     setOpen(false)
   }
 
+  const renderSelectedBadges = () => {
+    if (selectedItems.length === 0) return placeholder
+
+    return (
+      <div className="flex gap-1 flex-wrap">
+        {/* Desktop view */}
+        <div className="hidden lg:flex gap-1 flex-wrap">
+          {selectedItems.slice(0, 4).map((item) => (
+            <Badge
+              key={item.value}
+              className="bg-purple-500 hover:bg-purple-600 text-white"
+            >
+              {item.label}
+            </Badge>
+          ))}
+          {selectedItems.length > 4 && (
+            <Badge className="bg-purple-100 hover:bg-purple-200 text-purple-700">
+              +{selectedItems.length - 4}
+            </Badge>
+          )}
+        </div>
+
+        {/* Mobile view */}
+        <div className="flex lg:hidden gap-1 flex-wrap">
+          {selectedItems.slice(0, 2).map((item) => (
+            <Badge
+              key={item.value}
+              className="bg-purple-500 hover:bg-purple-600 text-white"
+            >
+              {item.label}
+            </Badge>
+          ))}
+          {selectedItems.length > 2 && (
+            <Badge className="bg-purple-100 hover:bg-purple-200 text-purple-700">
+              +{selectedItems.length - 2}
+            </Badge>
+          )}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={cn('w-full space-y-4', className)}>
-      <div className="flex gap-2 w-full lg:w-[400px]">
+      <div className="flex gap-2 w-full lg:w-[450px]">
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button
@@ -100,25 +140,17 @@ const DrinkMultiSelect = ({
                 !selectedItems.length && 'text-text-muted-foreground',
               )}
             >
-              <div className="flex gap-1 flex-wrap">
-                {selectedItems.length > 0
-                  ? selectedItems.map((item) => (
-                      <Badge key={item.value} variant="secondary">
-                        {item.label}
-                      </Badge>
-                    ))
-                  : placeholder}
-              </div>
+              {renderSelectedBadges()}
               <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
           <PopoverContent
             className="w-[--radix-popover-trigger-width] p-0"
-            side="bottom" // Always show below the trigger
-            align="start" // Left align with trigger
-            sideOffset={4} // Space between trigger and content
-            collisionPadding={8} // Padding when close to viewport edges
-            avoidCollisions={false} // Disable automatic repositioning
+            side="bottom"
+            align="start"
+            sideOffset={4}
+            collisionPadding={8}
+            avoidCollisions={false}
           >
             <Command>
               <CommandInput

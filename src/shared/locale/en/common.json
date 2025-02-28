@@ -95,6 +95,7 @@
   "order": {
     "title": "Let's Order!",
     "selected_drinks": "Your chosen drinks:",
+    "empty_state": "No drinks selected yet. Pick some delicious ones! 😋",
     "item": {
       "subtotal": "Total:"
     },
