@@ -1,5 +1,5 @@
 import { isEqual } from 'lodash'
-import { CupSodaIcon, Minus, Plus, Trash2 } from 'lucide-react'
+import { Minus, Plus, Trash2 } from 'lucide-react'
 import { FC, memo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -15,12 +15,14 @@ import { Text } from '@designSystem/components/text'
 // Domain & Utils
 import { MODAL_NAME, useGlobal } from '@/domains/global'
 import { IOrderItem, useOrder, useOrderStore } from '@/domains/order'
+import emptyStateUrl from '@/shared/assets/empty_state.png'
 import {
   calculateTotalPrice,
   getLocalStorage,
   setLocalStorage,
 } from '@/shared/utils'
 import { Badge } from '@designSystem/components/badge'
+import { Image } from '@designSystem/components/image'
 
 interface IOrderFormProps {
   onSubmit?: () => void
@@ -36,8 +38,10 @@ interface IFormErrors {
  */
 const EmptyState = ({ t }: { t: (key: string) => string }) => (
   <div className="flex flex-col items-center justify-center h-full py-6 text-gray-500">
-    <CupSodaIcon className="w-16 h-16 mb-4 text-gray-400" />
-    <Text className="text-center max-w-[280px]">{t('order.empty_state')}</Text>
+    <Image className="opacity-50" src={emptyStateUrl} size={200} />
+    <Text className="text-base text-center text-text-muted-foreground max-w-[280px]">
+      {t('order.empty_state')}
+    </Text>
   </div>
 )
 
@@ -280,7 +284,7 @@ const OrderForm: FC<IOrderFormProps> = ({ onSubmit }) => {
     <div className="order-form h-full flex flex-col">
       <Text
         as="h2"
-        className="text-xl md:text-2xl text-center font-bold mb-4 md:mb-6"
+        className="text-2xl lg:text-3xl text-center font-bold mb-4 md:mb-6"
       >
         {t('order.title')}
       </Text>
@@ -288,9 +292,11 @@ const OrderForm: FC<IOrderFormProps> = ({ onSubmit }) => {
       {renderCustomerInfo()}
 
       <div className="border rounded-lg p-4 mt-4 bg-white flex-1 flex flex-col min-h-0">
-        <Text as="h3" className="font-medium mb-4 flex-none">
-          {t('order.selected_drinks')}
-        </Text>
+        {orders.items.length > 0 && (
+          <Text as="h3" className="font-medium mb-4 flex-none">
+            {t('order.selected_drinks')}
+          </Text>
+        )}
 
         <div className="flex-1 min-h-0">
           {orders.items.length > 0 ? (

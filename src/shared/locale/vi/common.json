@@ -34,9 +34,9 @@
     "date_picker_option_tomorrow": "Ngày mai nha",
     "date_picker_option_next_week": "Tuần sau",
     "inputs": {
-      "name": "Cho mình xin tên nha người đẹp",
-      "contact": "Thông tin liên hệ của người đẹp",
-      "delivery_date": "Bạn muốn nhận nước khi nào?",
+      "name": "Tên người đẹp là gì nè?",
+      "contact": "Thông tin liên hệ người đẹp ơi",
+      "delivery_date": "Người đẹp muốn nhận nước khi nào?",
       "note": "Ghi chú thêm nếu có nha"
     }
   },
@@ -44,8 +44,8 @@
   "modal": {
     "orderSuccess": {
       "title": "Yeahhh! Đặt hàng thành công rồi! 🎉",
-      "description": "Cảm ơn người đẹp đã chọn Happi nha! 💚 Chúng mình rất vui được phục vụ relative!",
-      "phoneNotice": "Đừng lo nha! Happi sẽ gọi cho relative trong thời gian sớm nhất để xác nhận đơn hàng xinh xắn này! ✨📱",
+      "description": "Cảm ơn bạn đã chọn Happi nha! 💚 Chúng mình rất vui được phục vụ bạn!",
+      "phoneNotice": "Happi sẽ gọi cho người đẹp trong thời gian sớm nhất để xác nhận đơn hàng xinh xắn này nhé! ✨📱",
       "action": {
         "cancel": "Đặt thêm",
         "confirm": "OK nha!"
@@ -62,9 +62,9 @@
   "no": "Thôi nha",
   "menu": {
     "title": "Menu Có Sẵn",
-    "drinks_menu": "Quẩy Với Happi 🍹",
+    "drinks_menu": "Quẩy Với Happi 🎉",
     "mix_drink": {
-      "title": "Tự Mix Nước Theo Ý Bạn",
+      "title": "Mix Nước Theo Ý Bạn",
       "placeholder": "Bạn muốn mix gì nào?",
       "price_text": "Giá: {{price}}đ/ly",
       "info_tooltip": "Mix từ {{min}} đến {{max}} loại đồ uống để tạo thức uống độc đáo của riêng bạn",
@@ -90,14 +90,15 @@
         "appleorange": "Kết hợp hoàn hảo giữa táo và cam, chua ngọt sảng khoái",
         "appleguava": "Mix táo ổi thơm ngon, tăng cường đề kháng gấp đôi",
         "applepineapple": "Táo thơm ngọt thanh, giải nhiệt cực đã",
-        "applecelery": "Táo cần tây detox, thanh lọc cơ thể hiệu quả"
+        "applecelery": "Táo cần tây detox, thanh lọc cơ thể hiệu quả",
+        "guavapineapple": "Ổi thơm ngọt mát, vitamin C tràn trề cực đã"
       }
     }
   },
   "order": {
     "title": "Cùng Mix & Match! 🍹",
     "selected_drinks": "Những món người đẹp đã chọn:",
-    "empty_state": "Chưa chọn món nào hết nè. Chọn vài món ngon đi người đẹp ơi! 😋",
+    "empty_state": "Cơm nước gì chưa người đẹp!",
     "item": {
       "subtotal": "Tổng:"
     },

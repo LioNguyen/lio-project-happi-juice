@@ -1,6 +1,8 @@
+import { Outlet } from 'react-router-dom'
+
+import logoUrl from '@/shared/assets/logo.png'
 import { useIsMobile } from '@/shared/hooks/useMobile'
 import { Image } from '@designSystem/components/image'
-import { Outlet } from 'react-router-dom'
 
 export default function MainLayout() {
   const isMobile = useIsMobile()
@@ -12,14 +14,14 @@ export default function MainLayout() {
     >
       <div
         id="main-body"
-        className="bg-white rounded-2xl h-[95vh] md:h-[90vh] w-[95vw] relative"
+        className="bg-white rounded-2xl h-[90vh] md:h-[90vh] w-[95vw] relative"
       >
-        <div className="absolute -top-[20px] lg:-top-[40px] z-10 left-1/2 -translate-x-1/2">
+        <div className="absolute -top-[35px] lg:-top-[45px] z-10 left-1/2 -translate-x-1/2">
           <Image
-            src="src/shared/assets/logo.png"
+            src={logoUrl}
             alt="Happi Juice Logo"
             className="w-auto object-contain"
-            size={isMobile ? 50 : 120}
+            size={isMobile ? 100 : 120}
           />
         </div>
         <Outlet />

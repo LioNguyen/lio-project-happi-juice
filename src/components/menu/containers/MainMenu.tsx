@@ -3,19 +3,15 @@ import { Info, ShoppingCart } from 'lucide-react'
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { DrinkMultiSelect, OrderForm } from '@/components/form'
+import { DrinkMultiSelect } from '@/components/form'
 import { DrinkMenu } from '@/components/menu/contents'
+import { SHEET_NAME, useGlobal } from '@/domains/global'
 import { DRINK_MENU, DRINK_TYPE, useOrderStore } from '@/domains/order'
 import { MIXED_DRINK_PRICE } from '@/shared/constants'
 import { useIsMobile } from '@/shared/hooks/useMobile'
 import { transformToSortedString } from '@/shared/utils'
 import { Badge } from '@designSystem/components/badge'
 import { Button } from '@designSystem/components/button'
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from '@designSystem/components/sheet'
 import { Text } from '@designSystem/components/text'
 import {
   Tooltip,
@@ -43,8 +39,9 @@ const MIN_MIXED_ITEMS = 1
 
 function MainMenu() {
   const { t } = useTranslation()
+
+  const { openSheet } = useGlobal()
   const { addOrder, orders } = useOrderStore()
-  const [isOrderSheetOpen, setIsOrderSheetOpen] = useState(false)
 
   const mainMenuRef = useRef<HTMLDivElement>(null)
   const [drinkMenuHeight, setDrinkMenuHeight] = useState<number>(0)
@@ -54,7 +51,7 @@ function MainMenu() {
     const calculateDrinkMenuHeight = () => {
       if (!mainMenuRef.current) return
       const mainMenuHeight = mainMenuRef.current.clientHeight
-      setDrinkMenuHeight(Math.max(mainMenuHeight - (isMobile ? 250 : 220), 200)) // Minimum height 200px
+      setDrinkMenuHeight(Math.max(mainMenuHeight - (isMobile ? 210 : 220), 200)) // Minimum height 200px
     }
 
     calculateDrinkMenuHeight()
@@ -108,7 +105,7 @@ function MainMenu() {
   )
 
   const renderMixDrinkSection = () => (
-    <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg shadow-sm border border-purple-100">
+    <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg shadow-sm border border-purple-100 mt-8 lg:mt-0">
       <div className="p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
@@ -167,24 +164,19 @@ function MainMenu() {
           {t('menu.title')}
         </Text>
 
-        <Sheet open={isOrderSheetOpen} onOpenChange={setIsOrderSheetOpen}>
-          <SheetTrigger asChild>
-            <Button className="relative p-2 rounded-full bg-primary/10 text-primary w-9 lg:hidden hover:bg-primary/10">
-              <ShoppingCart size={18} />
-              {orders.items.length > 0 && (
-                <Badge className="absolute -top-1.5 -right-1.5 h-4 w-4 p-0 flex items-center justify-center text-[10px] bg-teal-500 border border-white shadow-sm text-white rounded-full">
-                  {orders.items.length}
-                </Badge>
-              )}
-            </Button>
-          </SheetTrigger>
-          <SheetContent
-            side="bottom"
-            className="h-[85vh] lg:hidden px-4 py-6 rounded-t-2xl"
-          >
-            <OrderForm onSubmit={() => setIsOrderSheetOpen(false)} />
-          </SheetContent>
-        </Sheet>
+        <Button
+          className="relative p-2 rounded-full bg-primary/10 text-primary w-9 lg:hidden hover:bg-primary/10"
+          onClick={() => {
+            openSheet({ name: SHEET_NAME.orderForm })
+          }}
+        >
+          <ShoppingCart size={18} />
+          {orders.items.length > 0 && (
+            <Badge className="absolute -top-1.5 -right-1.5 h-4 w-4 p-0 flex items-center justify-center text-[10px] bg-teal-500 border border-white shadow-sm text-white rounded-full">
+              {orders.items.length}
+            </Badge>
+          )}
+        </Button>
       </div>
 
       <div
@@ -201,7 +193,7 @@ function MainMenu() {
       <div className="flex-none">
         <Text
           as="h1"
-          className="text-2xl md:text-3xl font-bold text-center mt-4 mb-4 lg:mt-0 lg:mb-5"
+          className="hidden lg:block lg:text-3xl font-bold text-center lg:mt-0 lg:mb-6"
         >
           {t('menu.drinks_menu')}
         </Text>

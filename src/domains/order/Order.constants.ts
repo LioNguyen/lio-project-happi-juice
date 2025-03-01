@@ -1,8 +1,12 @@
 import { i18n } from '@/shared/locale'
 
-import appleguavaUrl from '@/shared/assets/appleguava.jpg'
-import generalUrl from '@/shared/assets/appleguava.jpg'
+import {
+  default as appleguavaUrl,
+  default as generalUrl,
+} from '@/shared/assets/appleguava.jpg'
 import celeryUrl from '@/shared/assets/celery.jpg'
+import guavaUrl from '@/shared/assets/guava.jpg'
+import guavapineappleUrl from '@/shared/assets/guavapineapple.jpg'
 import orangeUrl from '@/shared/assets/orange.jpg'
 import pineappleUrl from '@/shared/assets/pineapple.jpg'
 import pomeloUrl from '@/shared/assets/pomelo.jpg'
@@ -14,103 +18,304 @@ const DRINK_TYPE = {
 
 const DRINK_MENU = [
   {
+    // Basic Information
     id: '1',
     name: i18n.t('menu.drinks.orange'),
     value: 'orange',
-    price: 20000,
+    type: DRINK_TYPE.original,
     description: i18n.t('menu.drinks.descriptions.orange'),
     image: orangeUrl,
-    type: DRINK_TYPE.original,
+
+    // Pricing & Promotion
+    price: 20000,
+    promotionalPrice: 18000,
+    discount: 10, // Percentage %
+
+    // Display & Marketing
+    isBestSeller: true,
+    priority: 1, // 1: Highest priority
+
+    // Health & Diet
+    isDietFriendly: false,
+    tags: ['vitamin c', 'immunity', 'fresh'],
+
+    // Inventory
+    inStock: true,
   },
   {
+    // Basic Information
     id: '2',
     name: i18n.t('menu.drinks.apple'),
     value: 'apple',
-    price: 25000,
+    type: DRINK_TYPE.original,
     description: i18n.t('menu.drinks.descriptions.apple'),
     image: generalUrl,
-    type: DRINK_TYPE.original,
+
+    // Pricing & Promotion
+    price: 25000,
+    promotionalPrice: null,
+    discount: 0,
+
+    // Display & Marketing
+    isBestSeller: false,
+    priority: 2,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['detox', 'weight loss', 'fresh'],
+
+    // Inventory
+    inStock: true,
   },
   {
+    // Basic Information
     id: '11',
     name: i18n.t('menu.drinks.pomelo'),
     value: 'pomelo',
-    price: 25000,
+    type: DRINK_TYPE.original,
     description: i18n.t('menu.drinks.descriptions.pomelo'),
     image: pomeloUrl,
-    type: DRINK_TYPE.original,
+
+    // Pricing & Promotion
+    price: 25000,
+    promotionalPrice: null,
+    discount: 0,
+
+    // Display & Marketing
+    isBestSeller: false,
+    priority: 3,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['vitamin c', 'weight loss', 'fresh'],
+
+    // Inventory
+    inStock: true,
   },
   {
+    // Basic Information
     id: '3',
     name: i18n.t('menu.drinks.pineapple'),
     value: 'pineapple',
-    price: 25000,
+    type: DRINK_TYPE.original,
     description: i18n.t('menu.drinks.descriptions.pineapple'),
     image: pineappleUrl,
-    type: DRINK_TYPE.original,
+
+    // Pricing & Promotion
+    price: 25000,
+    promotionalPrice: 20000,
+    discount: 20,
+
+    // Display & Marketing
+    isBestSeller: true,
+    priority: 2,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['digestive', 'enzyme', 'fresh'],
+
+    // Inventory
+    inStock: true,
   },
   {
+    // Basic Information
     id: '4',
     name: i18n.t('menu.drinks.watermelon'),
     value: 'watermelon',
-    price: 25000,
+    type: DRINK_TYPE.original,
     description: i18n.t('menu.drinks.descriptions.watermelon'),
     image: generalUrl,
-    type: DRINK_TYPE.original,
+
+    // Pricing & Promotion
+    price: 25000,
+    promotionalPrice: null,
+    discount: 0,
+
+    // Display & Marketing
+    isBestSeller: false,
+    priority: 4,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['refreshing', 'hydrating', 'fresh'],
+
+    // Inventory
+    inStock: true,
   },
   {
+    // Basic Information
     id: '5',
     name: i18n.t('menu.drinks.celery'),
     value: 'celery',
-    price: 25000,
+    type: DRINK_TYPE.original,
     description: i18n.t('menu.drinks.descriptions.celery'),
     image: celeryUrl,
-    type: DRINK_TYPE.original,
+
+    // Pricing & Promotion
+    price: 25000,
+    promotionalPrice: 22500,
+    discount: 10,
+
+    // Display & Marketing
+    isBestSeller: false,
+    priority: 3,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['detox', 'weight loss', 'organic'],
+
+    // Inventory
+    inStock: true,
   },
   {
+    // Basic Information
     id: '8',
     name: i18n.t('menu.drinks.guava'),
     value: 'guava',
-    price: 25000,
-    description: i18n.t('menu.drinks.descriptions.guava'),
-    image: generalUrl,
     type: DRINK_TYPE.original,
+    description: i18n.t('menu.drinks.descriptions.guava'),
+    image: guavaUrl,
+
+    // Pricing & Promotion
+    price: 25000,
+    promotionalPrice: null,
+    discount: 0,
+
+    // Display & Marketing
+    isBestSeller: false,
+    priority: 3,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['vitamin c', 'immunity', 'fresh'],
+
+    // Inventory
+    inStock: true,
   },
   {
+    // Basic Information
     id: '6',
     name: `${i18n.t('menu.drinks.apple')} + ${i18n.t('menu.drinks.orange')}`,
     value: 'apple,orange',
-    price: 25000,
+    type: DRINK_TYPE.mix,
     description: i18n.t('menu.drinks.descriptions.appleorange'),
     image: generalUrl,
-    type: DRINK_TYPE.mix,
+
+    // Pricing & Promotion
+    price: 25000,
+    promotionalPrice: 20000,
+    discount: 20,
+
+    // Display & Marketing
+    isBestSeller: true,
+    priority: 1,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['vitamin c', 'detox', 'mixed'],
+
+    // Inventory
+    inStock: true,
   },
   {
+    // Basic Information
     id: '7',
     name: `${i18n.t('menu.drinks.apple')} + ${i18n.t('menu.drinks.guava')}`,
     value: 'apple,guava',
-    price: 25000,
+    type: DRINK_TYPE.mix,
     description: i18n.t('menu.drinks.descriptions.appleguava'),
     image: appleguavaUrl,
-    type: DRINK_TYPE.mix,
+
+    // Pricing & Promotion
+    price: 25000,
+    promotionalPrice: null,
+    discount: 0,
+
+    // Display & Marketing
+    isBestSeller: false,
+    priority: 2,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['immunity', 'vitamin c', 'mixed'],
+
+    // Inventory
+    inStock: true,
   },
   {
+    // Basic Information
     id: '9',
     name: `${i18n.t('menu.drinks.apple')} + ${i18n.t('menu.drinks.pineapple')}`,
     value: 'apple,pineapple',
-    price: 25000,
+    type: DRINK_TYPE.mix,
     description: i18n.t('menu.drinks.descriptions.applepineapple'),
     image: generalUrl,
-    type: DRINK_TYPE.mix,
+
+    // Pricing & Promotion
+    price: 25000,
+    promotionalPrice: null,
+    discount: 0,
+
+    // Display & Marketing
+    isBestSeller: false,
+    priority: 2,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['refreshing', 'digestive', 'mixed'],
+
+    // Inventory
+    inStock: true,
   },
   {
+    // Basic Information
     id: '10',
     name: `${i18n.t('menu.drinks.apple')} + ${i18n.t('menu.drinks.celery')}`,
     value: 'apple,celery',
-    price: 25000,
+    type: DRINK_TYPE.mix,
     description: i18n.t('menu.drinks.descriptions.applecelery'),
     image: generalUrl,
+
+    // Pricing & Promotion
+    price: 25000,
+    promotionalPrice: 22500,
+    discount: 10,
+
+    // Display & Marketing
+    isBestSeller: false,
+    priority: 2,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['detox', 'weight loss', 'mixed'],
+
+    // Inventory
+    inStock: true,
+  },
+  {
+    // Basic Information
+    id: '12',
+    name: `${i18n.t('menu.drinks.guava')} + ${i18n.t('menu.drinks.pineapple')}`,
+    value: 'guava,pineapple',
     type: DRINK_TYPE.mix,
+    description: i18n.t('menu.drinks.descriptions.guavapineapple'),
+    image: guavapineappleUrl,
+
+    // Pricing & Promotion
+    price: 25000,
+    promotionalPrice: null,
+    discount: 0,
+
+    // Display & Marketing
+    isBestSeller: false,
+    priority: 3,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['vitamin c', 'digestive', 'mixed'],
+
+    // Inventory
+    inStock: true,
   },
 ]
 

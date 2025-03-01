@@ -62,7 +62,7 @@
   "no": "Nope",
   "menu": {
     "title": "Available Menu",
-    "drinks_menu": "Vibe with Happi 🍹",
+    "drinks_menu": "Vibe with Happi 🎉",
     "mix_drink": {
       "title": "Create Your Own Mix",
       "placeholder": "What would you like to mix?",
@@ -90,7 +90,8 @@
         "appleorange": "Perfect blend of apple and orange, refreshingly sweet and tangy",
         "appleguava": "Apple and guava mix, double boost for your immune system",
         "applepineapple": "Sweet apple and pineapple blend, ultimate refreshment",
-        "applecelery": "Apple celery detox, effective body cleansing"
+        "applecelery": "Apple celery detox, effective body cleansing",
+        "guavapineapple": "Sweet and cool guava pineapple mix, loaded with vitamin C"
       }
     }
   },

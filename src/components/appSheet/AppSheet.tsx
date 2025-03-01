@@ -30,13 +30,7 @@ const AppSheet: FC<IAppSheetProps> = ({
     <Sheet open={open} onOpenChange={onOpenChange} modal={false}>
       <SheetContent
         side={side}
-        className={cn(
-          'h-[calc(100vh-100px)] top-[100px] border rounded-2xl shadow-none',
-          'data-[state=open]:backdrop-blur-none',
-          'overflow-x-hidden',
-          'overflow-y-auto custom-scrollbar',
-          className,
-        )}
+        className={cn('h-[85vh] lg:hidden px-4 py-6 rounded-t-2xl', className)}
         {...props}
       >
         <SheetHeader>
