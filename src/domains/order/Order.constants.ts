@@ -52,7 +52,7 @@ const DRINK_MENU = [
     image: generalUrl,
 
     // Pricing & Promotion
-    price: 25000,
+    price: 30000,
     promotionalPrice: null,
     discount: 0,
 
@@ -127,7 +127,7 @@ const DRINK_MENU = [
     image: generalUrl,
 
     // Pricing & Promotion
-    price: 25000,
+    price: 20000,
     promotionalPrice: null,
     discount: 0,
 
@@ -152,7 +152,7 @@ const DRINK_MENU = [
     image: celeryUrl,
 
     // Pricing & Promotion
-    price: 25000,
+    price: 30000,
     promotionalPrice: 22500,
     discount: 10,
 
@@ -177,7 +177,7 @@ const DRINK_MENU = [
     image: guavaUrl,
 
     // Pricing & Promotion
-    price: 25000,
+    price: 20000,
     promotionalPrice: null,
     discount: 0,
 
@@ -192,31 +192,31 @@ const DRINK_MENU = [
     // Inventory
     inStock: true,
   },
-  {
-    // Basic Information
-    id: '6',
-    name: `${i18n.t('menu.drinks.apple')} + ${i18n.t('menu.drinks.orange')}`,
-    value: 'apple,orange',
-    type: DRINK_TYPE.mix,
-    description: i18n.t('menu.drinks.descriptions.appleorange'),
-    image: generalUrl,
+  // {
+  //   // Basic Information
+  //   id: '6',
+  //   name: `${i18n.t('menu.drinks.apple')} + ${i18n.t('menu.drinks.orange')}`,
+  //   value: 'apple,orange',
+  //   type: DRINK_TYPE.mix,
+  //   description: i18n.t('menu.drinks.descriptions.appleorange'),
+  //   image: generalUrl,
 
-    // Pricing & Promotion
-    price: 25000,
-    promotionalPrice: 20000,
-    discount: 20,
+  //   // Pricing & Promotion
+  //   price: 25000,
+  //   promotionalPrice: 20000,
+  //   discount: 20,
 
-    // Display & Marketing
-    isBestSeller: true,
-    priority: 1,
+  //   // Display & Marketing
+  //   isBestSeller: true,
+  //   priority: 1,
 
-    // Health & Diet
-    isDietFriendly: true,
-    tags: ['vitamin c', 'detox', 'mixed'],
+  //   // Health & Diet
+  //   isDietFriendly: true,
+  //   tags: ['vitamin c', 'detox', 'mixed'],
 
-    // Inventory
-    inStock: true,
-  },
+  //   // Inventory
+  //   inStock: true,
+  // },
   {
     // Basic Information
     id: '7',
@@ -277,7 +277,7 @@ const DRINK_MENU = [
     image: generalUrl,
 
     // Pricing & Promotion
-    price: 25000,
+    price: 30000,
     promotionalPrice: 22500,
     discount: 10,
 
