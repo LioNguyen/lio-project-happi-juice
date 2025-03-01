@@ -23,6 +23,7 @@ import {
 } from '@/shared/utils'
 import { Badge } from '@designSystem/components/badge'
 import { Image } from '@designSystem/components/image'
+import { useAnalytics } from '@/shared/hooks/useAnalytics'
 
 interface IOrderFormProps {
   onSubmit?: () => void
@@ -189,6 +190,8 @@ const OrderForm: FC<IOrderFormProps> = ({ onSubmit }) => {
   const { t } = useTranslation()
   const [errors, setErrors] = useState<IFormErrors>({})
 
+  const { trackEvent } = useAnalytics()
+
   const { orders, removeOrder, updateOrderInfo, updateOrderItem } =
     useOrderStore()
   const { useCreateOrder } = useOrder()
@@ -248,7 +251,20 @@ const OrderForm: FC<IOrderFormProps> = ({ onSubmit }) => {
   const handleSubmit = () => {
     setErrors({})
 
+    // Track submit attempt
+    trackEvent('order_submit_attempt', {
+      items: orders.items,
+      items_count: orders.items.length,
+      total_amount: calculateTotalPrice(orders.items),
+    })
+
     if (!formValidate()) {
+      // Track validation error
+      trackEvent('order_submit_validation_error', {
+        errors: Object.keys(errors),
+        items: orders.items,
+        items_count: orders.items.length,
+      })
       return
     }
 
@@ -260,6 +276,14 @@ const OrderForm: FC<IOrderFormProps> = ({ onSubmit }) => {
 
     createOrder(submitData, {
       onSuccess: () => {
+        // Track successful submission
+        trackEvent('order_submit_success', {
+          items: orders.items,
+          items_count: orders.items.length,
+          total_amount: calculateTotalPrice(orders.items),
+          customer: orders.orderedBy,
+        })
+
         const newOrderData = {
           timestamp: Date.now(),
           order: {
