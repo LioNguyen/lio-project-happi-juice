@@ -32,6 +32,7 @@
     "date_picker_quick_select": "Quick select",
     "date_picker_option_today": "Right today",
     "date_picker_option_tomorrow": "Tomorrow please",
+    "date_picker_option_day_after_tomorrow": "Day After Tomorrow please",
     "date_picker_option_next_week": "Next week",
     "inputs": {
       "name": "What's your name?",

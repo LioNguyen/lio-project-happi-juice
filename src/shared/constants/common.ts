@@ -22,13 +22,17 @@ const SCREEN_BREAKPOINTS = {
  * Date picker options
  */
 const DATE_PICKER_OPTIONS = [
-  {
-    label: i18n.t('form.date_picker_option_today'),
-    value: '0',
-  },
+  // {
+  //   label: i18n.t('form.date_picker_option_today'),
+  //   value: '0',
+  // },
   {
     label: i18n.t('form.date_picker_option_tomorrow'),
     value: '1',
+  },
+  {
+    label: i18n.t('form.date_picker_option_day_after_tomorrow'),
+    value: '2',
   },
   {
     label: i18n.t('form.date_picker_option_next_week'),

@@ -104,14 +104,15 @@ const MainMenu: FC<IMainMenuProps> = () => {
     [handleAddMixedDrink],
   )
 
+  // renderMixDrinkSection
   const renderMixDrinkSection = () => (
-    <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg shadow-sm border border-purple-100 mt-8 lg:mt-0">
+    <div className="bg-[#FFF9F5] rounded-lg shadow-sm border border-[#FFE4D9] mt-8 lg:mt-0">
       <div className="p-4">
         <div className="hidden lg:flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Text
               as="h2"
-              className="text-sm md:text-base font-bold text-purple-900"
+              className="text-sm md:text-base font-bold text-[#C4361D]"
             >
               {t('menu.mix_drink.title')}
             </Text>
@@ -120,12 +121,12 @@ const MainMenu: FC<IMainMenuProps> = () => {
                 <TooltipTrigger asChild>
                   <Info
                     size={16}
-                    className="text-purple-600 hidden lg:block cursor-help"
+                    className="text-[#F85C2C] hidden lg:block cursor-help"
                   />
                 </TooltipTrigger>
                 <TooltipContent
-                  className="max-w-[280px]"
-                  side="top"
+                  className="max-w-[280px] font-semibold"
+                  side="right"
                   sideOffset={5}
                 >
                   <Text className="text-sm text-inherit">
@@ -140,7 +141,7 @@ const MainMenu: FC<IMainMenuProps> = () => {
           </div>
           <Text
             as="span"
-            className="text-xs md:text-sm font-medium text-purple-700"
+            className="text-xs md:text-sm font-semibold text-[#F85C2C]"
           >
             {MIXED_DRINK_PRICE.toLocaleString()}
             {t('menu.mix_drink.price_unit')}

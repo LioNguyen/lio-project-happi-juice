@@ -124,8 +124,8 @@ const FormDatePicker: FC<IFormDatePickerProps> = ({
 
   // Disable dates before today
   const isDateDisabled = (date: Date) => {
-    const today = startOfToday()
-    return isBefore(startOfDay(date), today)
+    const tomorrow = addDays(startOfToday(), 1)
+    return isBefore(startOfDay(date), tomorrow)
   }
 
   const datePickerButton = (

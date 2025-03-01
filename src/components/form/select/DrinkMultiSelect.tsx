@@ -93,13 +93,13 @@ const DrinkMultiSelect = ({
           {selectedItems.slice(0, 4).map((item) => (
             <Badge
               key={item.value}
-              className="bg-purple-500 hover:bg-purple-600 text-white"
+              className="bg-[#F85C2C] hover:bg-[#E04A1B] text-white"
             >
               {item.label}
             </Badge>
           ))}
           {selectedItems.length > 4 && (
-            <Badge className="bg-purple-100 hover:bg-purple-200 text-purple-700">
+            <Badge className="bg-[#FFF1EC] hover:bg-[#FFE4D9] text-[#F85C2C]">
               +{selectedItems.length - 4}
             </Badge>
           )}
@@ -107,17 +107,17 @@ const DrinkMultiSelect = ({
 
         {/* Mobile view */}
         <div className="flex lg:hidden gap-1 flex-wrap">
-          {selectedItems.slice(0, 2).map((item) => (
+          {selectedItems.slice(0, 1).map((item) => (
             <Badge
               key={item.value}
-              className="bg-purple-500 hover:bg-purple-600 text-white"
+              className="bg-orange-500 hover:bg-orange-600 text-white"
             >
               {item.label}
             </Badge>
           ))}
-          {selectedItems.length > 2 && (
-            <Badge className="bg-purple-100 hover:bg-purple-200 text-purple-700">
-              +{selectedItems.length - 2}
+          {selectedItems.length > 1 && (
+            <Badge className="bg-orange-100 hover:bg-orange-200 text-orange-700">
+              +{selectedItems.length - 1}
             </Badge>
           )}
         </div>
