@@ -1,6 +1,6 @@
 import { type FC, memo } from 'react'
 
-import { OrderFormSheet } from '@/components/appSheet'
+import { OrderFormMobileSheet } from '@/components/appSheet'
 import { SHEET_NAME, useGlobal } from '@/domains/global'
 
 interface ISheetContainerProps {}
@@ -11,7 +11,7 @@ const SheetContainer: FC<ISheetContainerProps> = () => {
 
   // Sheet component will be placed in here
   const SHEET_COMPONENTS: Record<string, React.FC<any>> = {
-    [SHEET_NAME.orderForm]: OrderFormSheet,
+    [SHEET_NAME.orderFormMobile]: OrderFormMobileSheet,
     // ... add other sheets
   }
 

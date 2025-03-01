@@ -43,7 +43,7 @@ type TModalMap = Record<string, IModalInstance>
 
 // START: Sheet config
 const SHEET_NAME = {
-  orderForm: 'orderForm',
+  orderFormMobile: 'orderFormMobile',
 } as const
 
 interface IOpenSheetParams extends ISheetConfig {

@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash'
 import { Info, ShoppingCart } from 'lucide-react'
-import { memo, useCallback, useEffect, useRef, useState } from 'react'
+import { FC, memo, useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { DrinkMultiSelect } from '@/components/form'
@@ -37,7 +37,7 @@ interface SelectedDrinks {
 const MAX_MIXED_ITEMS = 3
 const MIN_MIXED_ITEMS = 1
 
-function MainMenu() {
+const MainMenu: FC<IMainMenuProps> = () => {
   const { t } = useTranslation()
 
   const { openSheet } = useGlobal()
@@ -51,7 +51,7 @@ function MainMenu() {
     const calculateDrinkMenuHeight = () => {
       if (!mainMenuRef.current) return
       const mainMenuHeight = mainMenuRef.current.clientHeight
-      setDrinkMenuHeight(Math.max(mainMenuHeight - (isMobile ? 210 : 220), 200)) // Minimum height 200px
+      setDrinkMenuHeight(Math.max(mainMenuHeight - (isMobile ? 190 : 220), 200)) // Minimum height 200px
     }
 
     calculateDrinkMenuHeight()
@@ -107,7 +107,7 @@ function MainMenu() {
   const renderMixDrinkSection = () => (
     <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg shadow-sm border border-purple-100 mt-8 lg:mt-0">
       <div className="p-4">
-        <div className="flex items-center justify-between mb-3">
+        <div className="hidden lg:flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Text
               as="h2"
@@ -167,7 +167,7 @@ function MainMenu() {
         <Button
           className="relative p-2 rounded-full bg-primary/10 text-primary w-9 lg:hidden hover:bg-primary/10"
           onClick={() => {
-            openSheet({ name: SHEET_NAME.orderForm })
+            openSheet({ name: SHEET_NAME.orderFormMobile })
           }}
         >
           <ShoppingCart size={18} />
@@ -190,17 +190,14 @@ function MainMenu() {
 
   return (
     <div ref={mainMenuRef} className="flex flex-col h-full">
-      <div className="flex-none">
-        <Text
-          as="h1"
-          className="hidden lg:block lg:text-3xl font-bold text-center lg:mt-0 lg:mb-6"
-        >
-          {t('menu.drinks_menu')}
-        </Text>
+      <Text
+        as="h1"
+        className="hidden lg:block lg:text-3xl font-bold text-center lg:mt-0 lg:mb-6"
+      >
+        {t('menu.drinks_menu')}
+      </Text>
 
-        {renderMixDrinkSection()}
-      </div>
-
+      {renderMixDrinkSection()}
       {renderMenuSection()}
     </div>
   )

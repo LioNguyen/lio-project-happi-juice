@@ -103,7 +103,7 @@
       "subtotal": "Total:"
     },
     "total": "Grand total:",
-    "submit": "Order now",
+    "submit": "Order now 🎉",
     "quantity": "Quantity",
     "date": "Delivery date",
     "note": "Note",
@@ -113,6 +113,8 @@
       "increase": "Add one more",
       "decrease": "One less",
       "remove": "Remove this drink"
-    }
+    },
+    "customer_info": "Your info please!",
+    "proceed_to_checkout": "Order now! 🎉"
   }
 }

@@ -27,7 +27,7 @@ const AppSheet: FC<IAppSheetProps> = ({
   ...props
 }) => {
   return (
-    <Sheet open={open} onOpenChange={onOpenChange} modal={false}>
+    <Sheet open={open} onOpenChange={onOpenChange} modal={true}>
       <SheetContent
         side={side}
         className={cn('h-[85vh] lg:hidden px-4 py-6 rounded-t-2xl', className)}

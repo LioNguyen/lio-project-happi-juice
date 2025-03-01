@@ -2,22 +2,22 @@
 import { type FC, memo, useEffect } from 'react'
 
 import { AppSheet } from '@/components/appSheet'
-import { OrderForm } from '@/components/form'
+import { OrderFormMobile } from '@/components/form'
 import { ISheetInstance, SHEET_NAME, useGlobal } from '@/domains/global'
 import { cn } from '@/shared/utils'
 
-interface IOrderFormSheetProps extends ISheetInstance {
+interface IOrderFormMobileSheetProps extends ISheetInstance {
   data?: {
     item?: any
     successCallback?: () => void
   }
 }
 
-const OrderFormSheet: FC<IOrderFormSheetProps> = ({ isOpen }) => {
+const OrderFormMobileSheet: FC<IOrderFormMobileSheetProps> = ({ isOpen }) => {
   const { closeSheet } = useGlobal()
 
   const handleSheetClose = () => {
-    closeSheet?.(SHEET_NAME.orderForm)
+    closeSheet?.(SHEET_NAME.orderFormMobile)
   }
 
   useEffect(() => {
@@ -36,11 +36,11 @@ const OrderFormSheet: FC<IOrderFormSheetProps> = ({ isOpen }) => {
         title=""
         description=""
       >
-        <OrderForm onSubmit={handleSheetClose} />
+        <OrderFormMobile onSubmit={handleSheetClose} />
       </AppSheet>
     </div>
   )
 }
 
-export default memo(OrderFormSheet)
-export type { IOrderFormSheetProps }
+export default memo(OrderFormMobileSheet)
+export type { IOrderFormMobileSheetProps }

@@ -103,7 +103,7 @@
       "subtotal": "Tổng:"
     },
     "total": "Tổng bill:",
-    "submit": "Đặt liền",
+    "submit": "Đặt liền 🎉",
     "quantity": "Số lượng",
     "date": "Ngày nhận",
     "note": "Ghi chú",
@@ -113,6 +113,8 @@
       "increase": "Thêm 1 ly nữa",
       "decrease": "Bớt 1 ly",
       "remove": "Bỏ món này"
-    }
+    },
+    "customer_info": "Cho mình xin info nha!",
+    "proceed_to_checkout": "Đặt luôn! 🎉"
   }
 }
