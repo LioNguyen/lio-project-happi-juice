@@ -14,6 +14,7 @@ import {
 interface IAppSheetProps extends ComponentPropsWithoutRef<typeof SheetContent> {
   title?: string
   description?: string
+  modal?: boolean
   open?: boolean
   onOpenChange?: (open: boolean) => void
   sheetFooter?: React.ReactNode
@@ -26,6 +27,7 @@ const AppSheet: FC<IAppSheetProps> = ({
   description,
   side = 'bottom',
   className,
+  modal = true,
   open,
   onOpenChange,
   sheetFooter,
@@ -33,7 +35,7 @@ const AppSheet: FC<IAppSheetProps> = ({
   ...props
 }) => {
   return (
-    <Sheet open={open} onOpenChange={onOpenChange} modal={true}>
+    <Sheet open={open} onOpenChange={onOpenChange} modal={modal}>
       {sheetTrigger && <SheetTrigger asChild>{sheetTrigger}</SheetTrigger>}
       <SheetContent
         side={side}
@@ -41,10 +43,14 @@ const AppSheet: FC<IAppSheetProps> = ({
         {...props}
       >
         <SheetHeader>
-          <SheetTitle className="font-bold text-lg">{title}</SheetTitle>
-          <SheetDescription className="font-medium text-xs text-text-muted-foreground">
-            {description}
-          </SheetDescription>
+          {title && (
+            <SheetTitle className="font-bold text-lg">{title}</SheetTitle>
+          )}
+          {description && (
+            <SheetDescription className="font-medium text-xs text-text-muted-foreground">
+              {description}
+            </SheetDescription>
+          )}
         </SheetHeader>
         {children}
         {sheetFooter && <SheetFooter>{sheetFooter}</SheetFooter>}

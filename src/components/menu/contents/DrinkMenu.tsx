@@ -139,7 +139,7 @@ const DrinkCard = memo(({ drink, quantity, onAddDrink }: IDrinkCardProps) => (
 ))
 
 // Main Component
-const DrinkMenu: FC<IDrinkMenuProps> = ({ className }) => {
+const DrinkMenu: FC<IDrinkMenuProps> = ({ className, onChange }) => {
   const { filteredMenu } = useMenuStore()
   const { addOrder, orders } = useOrderStore()
 
@@ -155,6 +155,8 @@ const DrinkMenu: FC<IDrinkMenuProps> = ({ className }) => {
       contact: '',
       orderedBy: '',
     })
+
+    onChange?.()
   }
 
   return (

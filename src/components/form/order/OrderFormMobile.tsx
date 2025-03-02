@@ -323,14 +323,7 @@ const OrderFormMobile: FC<IOrderFormMobileProps> = ({ onSubmit }) => {
 
   return (
     <div className="order-form h-full flex flex-col">
-      <Text
-        as="h2"
-        className="text-2xl lg:text-3xl text-center font-bold mb-3 lg:mb-6"
-      >
-        {t('order.title')}
-      </Text>
-
-      <div className="p-4 bg-white flex-1 flex flex-col min-h-0">
+      <div className="bg-white flex-1 flex flex-col min-h-0 py-4">
         {orders.items.length > 0 && (
           <Text as="h3" className="hidden lg:block font-medium mb-4 flex-none">
             {t('order.selected_drinks')}

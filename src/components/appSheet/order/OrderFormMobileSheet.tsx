@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { type FC, memo, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { AppSheet } from '@/components/appSheet'
 import { OrderFormMobile } from '@/components/form'
@@ -14,6 +15,8 @@ interface IOrderFormMobileSheetProps extends ISheetInstance {
 }
 
 const OrderFormMobileSheet: FC<IOrderFormMobileSheetProps> = ({ isOpen }) => {
+  const { t } = useTranslation()
+
   const { closeSheet } = useGlobal()
 
   const handleSheetClose = () => {
@@ -33,7 +36,7 @@ const OrderFormMobileSheet: FC<IOrderFormMobileSheetProps> = ({ isOpen }) => {
         open={isOpen}
         side="bottom"
         onOpenChange={handleSheetClose}
-        title=""
+        title={t('order.title')}
         description=""
       >
         <OrderFormMobile onSubmit={handleSheetClose} />

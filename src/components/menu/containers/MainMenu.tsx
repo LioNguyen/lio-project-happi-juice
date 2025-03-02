@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { isEqual } from 'lodash'
 import { Info, ShoppingCart } from 'lucide-react'
 import { FC, memo, useCallback, useEffect, useRef, useState } from 'react'
@@ -41,7 +42,7 @@ const MIN_MIXED_ITEMS = 1
 const MainMenu: FC<IMainMenuProps> = () => {
   const { t } = useTranslation()
 
-  const { openSheet } = useGlobal()
+  const { closeSheet, openSheet, sheets } = useGlobal()
   const { addOrder, orders } = useOrderStore()
 
   const mainMenuRef = useRef<HTMLDivElement>(null)
@@ -66,6 +67,14 @@ const MainMenu: FC<IMainMenuProps> = () => {
       resizeObserver.disconnect()
     }
   }, [isMobile])
+
+  useEffect(() => {
+    if (orders.items.length > 0) {
+      openSheet({ name: SHEET_NAME.orderButtonCheck })
+    } else {
+      closeSheet(SHEET_NAME.orderButtonCheck)
+    }
+  }, [orders.items.length])
 
   const handleAddMixedDrink = useCallback(
     (items: DrinkOption[]) => {
