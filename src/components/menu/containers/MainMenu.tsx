@@ -42,7 +42,7 @@ const MIN_MIXED_ITEMS = 1
 const MainMenu: FC<IMainMenuProps> = () => {
   const { t } = useTranslation()
 
-  const { closeSheet, openSheet, sheets } = useGlobal()
+  const { closeSheet, openSheet } = useGlobal()
   const { addOrder, orders } = useOrderStore()
 
   const mainMenuRef = useRef<HTMLDivElement>(null)
@@ -53,7 +53,7 @@ const MainMenu: FC<IMainMenuProps> = () => {
     const calculateDrinkMenuHeight = () => {
       if (!mainMenuRef.current) return
       const mainMenuHeight = mainMenuRef.current.clientHeight
-      setDrinkMenuHeight(Math.max(mainMenuHeight - (isMobile ? 50 : 220), 200)) // Minimum height 200px
+      setDrinkMenuHeight(Math.max(mainMenuHeight - (isMobile ? 60 : 220), 200)) // Minimum height 200px
     }
 
     calculateDrinkMenuHeight()
@@ -190,7 +190,7 @@ const MainMenu: FC<IMainMenuProps> = () => {
       </div>
 
       <div
-        className="h-full rounded-xl overflow-y-auto"
+        className="h-full rounded-xl overflow-y-auto custom-scrollbar"
         style={{ height: `${drinkMenuHeight}px` }}
       >
         <DrinkMenu className="pb-4" />

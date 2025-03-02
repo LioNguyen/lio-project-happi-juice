@@ -1,4 +1,8 @@
 {
+  "common": {
+    "cancel": "Quay lại",
+    "confirm": "Xác nhận"
+  },
   "errors": {
     "required": "Bạn quên điền chỗ này rồi!",
     "validation": {
@@ -34,6 +38,7 @@
     "date_picker_option_tomorrow": "Ngày mai nha",
     "date_picker_option_day_after_tomorrow": "Ngày mốt nha",
     "date_picker_option_next_week": "Tuần sau",
+    "select_date": "Chọn ngày",
     "inputs": {
       "name": "Tên người đẹp là gì nè?",
       "contact": "Thông tin liên hệ người đẹp ơi",

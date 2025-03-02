@@ -15,7 +15,7 @@ import { Text } from '@designSystem/components/text'
 // Domain & Utils
 import { MODAL_NAME, useGlobal } from '@/domains/global'
 import { IOrderItem, useOrder, useOrderStore } from '@/domains/order'
-import emptyStateUrl from '@/shared/assets/empty_state.png'
+import emptyStateUrl from '@/shared/assets/empty-state.png'
 import {
   calculateTotalPrice,
   getLocalStorage,

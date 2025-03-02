@@ -1,5 +1,5 @@
 import { isEqual } from 'lodash'
-import { Minus, Plus, Trash2 } from 'lucide-react'
+import { Minus, Plus, StickyNote, Trash2 } from 'lucide-react'
 import { FC, memo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -7,7 +7,9 @@ import { useTranslation } from 'react-i18next'
 import { FormDatePicker, FormInput } from '@/components/form'
 
 // Design System Components
+import { Badge } from '@designSystem/components/badge'
 import { Button } from '@designSystem/components/button'
+import { Image } from '@designSystem/components/image'
 import { Input } from '@designSystem/components/input'
 import { ScrollArea } from '@designSystem/components/scrollArea'
 import {
@@ -20,17 +22,17 @@ import {
 import { Text } from '@designSystem/components/text'
 
 // Domain & Utils
+import { AppSheet } from '@/components/appSheet'
 import { MODAL_NAME, useGlobal } from '@/domains/global'
 import { IOrderItem, useOrder, useOrderStore } from '@/domains/order'
-import emptyStateUrl from '@/shared/assets/empty_state.png'
+import emptyStateUrl from '@/shared/assets/empty-state.png'
 import { useAnalytics } from '@/shared/hooks/useAnalytics'
 import {
   calculateTotalPrice,
+  cn,
   getLocalStorage,
   setLocalStorage,
 } from '@/shared/utils'
-import { Badge } from '@designSystem/components/badge'
-import { Image } from '@designSystem/components/image'
 
 interface IOrderFormMobileProps {
   onSubmit?: () => void
@@ -107,10 +109,8 @@ const OrderItemControls = ({
 
   return (
     <div className="space-y-3">
-      {/* Quantity and Date Row */}
-      <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
-        {/* Quantity Control */}
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center w-fit">
           <Text className="text-sm text-gray-500 w-20 md:w-[65px]">
             {t('order.quantity')}:
           </Text>
@@ -135,11 +135,26 @@ const OrderItemControls = ({
           </div>
         </div>
 
-        {/* Date Picker */}
-        <div className="flex items-center gap-2 flex-1">
-          <Text className="text-sm text-gray-500 whitespace-nowrap w-20 md:w-[75px]">
-            {t('order.date')}:
-          </Text>
+        <div className="flex gap-2">
+          <AppSheet
+            className="h-fit flex flex-col"
+            title={t('order.note')}
+            sheetTrigger={
+              <StickyNote
+                className={cn(
+                  'h-4 w-4',
+                  item.note ? 'opacity-100' : 'opacity-30',
+                )}
+              />
+            }
+          >
+            <Input
+              placeholder={t('form.inputs.note')}
+              value={item.note}
+              onChange={(e) => onUpdate(item.id, { note: e.target.value })}
+              className="w-full"
+            />
+          </AppSheet>
           <FormDatePicker
             className="flex-1 max-w-[180px]"
             value={item.date}
@@ -148,18 +163,13 @@ const OrderItemControls = ({
         </div>
       </div>
 
-      {/* Note Input */}
-      <div className="flex items-center gap-2">
-        <Text className="text-sm text-gray-500 w-20 md:w-[65px]">
-          {t('order.note')}:
-        </Text>
-        <Input
-          placeholder={t('form.inputs.note')}
-          value={item.note}
-          onChange={(e) => onUpdate(item.id, { note: e.target.value })}
-          className="flex-1"
+      {/* <div className="flex items-center gap-2">
+        <NoteSheet
+          note={item.note}
+          onUpdate={(value) => onUpdate(item.id, { note: value })}
+          t={t}
         />
-      </div>
+      </div> */}
     </div>
   )
 }
@@ -198,6 +208,9 @@ const OrderItem = ({
   </div>
 )
 
+/**
+ * Customer Information Sheet Component
+ */
 const CustomerInfoSheet = ({
   isOpen,
   onOpenChange,

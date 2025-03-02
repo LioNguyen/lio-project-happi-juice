@@ -160,7 +160,7 @@ const DrinkMenu: FC<IDrinkMenuProps> = ({ className, onChange }) => {
   }
 
   return (
-    <div className={cn('w-full h-full', className)}>
+    <div className={cn('drink-menu w-full h-full relative', className)}>
       <div
         className={cn(
           'grid gap-3',

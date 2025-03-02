@@ -1,4 +1,8 @@
 {
+  "common": {
+    "cancel": "Go back",
+    "confirm": "Done"
+  },
   "errors": {
     "required": "You forgot to fill this out!",
     "validation": {
@@ -34,6 +38,7 @@
     "date_picker_option_tomorrow": "Tomorrow please",
     "date_picker_option_day_after_tomorrow": "Day After Tomorrow please",
     "date_picker_option_next_week": "Next week",
+    "select_date": "Select date",
     "inputs": {
       "name": "What's your name?",
       "contact": "Your contact info",

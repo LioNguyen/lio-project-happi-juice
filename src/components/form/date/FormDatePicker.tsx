@@ -1,11 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import {
-  format,
-  set,
-  startOfToday,
   addDays,
+  format,
   isBefore,
+  set,
   startOfDay,
+  startOfToday,
 } from 'date-fns'
 import _ from 'lodash'
 import { CalendarIcon, HelpCircle, X } from 'lucide-react'
@@ -13,7 +12,9 @@ import { type FC, memo, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { AppPopover } from '@/components/appPopover'
+import { AppSheet } from '@/components/appSheet'
 import { DATE_PICKER_OPTIONS } from '@/shared/constants'
+import { useIsMobile } from '@/shared/hooks/useMobile'
 import { IFormBase } from '@/shared/types'
 import { cn, parseDate } from '@/shared/utils'
 import { Button } from '@designSystem/components/button'
@@ -39,6 +40,50 @@ interface IFormDatePickerProps extends IFormBase {
   datetimeFormat?: string
 }
 
+const CalendarContent = ({
+  date,
+  onDateChange,
+  onQuickSelect,
+  className,
+}: {
+  date?: Date
+  onDateChange: (date: Date | undefined) => void
+  onQuickSelect: (days: string) => void
+  className?: string
+}) => {
+  const { t } = useTranslation()
+
+  const isDateDisabled = (date: Date) => {
+    const tomorrow = addDays(startOfToday(), 1)
+    return isBefore(startOfDay(date), tomorrow)
+  }
+
+  return (
+    <div className={cn('flex flex-col space-y-2', className)}>
+      <Select onValueChange={onQuickSelect}>
+        <SelectTrigger>
+          <SelectValue placeholder={t('form.date_picker_quick_select')} />
+        </SelectTrigger>
+        <SelectContent position="popper">
+          {DATE_PICKER_OPTIONS.map((option) => (
+            <SelectItem key={option.value} value={option.value}>
+              {option.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      <div className="rounded-md border">
+        <Calendar
+          mode="single"
+          selected={date}
+          onSelect={onDateChange}
+          disabled={isDateDisabled}
+        />
+      </div>
+    </div>
+  )
+}
+
 const FormDatePicker: FC<IFormDatePickerProps> = ({
   className,
   disabled = false,
@@ -58,27 +103,44 @@ const FormDatePicker: FC<IFormDatePickerProps> = ({
   ...props
 }) => {
   const { t } = useTranslation()
+  const isMobile = useIsMobile()
   const initialDate = parseDate(value)
   const [date, setDate] = useState<Date | undefined>(initialDate)
+  const [tempDate, setTempDate] = useState<Date | undefined>(initialDate)
 
   const handleDateChange = (newDate: Date | undefined) => {
     if (disabled) return
 
-    setDate(newDate)
-    if (newDate) {
-      // Get current time
+    if (isMobile) {
+      setTempDate(newDate)
+    } else {
+      setDate(newDate)
+      if (newDate) {
+        const now = new Date()
+        const dateWithCurrentTime = set(newDate, {
+          hours: now.getHours(),
+          minutes: now.getMinutes(),
+          seconds: now.getSeconds(),
+          milliseconds: now.getMilliseconds(),
+        })
+        onChange?.(format(dateWithCurrentTime, datetimeFormat))
+      } else {
+        onChange?.(undefined)
+      }
+    }
+  }
+
+  const handleConfirm = () => {
+    if (tempDate) {
       const now = new Date()
-      // Combine selected date with current time
-      const dateWithCurrentTime = set(newDate, {
+      const dateWithCurrentTime = set(tempDate, {
         hours: now.getHours(),
         minutes: now.getMinutes(),
         seconds: now.getSeconds(),
         milliseconds: now.getMilliseconds(),
       })
-
+      setDate(tempDate)
       onChange?.(format(dateWithCurrentTime, datetimeFormat))
-    } else {
-      onChange?.(undefined)
     }
   }
 
@@ -88,22 +150,24 @@ const FormDatePicker: FC<IFormDatePickerProps> = ({
       now.getTime() + parseInt(daysToAdd) * 24 * 60 * 60 * 1000,
     )
     handleDateChange(newDate)
+    if (isMobile) {
+      handleConfirm()
+    }
   }
 
   const handleClear = (e: React.MouseEvent) => {
     if (disabled) return
 
-    e.stopPropagation() // Prevent calendar popup from opening
+    e.stopPropagation()
     setDate(undefined)
+    setTempDate(undefined)
     onChange?.(undefined)
   }
 
-  // Set default value to tomorrow if no initial value and not disabled
   useEffect(() => {
     if (!disabled && !readOnly && !value && !date) {
       const now = new Date()
       const tomorrow = addDays(now, 1)
-      // Preserve current time when setting default date
       const tomorrowWithCurrentTime = set(tomorrow, {
         hours: now.getHours(),
         minutes: now.getMinutes(),
@@ -114,19 +178,13 @@ const FormDatePicker: FC<IFormDatePickerProps> = ({
     }
   }, [])
 
-  // Update local state when prop value changes
   useEffect(() => {
     const newDate = parseDate(value)
     if (!_.isEqual(newDate, date)) {
       setDate(newDate)
+      setTempDate(newDate)
     }
   }, [value])
-
-  // Disable dates before today
-  const isDateDisabled = (date: Date) => {
-    const tomorrow = addDays(startOfToday(), 1)
-    return isBefore(startOfDay(date), tomorrow)
-  }
 
   const datePickerButton = (
     <div className="relative">
@@ -136,7 +194,7 @@ const FormDatePicker: FC<IFormDatePickerProps> = ({
           'w-full justify-start text-left font-normal',
           !date && 'text-text-muted-foreground',
           error && 'border-error',
-          date && 'pr-8', // Add padding for clear button
+          date && 'pr-8',
           disabled && 'cursor-not-allowed opacity-50 pointer-events-none',
           readOnly && 'cursor-not-allowed pointer-events-none',
         )}
@@ -207,35 +265,29 @@ const FormDatePicker: FC<IFormDatePickerProps> = ({
       <div className={cn('date-picker-wrapper', datePickerClassName)}>
         {disabled || readOnly ? (
           datePickerButton
+        ) : isMobile ? (
+          <>
+            <AppSheet
+              className="h-fit flex flex-col"
+              title={t('form.select_date')}
+              sheetTrigger={<CalendarIcon className="h-4 w-4" />}
+            >
+              <CalendarContent
+                date={tempDate}
+                onDateChange={handleDateChange}
+                onQuickSelect={handleQuickSelect}
+              />
+            </AppSheet>
+          </>
         ) : (
           <Popover>
             <PopoverTrigger asChild>{datePickerButton}</PopoverTrigger>
-            <PopoverContent
-              align="start"
-              className="flex w-auto flex-col space-y-2 p-2"
-            >
-              <Select onValueChange={handleQuickSelect}>
-                <SelectTrigger>
-                  <SelectValue
-                    placeholder={t('form.date_picker_quick_select')}
-                  />
-                </SelectTrigger>
-                <SelectContent position="popper">
-                  {DATE_PICKER_OPTIONS.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <div className="rounded-md border">
-                <Calendar
-                  mode="single"
-                  selected={date}
-                  onSelect={handleDateChange}
-                  disabled={isDateDisabled}
-                />
-              </div>
+            <PopoverContent align="start" className="w-auto p-2">
+              <CalendarContent
+                date={date}
+                onDateChange={handleDateChange}
+                onQuickSelect={handleQuickSelect}
+              />
             </PopoverContent>
           </Popover>
         )}
