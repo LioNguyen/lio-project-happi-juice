@@ -64,13 +64,31 @@
   "menu": {
     "title": "Menu Có Sẵn",
     "drinks_menu": "Quẩy Với Happi 🎉",
+    "filter": {
+      "sheet_title": "Mood Hôm Nay Là... 🎯",
+      "options": {
+        "best_seller": "Best Seller 🔥",
+        "mix_apple": "Team Táo 🍎",
+        "mix_guava": "Ổi Chill 🌿"
+      },
+      "reset_button": "Reset Nào ↺",
+      "aria_labels": {
+        "filter_button": "Chọn mood đồ uống nào",
+        "reset_filter": "Quay về ban đầu"
+      }
+    },
     "mix_drink": {
       "title": "Mix Nước Theo Ý Bạn",
+      "sheet_title": "Cùng Mix Nào",
       "placeholder": "Bạn muốn mix gì nào?",
       "price_text": "Giá: {{price}}đ/ly",
       "info_tooltip": "Mix từ {{min}} đến {{max}} loại đồ uống để tạo thức uống độc đáo của riêng bạn",
       "price_unit": "đ/chai",
-      "popular_mixes": "Mix phổ biến"
+      "popular_mixes": "Mix phổ biến",
+      "mix_button": "Mix ({{count}})",
+      "selected_count": "{{current}}/{{max}}",
+      "max_selections_reached": "Đã đạt giới hạn chọn",
+      "no_selection": "Chưa chọn loại nước nào"
     },
     "drinks": {
       "orange": "Cam tươi",

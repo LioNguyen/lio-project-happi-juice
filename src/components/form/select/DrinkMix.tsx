@@ -2,8 +2,10 @@ import _ from 'lodash'
 import { Check, ChevronsUpDown, Plus } from 'lucide-react'
 import { memo, useState } from 'react'
 
+import { DRINK_TYPE, useMenuStore } from '@/domains/menu'
 import { useOrderStore } from '@/domains/order'
 import { MIXED_DRINK_PRICE } from '@/shared/constants'
+import { IComponentBase } from '@/shared/types'
 import { cn, transformToSortedString } from '@/shared/utils'
 import { Badge } from '@designSystem/components/badge'
 import { Button } from '@designSystem/components/button'
@@ -11,7 +13,6 @@ import {
   Command,
   CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
 } from '@designSystem/components/command'
@@ -26,8 +27,7 @@ interface Option {
   label: string
 }
 
-interface IDrinkMultiSelectProps {
-  options: Option[]
+interface IDrinkMixProps extends IComponentBase {
   onChange?: (newItem: {
     items: Option[]
     quantity: number
@@ -36,24 +36,27 @@ interface IDrinkMultiSelectProps {
   }) => void
   placeholder?: string
   error?: string
-  className?: string
 }
 
-const DrinkMultiSelect = ({
-  options = [],
+const MAX_SELECTIONS = 3
+
+const DrinkMix = ({
   placeholder = 'Chọn loại nước',
   error,
   className,
-}: IDrinkMultiSelectProps) => {
+}: IDrinkMixProps) => {
   const [open, setOpen] = useState<boolean>(false)
-  const [searchValue, setSearchValue] = useState<string>('')
   const [selectedItems, setSelectedItems] = useState<Option[]>([])
 
   const { addOrder } = useOrderStore()
 
-  const filteredOptions = options.filter((option) =>
-    option.label.toLowerCase().includes(searchValue.toLowerCase()),
-  )
+  const { menu } = useMenuStore()
+  const DRINK_OPTIONS = menu
+    .filter((drink) => drink.type === DRINK_TYPE.original)
+    .map((drink) => ({
+      value: drink.value,
+      label: drink.name,
+    }))
 
   const handleSelect = (item: Option) => {
     setSelectedItems((prev) => {
@@ -61,6 +64,7 @@ const DrinkMultiSelect = ({
       if (isSelected) {
         return prev.filter((i) => i.value !== item.value)
       }
+      if (prev.length >= MAX_SELECTIONS) return prev
       return [...prev, item]
     })
   }
@@ -90,7 +94,7 @@ const DrinkMultiSelect = ({
       <div className="flex gap-1 flex-wrap">
         {/* Desktop view */}
         <div className="hidden lg:flex gap-1 flex-wrap">
-          {selectedItems.slice(0, 4).map((item) => (
+          {selectedItems.map((item) => (
             <Badge
               key={item.value}
               className="bg-[#F85C2C] hover:bg-[#E04A1B] text-white"
@@ -98,11 +102,6 @@ const DrinkMultiSelect = ({
               {item.label}
             </Badge>
           ))}
-          {selectedItems.length > 4 && (
-            <Badge className="bg-[#FFF1EC] hover:bg-[#FFE4D9] text-[#F85C2C]">
-              +{selectedItems.length - 4}
-            </Badge>
-          )}
         </div>
 
         {/* Mobile view */}
@@ -153,30 +152,35 @@ const DrinkMultiSelect = ({
             avoidCollisions={false}
           >
             <Command>
-              <CommandInput
-                placeholder="Tìm kiếm..."
-                value={searchValue}
-                onValueChange={setSearchValue}
-              />
               <CommandList>
                 <CommandEmpty>Không tìm thấy kết quả</CommandEmpty>
                 <CommandGroup>
-                  {filteredOptions.map((option) => (
-                    <CommandItem
-                      key={option.value}
-                      onSelect={() => handleSelect(option)}
-                    >
-                      <Check
+                  {DRINK_OPTIONS.map((option) => {
+                    const isSelected = selectedItems.some(
+                      (i) => i.value === option.value,
+                    )
+                    const isDisabled =
+                      selectedItems.length >= MAX_SELECTIONS && !isSelected
+
+                    return (
+                      <CommandItem
+                        key={option.value}
+                        onSelect={() => handleSelect(option)}
+                        disabled={isDisabled}
                         className={cn(
-                          'mr-2 h-4 w-4',
-                          selectedItems.some((i) => i.value === option.value)
-                            ? 'opacity-100'
-                            : 'opacity-0',
+                          isDisabled && 'opacity-50 cursor-not-allowed',
                         )}
-                      />
-                      {option.label}
-                    </CommandItem>
-                  ))}
+                      >
+                        <Check
+                          className={cn(
+                            'mr-2 h-4 w-4',
+                            isSelected ? 'opacity-100' : 'opacity-0',
+                          )}
+                        />
+                        {option.label}
+                      </CommandItem>
+                    )
+                  })}
                 </CommandGroup>
               </CommandList>
             </Command>
@@ -196,5 +200,5 @@ const DrinkMultiSelect = ({
   )
 }
 
-export default memo(DrinkMultiSelect, _.isEqual)
-export type { IDrinkMultiSelectProps }
+export default memo(DrinkMix, _.isEqual)
+export type { IDrinkMixProps }

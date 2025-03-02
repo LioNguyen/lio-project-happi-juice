@@ -64,13 +64,31 @@
   "menu": {
     "title": "Available Menu",
     "drinks_menu": "Vibe with Happi 🎉",
+    "filter": {
+      "sheet_title": "Today's Mood Is... 🎯",
+      "options": {
+        "best_seller": "Best Seller 🔥",
+        "mix_apple": "Apple Squad 🍎",
+        "mix_guava": "Guava Chill 🌿"
+      },
+      "reset_button": "Reset All ↺",
+      "aria_labels": {
+        "filter_button": "Choose your drink mood",
+        "reset_filter": "Back to default"
+      }
+    },
     "mix_drink": {
       "title": "Create Your Own Mix",
+      "sheet_title": "Let's Mix Together",
       "placeholder": "What would you like to mix?",
       "price_text": "Price: {{price}}đ/drink",
       "info_tooltip": "Mix between {{min}} to {{max}} drinks to create your unique beverage",
       "price_unit": "đ/bottle",
-      "popular_mixes": "Popular Mixes"
+      "popular_mixes": "Popular Mixes",
+      "mix_button": "Mix ({{count}})",
+      "selected_count": "{{current}}/{{max}}",
+      "max_selections_reached": "Selection limit reached",
+      "no_selection": "No drinks selected"
     },
     "drinks": {
       "orange": "Fresh Orange",

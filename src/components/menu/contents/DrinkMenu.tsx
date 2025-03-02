@@ -11,12 +11,8 @@ import {
 } from '@designSystem/components/card'
 import { Text } from '@designSystem/components/text'
 
-import {
-  DRINK_MENU,
-  IMenuItem,
-  IOrderItem,
-  useOrderStore,
-} from '@/domains/order'
+import { useMenuStore } from '@/domains/menu'
+import { IMenuItem, IOrderItem, useOrderStore } from '@/domains/order'
 import { IComponentBase } from '@/shared/types'
 import { cn, formatNumber } from '@/shared/utils'
 
@@ -120,6 +116,7 @@ const DrinkCard = memo(({ drink, quantity, onAddDrink }: IDrinkCardProps) => (
 ))
 
 const DrinkMenu: FC<IDrinkMenuProps> = ({ className }) => {
+  const { filteredMenu } = useMenuStore()
   const { addOrder, orders } = useOrderStore()
 
   const handleAddDrink = (e: React.MouseEvent, drink: IMenuItem) => {
@@ -139,7 +136,7 @@ const DrinkMenu: FC<IDrinkMenuProps> = ({ className }) => {
   return (
     <div className={cn('drink-menu h-full', className)}>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-        {DRINK_MENU.map((drink) => (
+        {filteredMenu.map((drink) => (
           <DrinkCard
             key={drink.id}
             drink={drink}
