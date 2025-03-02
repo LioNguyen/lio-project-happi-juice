@@ -3,19 +3,13 @@ import { Check, FlaskConical } from 'lucide-react'
 import { memo, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { AppSheet } from '@/components/appSheet'
 import { DRINK_TYPE, useMenuStore } from '@/domains/menu'
 import { useOrderStore } from '@/domains/order'
 import { MIXED_DRINK_PRICE } from '@/shared/constants'
 import { cn, transformToSortedString } from '@/shared/utils'
 import { Badge } from '@designSystem/components/badge'
 import { Button } from '@designSystem/components/button'
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@designSystem/components/sheet'
 import { Text } from '@designSystem/components/text'
 
 // Types and interfaces
@@ -141,9 +135,13 @@ const DrinkMixMobile = ({ className }: IDrinkMixMobileProps) => {
 
   return (
     <div className={cn('w-fit', className)}>
-      <Sheet open={open} onOpenChange={handleSheetChange}>
-        {/* Trigger Button */}
-        <SheetTrigger asChild>
+      <AppSheet
+        open={open}
+        onOpenChange={handleSheetChange}
+        className="h-[50vh] flex flex-col"
+        title={t('menu.mix_drink.sheet_title')}
+        description=""
+        sheetTrigger={
           <Button
             className="relative p-2 rounded-full bg-primary/10 text-primary w-9 lg:hidden hover:bg-primary/10"
             size="icon"
@@ -155,31 +153,9 @@ const DrinkMixMobile = ({ className }: IDrinkMixMobileProps) => {
               </Badge>
             )}
           </Button>
-        </SheetTrigger>
-
-        {/* Bottom Sheet Content */}
-        <SheetContent
-          side="bottom"
-          className="h-[50vh] p-0 rounded-t-2xl flex flex-col"
-        >
-          {/* Header */}
-          <div className="px-4 py-4 border-b">
-            <SheetHeader>
-              <SheetTitle className="flex items-center justify-center">
-                <Text as="span">{t('menu.mix_drink.sheet_title')}</Text>
-              </SheetTitle>
-            </SheetHeader>
-          </div>
-
-          {/* Options List */}
-          <div className="flex-1 overflow-y-auto px-4">
-            <div className="space-y-2">
-              {DRINK_OPTIONS.map(renderOptionItem)}
-            </div>
-          </div>
-
-          {/* Action Footer */}
-          <div className="border-t p-4 bg-white">
+        }
+        sheetFooter={
+          <div className="bg-white">
             <Button
               className="w-full"
               disabled={selectedItems.length === 0}
@@ -192,8 +168,13 @@ const DrinkMixMobile = ({ className }: IDrinkMixMobileProps) => {
               </Text>
             </Button>
           </div>
-        </SheetContent>
-      </Sheet>
+        }
+      >
+        {/* Options List */}
+        <div className="flex-1 overflow-y-auto custom-scrollbar">
+          <div className="space-y-2">{DRINK_OPTIONS.map(renderOptionItem)}</div>
+        </div>
+      </AppSheet>
     </div>
   )
 }

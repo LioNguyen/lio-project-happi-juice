@@ -3,17 +3,11 @@ import { Check, Filter, X } from 'lucide-react'
 import { memo, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { AppSheet } from '@/components/appSheet'
 import { useMenuStore } from '@/domains/menu'
 import { cn } from '@/shared/utils'
 import { Badge } from '@designSystem/components/badge'
 import { Button } from '@designSystem/components/button'
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@designSystem/components/sheet'
 import { Text } from '@designSystem/components/text'
 
 // Types and interfaces
@@ -148,9 +142,13 @@ const DrinkFilterMobile = ({ className }: IDrinkFilterMobileProps) => {
 
   return (
     <div className={cn('w-fit', className)}>
-      <Sheet open={open} onOpenChange={handleSheetChange}>
-        {/* Trigger Button */}
-        <SheetTrigger asChild>
+      <AppSheet
+        open={open}
+        onOpenChange={handleSheetChange}
+        className="h-[50vh] flex flex-col"
+        title={t('menu.filter.sheet_title')}
+        description=""
+        sheetTrigger={
           <Button
             className="relative p-2 rounded-full bg-primary/10 text-primary w-9 lg:hidden hover:bg-primary/10"
             size="icon"
@@ -165,31 +163,9 @@ const DrinkFilterMobile = ({ className }: IDrinkFilterMobileProps) => {
               </Badge>
             )}
           </Button>
-        </SheetTrigger>
-
-        {/* Bottom Sheet Content */}
-        <SheetContent
-          side="bottom"
-          className="h-[40vh] p-0 rounded-t-2xl flex flex-col"
-        >
-          {/* Header */}
-          <div className="px-4 py-4 border-b">
-            <SheetHeader>
-              <SheetTitle className="flex items-center justify-center">
-                <Text as="span">{t('menu.filter.sheet_title')}</Text>
-              </SheetTitle>
-            </SheetHeader>
-          </div>
-
-          {/* Filter Options List */}
-          <div className="flex-1 overflow-y-auto px-4 py-2">
-            <div className="space-y-2">
-              {FILTER_OPTIONS.map(renderFilterOption)}
-            </div>
-          </div>
-
-          {/* Action Footer */}
-          <div className="border-t p-4 bg-white">
+        }
+        sheetFooter={
+          <div className="bg-white">
             <Button
               className="w-full"
               onClick={() => handleReset()}
@@ -200,8 +176,15 @@ const DrinkFilterMobile = ({ className }: IDrinkFilterMobileProps) => {
               </Text>
             </Button>
           </div>
-        </SheetContent>
-      </Sheet>
+        }
+      >
+        {/* Filter Options List */}
+        <div className="flex-1 overflow-y-auto custom-scrollbar">
+          <div className="space-y-2">
+            {FILTER_OPTIONS.map(renderFilterOption)}
+          </div>
+        </div>
+      </AppSheet>
     </div>
   )
 }

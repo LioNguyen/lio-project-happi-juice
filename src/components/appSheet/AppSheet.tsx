@@ -5,8 +5,10 @@ import {
   Sheet,
   SheetContent,
   SheetDescription,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
+  SheetTrigger,
 } from '@designSystem/components/sheet'
 
 interface IAppSheetProps extends ComponentPropsWithoutRef<typeof SheetContent> {
@@ -14,20 +16,25 @@ interface IAppSheetProps extends ComponentPropsWithoutRef<typeof SheetContent> {
   description?: string
   open?: boolean
   onOpenChange?: (open: boolean) => void
+  sheetFooter?: React.ReactNode
+  sheetTrigger?: React.ReactNode
 }
 
 const AppSheet: FC<IAppSheetProps> = ({
   children,
   title,
   description,
-  side = 'right',
+  side = 'bottom',
   className,
   open,
   onOpenChange,
+  sheetFooter,
+  sheetTrigger,
   ...props
 }) => {
   return (
     <Sheet open={open} onOpenChange={onOpenChange} modal={true}>
+      {sheetTrigger && <SheetTrigger asChild>{sheetTrigger}</SheetTrigger>}
       <SheetContent
         side={side}
         className={cn('h-[85vh] lg:hidden px-4 py-6 rounded-t-2xl', className)}
@@ -40,6 +47,7 @@ const AppSheet: FC<IAppSheetProps> = ({
           </SheetDescription>
         </SheetHeader>
         {children}
+        {sheetFooter && <SheetFooter>{sheetFooter}</SheetFooter>}
       </SheetContent>
     </Sheet>
   )

@@ -57,14 +57,18 @@ const EmptyState = ({ t }: { t: (key: string) => string }) => (
  * OrderItem Header component displaying item name, price and delete button
  */
 const OrderItemHeader = ({
+  index,
   item,
   onDelete,
 }: {
+  index: number
   item: IOrderItem
   onDelete: () => void
 }) => (
   <div className="flex items-center justify-between mb-3">
-    <Text className="font-semibold flex-1">{item.name}</Text>
+    <Text className="font-semibold flex-1">
+      {index + 1}. {item.name}
+    </Text>
     <Text className="font-bold whitespace-nowrap min-w-[100px] mr-2 text-right text-primary">
       {(item.price * item.quantity).toLocaleString()}đ
     </Text>
@@ -180,7 +184,11 @@ const OrderItem = ({
     key={index}
     className="flex flex-col border rounded-lg p-3 md:p-4 hover:bg-gray-50"
   >
-    <OrderItemHeader item={item} onDelete={() => onDelete(item.id)} />
+    <OrderItemHeader
+      index={index}
+      item={item}
+      onDelete={() => onDelete(item.id)}
+    />
     <OrderItemControls
       item={item}
       onUpdate={onUpdate}
