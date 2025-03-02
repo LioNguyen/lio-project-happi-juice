@@ -103,6 +103,8 @@
       "pineapple": "Thơm",
       "celery": "Cần tây",
       "guava": "Ổi",
+      "corn_milk": "Sữa bắp",
+      "pumpkin_milk": "Sữa bí đỏ",
       "descriptions": {
         "orange": "Nước cam tươi nguyên chất 100%, siêu vitamin C luôn",
         "apple": "Nước ép táo, thanh mát cực kỳ",
@@ -115,7 +117,9 @@
         "appleguava": "Mix táo ổi thơm ngon, tăng cường đề kháng gấp đôi",
         "applepineapple": "Táo thơm ngọt thanh, giải nhiệt cực đã",
         "applecelery": "Táo cần tây detox, thanh lọc cơ thể hiệu quả",
-        "guavapineapple": "Ổi thơm ngọt mát, vitamin C tràn trề cực đã"
+        "guavapineapple": "Ổi thơm ngọt mát, vitamin C tràn trề cực đã",
+        "corn_milk": "Sữa bắp ngọt thơm béo ngậy, nguồn năng lượng tuyệt vời cho ngày năng động. !",
+        "pumpkin_milk": "Sữa bí đỏ thơm ngon đặc biệt, vừa healthy vừa cực đã. Bổ sung vitamin A, protein và năng lượng tràn trề!"
       }
     }
   },

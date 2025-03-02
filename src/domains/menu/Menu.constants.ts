@@ -10,10 +10,13 @@ import guavapineappleUrl from '@/shared/assets/guavapineapple.jpg'
 import orangeUrl from '@/shared/assets/orange.jpg'
 import pineappleUrl from '@/shared/assets/pineapple.jpg'
 import pomeloUrl from '@/shared/assets/pomelo.jpg'
+import cornMilkUrl from '@/shared/assets/corn-milk.jpg'
+import pumpkinMilkUrl from '@/shared/assets/pumpkin-milk.jpg'
 
 const DRINK_TYPE = {
   mix: 'mix',
   original: 'original',
+  milk: 'milk',
 }
 
 const DRINK_MENU = [
@@ -288,6 +291,81 @@ const DRINK_MENU = [
     // Health & Diet
     isDietFriendly: true,
     tags: ['vitamin c', 'digestive', 'mixed'],
+
+    // Inventory
+    inStock: true,
+  },
+  {
+    // Basic Information
+    id: '12',
+    name: `${i18n.t('menu.drinks.guava')} + ${i18n.t('menu.drinks.pineapple')}`,
+    value: 'guava,pineapple',
+    type: DRINK_TYPE.mix,
+    description: i18n.t('menu.drinks.descriptions.guavapineapple'),
+    image: guavapineappleUrl,
+
+    // Pricing & Promotion
+    price: 25000,
+    promotionalPrice: null,
+    discount: 0,
+
+    // Display & Marketing
+    isBestSeller: false,
+    priority: 3,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['vitamin c', 'digestive', 'mixed'],
+
+    // Inventory
+    inStock: true,
+  },
+  {
+    // Basic Information
+    id: '13',
+    name: i18n.t('menu.drinks.corn_milk'),
+    value: 'corn_milk',
+    type: DRINK_TYPE.milk,
+    description: i18n.t('menu.drinks.descriptions.corn_milk'),
+    image: cornMilkUrl,
+
+    // Pricing & Promotion
+    price: 20000,
+    promotionalPrice: null,
+    discount: 0,
+
+    // Display & Marketing
+    isBestSeller: false,
+    priority: 2,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['nutritious', 'sweet', 'milk', 'natural'],
+
+    // Inventory
+    inStock: true,
+  },
+  {
+    // Basic Information
+    id: '14',
+    name: i18n.t('menu.drinks.pumpkin_milk'),
+    value: 'pumpkin_milk',
+    type: DRINK_TYPE.milk,
+    description: i18n.t('menu.drinks.descriptions.pumpkin_milk'),
+    image: pumpkinMilkUrl,
+
+    // Pricing & Promotion
+    price: 20000,
+    promotionalPrice: null,
+    discount: 0,
+
+    // Display & Marketing
+    isBestSeller: false,
+    priority: 2,
+
+    // Health & Diet
+    isDietFriendly: true,
+    tags: ['vitamin a', 'healthy', 'milk', 'natural'],
 
     // Inventory
     inStock: true,

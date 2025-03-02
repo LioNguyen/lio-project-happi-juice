@@ -103,6 +103,8 @@
       "pineapple": "Pineapple",
       "celery": "Celery",
       "guava": "Guava",
+      "corn_milk": "Corn Milk",
+      "pumpkin_milk": "Pumpkin Milk",
       "descriptions": {
         "orange": "100% pure fresh orange juice, packed with vitamin C",
         "apple": "Refreshing apple juice, perfectly crisp and cool",
@@ -115,7 +117,9 @@
         "appleguava": "Apple and guava mix, double boost for your immune system",
         "applepineapple": "Sweet apple and pineapple blend, ultimate refreshment",
         "applecelery": "Apple celery detox, effective body cleansing",
-        "guavapineapple": "Sweet and cool guava pineapple mix, loaded with vitamin C"
+        "guavapineapple": "Sweet and cool guava pineapple mix, loaded with vitamin C",
+        "corn_milk": "Creamy sweet corn milk, the perfect energy boost for your active day.",
+        "pumpkin_milk": "Special pumpkin milk blend - where healthy meets tasty! Packed with vitamin A, protein and vibrant energy!"
       }
     }
   },
