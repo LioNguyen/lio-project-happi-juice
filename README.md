@@ -1,5 +1,6 @@
 - [Demo](https://happi-juice.vercel.app/)
 - [Vercel](https://vercel.com/lionguyens-projects/happi-juice)
+- [Generate Favicon](https://realfavicongenerator.net/)
 
 # 1. Overview
 
