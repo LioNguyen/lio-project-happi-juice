@@ -6,10 +6,9 @@ import { useTranslation } from 'react-i18next'
 import { AppPopover } from '@/components/appPopover'
 import { DRINK_TYPE, useMenuStore } from '@/domains/menu'
 import { useOrderStore } from '@/domains/order'
-import { MIXED_DRINK_MAX, MIXED_DRINK_PRICE } from '@/shared/constants'
+import { MIXED_DRINK_PRICE } from '@/shared/constants'
 import { IComponentBase } from '@/shared/types'
 import { cn, transformToSortedString } from '@/shared/utils'
-import { Badge } from '@designSystem/components/badge'
 import { Button } from '@designSystem/components/button'
 import {
   Command,
@@ -18,6 +17,7 @@ import {
   CommandList,
 } from '@designSystem/components/command'
 
+// Types and interfaces
 interface Option {
   value: string
   label: string
@@ -34,6 +34,7 @@ interface IDrinkMixProps extends IComponentBase {
 
 const MAX_SELECTIONS = 3
 
+// Enhanced DrinkMix component
 const DrinkMix = ({ className }: IDrinkMixProps) => {
   const { t } = useTranslation()
   const [open, setOpen] = useState<boolean>(false)
@@ -49,7 +50,7 @@ const DrinkMix = ({ className }: IDrinkMixProps) => {
       label: drink.name,
     }))
 
-  // Xử lý đóng popover khi cửa sổ thay đổi kích thước
+  // Handling popover close on window resize
   useEffect(() => {
     const handleResize = () => {
       if (open) {
@@ -94,75 +95,93 @@ const DrinkMix = ({ className }: IDrinkMixProps) => {
   }
 
   return (
-    <div className={cn('w-full space-y-4', className)}>
-      <div className="hidden lg:flex gap-2 w-full">
-        <AppPopover
-          className="p-0 w-[200px]"
-          open={open}
-          onOpenChange={setOpen}
-          side="bottom"
-          align="start"
-          trigger={
-            <Button
-              className="relative p-2 rounded-full bg-primary/10 text-primary w-9 hover:bg-primary/10"
-              size="icon"
-            >
-              <FlaskConical className="h-5 w-5" />
-              {selectedItems.length > 0 && (
-                <Badge className="absolute -top-1.5 -right-1.5 h-4 w-4 p-0 flex items-center justify-center text-[10px] bg-teal-500 border border-white shadow-sm text-white rounded-full">
-                  {selectedItems.length}
-                </Badge>
-              )}
-            </Button>
-          }
-        >
-          <Command>
-            <CommandList className="px-1 py-2">
-              <CommandGroup>
-                {DRINK_OPTIONS.map((option) => {
-                  const isSelected = selectedItems.some(
-                    (i) => i.value === option.value,
-                  )
-                  const isDisabled =
-                    selectedItems.length >= MAX_SELECTIONS && !isSelected
+    <div className={cn('w-fit', className)}>
+      <AppPopover
+        className="p-0 w-[250px]"
+        open={open}
+        onOpenChange={setOpen}
+        side="bottom"
+        align="start"
+        trigger={
+          <Button
+            className={cn(
+              'relative h-9 gap-2 px-4 rounded-full',
+              'bg-primary/10 text-primary hover:bg-primary/15',
+              'font-medium text-sm',
+              'transition-all duration-200',
+            )}
+            size="sm"
+          >
+            <FlaskConical className="h-4 w-4" />
+            <span>
+              {t('menu.mix_drink.mix_button', {
+                count: selectedItems.length,
+                max: MAX_SELECTIONS,
+              })}
+            </span>
+          </Button>
+        }
+      >
+        <Command className="rounded-lg border-none shadow-lg">
+          <div className="py-2 px-3 border-b">
+            <h3 className="text-base font-semibold text-primary">
+              {t('menu.mix_drink.title')}
+            </h3>
+            <p className="text-xs text-gray-500 mt-1">
+              {t('menu.mix_drink.select_up_to', { max: MAX_SELECTIONS })}
+            </p>
+          </div>
+          <CommandList className="px-2">
+            <CommandGroup>
+              {DRINK_OPTIONS.map((option) => {
+                const isSelected = selectedItems.some(
+                  (i) => i.value === option.value,
+                )
+                const isDisabled =
+                  selectedItems.length >= MAX_SELECTIONS && !isSelected
 
-                  return (
-                    <CommandItem
-                      key={option.value}
-                      onSelect={() => handleSelect(option)}
-                      disabled={isDisabled}
-                      className={cn(
-                        'transition-colors rounded-lg',
-                        isSelected ? 'bg-orange-100' : 'hover:bg-orange-100',
-                        isDisabled && 'opacity-50 cursor-not-allowed',
-                      )}
-                    >
-                      {isSelected ? (
-                        <Check className="mr-2 h-5 w-5 text-orange-500" />
-                      ) : (
-                        <div className="mr-2 h-5 w-5" />
-                      )}
-                      {option.label}
-                    </CommandItem>
-                  )
-                })}
-              </CommandGroup>
-            </CommandList>
-            <div className="p-2 border-t">
-              <Button
-                onClick={handleAddOrder}
-                disabled={selectedItems.length === 0}
-                className="w-full"
-              >
-                {t('menu.mix_drink.mix_button', {
-                  count: selectedItems.length,
-                  max: MIXED_DRINK_MAX,
-                })}
-              </Button>
-            </div>
-          </Command>
-        </AppPopover>
-      </div>
+                return (
+                  <CommandItem
+                    key={option.value}
+                    onSelect={() => handleSelect(option)}
+                    disabled={isDisabled}
+                    className={cn(
+                      'flex items-center justify-between py-2.5',
+                      'transition-all duration-200 rounded-lg my-1',
+                      isSelected
+                        ? 'bg-primary/10 text-primary hover:bg-primary/5'
+                        : 'hover:bg-primary/5',
+                      isDisabled && 'opacity-50 cursor-not-allowed',
+                    )}
+                  >
+                    <span className="font-medium">{option.label}</span>
+                    {isSelected ? (
+                      <Check className="h-4 w-4 text-primary" />
+                    ) : (
+                      <span className="h-4 w-4" />
+                    )}
+                  </CommandItem>
+                )
+              })}
+            </CommandGroup>
+          </CommandList>
+          <div className="p-2 border-t">
+            <Button
+              onClick={handleAddOrder}
+              disabled={selectedItems.length === 0}
+              className={cn(
+                'w-full bg-primary hover:bg-primary/90',
+                'font-medium text-white',
+                'shadow-sm transition-all',
+              )}
+            >
+              {selectedItems.length > 0
+                ? t('menu.mix_drink.add_mix', { count: selectedItems.length })
+                : t('menu.mix_drink.select_items')}
+            </Button>
+          </div>
+        </Command>
+      </AppPopover>
     </div>
   )
 }

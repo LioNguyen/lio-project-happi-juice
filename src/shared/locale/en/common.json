@@ -77,6 +77,7 @@
         "mix_guava": "Guava Chill 🌿"
       },
       "reset_button": "Reset All ↺",
+      "sort_by_price": "Sort by price",
       "aria_labels": {
         "filter_button": "Choose your drink mood",
         "reset_filter": "Back to default"
@@ -93,6 +94,9 @@
       "mix_button": "Mix ({{count}}/{{max}})",
       "selected_count": "{{current}}/{{max}}",
       "max_selections_reached": "Selection limit reached",
+      "select_up_to": "Select up to {{max}} drinks",
+      "add_mix": "Add Mix ({{count}})",
+      "select_items": "Select drinks",
       "no_selection": "No drinks selected"
     },
     "drinks": {

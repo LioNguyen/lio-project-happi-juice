@@ -81,27 +81,29 @@ const DrinkImageOverlay = memo(
     drink: IMenuItem
     quantity: number
     onAddDrink: (e: React.MouseEvent) => void
-  }) => (
-    <div className="relative">
-      <Image
-        src={drink.image}
-        alt={drink.name}
-        className="object-cover w-full h-full"
-      />
-      <div
-        className={cn(
-          'absolute bottom-0 left-0 right-0',
-          'px-2.5 py-2',
-          'bg-gradient-to-t from-black/60 via-black/30 to-transparent',
-        )}
-      >
-        <div className="flex justify-between items-center">
-          <PriceTag price={drink.price} />
-          <AddButton quantity={quantity} onClick={onAddDrink} />
+  }) => {
+    return (
+      <div className="relative min-h-[150px]">
+        <Image
+          src={drink.image}
+          alt={drink.name}
+          className={cn('object-cover w-full h-full')}
+        />
+        <div
+          className={cn(
+            'absolute bottom-0 left-0 right-0',
+            'px-2.5 py-2',
+            'bg-gradient-to-t from-black/60 via-black/30 to-transparent',
+          )}
+        >
+          <div className="flex justify-between items-center">
+            <PriceTag price={drink.price} />
+            <AddButton quantity={quantity} onClick={onAddDrink} />
+          </div>
         </div>
       </div>
-    </div>
-  ),
+    )
+  },
 )
 
 const DrinkContent = memo(({ drink }: { drink: IMenuItem }) => (

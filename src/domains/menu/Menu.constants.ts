@@ -235,7 +235,7 @@ const DRINK_MENU = [
     discount: 0,
 
     // Display & Marketing
-    isBestSeller: false,
+    isBestSeller: true,
     priority: 2,
 
     // Health & Diet
@@ -310,7 +310,7 @@ const DRINK_MENU = [
     discount: 0,
 
     // Display & Marketing
-    isBestSeller: false,
+    isBestSeller: true,
     priority: 2,
 
     // Health & Diet

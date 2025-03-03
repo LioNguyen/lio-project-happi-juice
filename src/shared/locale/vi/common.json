@@ -76,6 +76,7 @@
         "mix_apple": "Team Táo 🍎",
         "mix_guava": "Ổi Chill 🌿"
       },
+      "sort_by_price": "Sắp xếp theo giá",
       "reset_button": "Reset Nào ↺",
       "aria_labels": {
         "filter_button": "Chọn mood đồ uống nào",
@@ -90,10 +91,13 @@
       "info_tooltip": "Mix từ {{min}} đến {{max}} loại đồ uống để tạo thức uống độc đáo của riêng bạn",
       "price_unit": "đ/chai",
       "popular_mixes": "Mix phổ biến",
-      "mix_button": "Mix ({{count}}/{{max}})",
+      "mix_button": "Tạo món mới ({{count}}/{{max}})",
       "selected_count": "{{current}}/{{max}}",
       "max_selections_reached": "Đã đạt giới hạn chọn",
-      "no_selection": "Chưa chọn loại nước nào"
+      "no_selection": "Chưa chọn loại nước nào",
+      "select_up_to": "Chọn tối đa {{max}} loại nước",
+      "add_mix": "Tạo món ({{count}})",
+      "select_items": "Chọn loại nước"
     },
     "drinks": {
       "orange": "Cam tươi",

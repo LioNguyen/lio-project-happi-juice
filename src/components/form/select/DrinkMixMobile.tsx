@@ -60,15 +60,9 @@ const DrinkMixMobile = ({ className }: IDrinkMixMobileProps) => {
   /**
    * Handles the sheet open/close events
    */
-  const handleSheetChange = useCallback(
-    (isOpen: boolean) => {
-      setOpen(isOpen)
-      if (!isOpen) {
-        resetSelection()
-      }
-    },
-    [resetSelection],
-  )
+  const handleSheetChange = useCallback((isOpen: boolean) => {
+    setOpen(isOpen)
+  }, [])
 
   /**
    * Handles the selection/deselection of items
@@ -117,15 +111,17 @@ const DrinkMixMobile = ({ className }: IDrinkMixMobileProps) => {
         key={option.value}
         className={cn(
           'flex items-center justify-between p-2 rounded-lg transition-colors',
-          isSelected ? 'bg-orange-100' : 'hover:bg-orange-50',
-          isDisabled && 'opacity-50',
+          isSelected
+            ? 'bg-primary/10 text-primary hover:bg-primary/5'
+            : 'hover:bg-primary/5',
+          isDisabled && 'opacity-50 cursor-not-allowed',
         )}
         onClick={() => !isDisabled && handleSelect(option)}
       >
         <Text as="span" className="font-medium">
           {option.label}
         </Text>
-        {isSelected && <Check className="h-5 w-5 text-orange-500" />}
+        {isSelected && <Check className="h-5 w-5 text-primary" />}
       </div>
     )
   }

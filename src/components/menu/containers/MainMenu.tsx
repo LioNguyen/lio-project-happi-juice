@@ -4,8 +4,12 @@ import { ArrowUp, ShoppingCart } from 'lucide-react'
 import { FC, memo, useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { DrinkMix, DrinkMixMobile } from '@/components/form'
-import { DrinkFilterMobile } from '@/components/form/menu'
+import {
+  DrinkFilter,
+  DrinkFilterMobile,
+  DrinkMix,
+  DrinkMixMobile,
+} from '@/components/form'
 import { DrinkMenu } from '@/components/menu/contents'
 import { SHEET_NAME, useGlobal } from '@/domains/global'
 import { useOrderStore } from '@/domains/order'
@@ -148,9 +152,12 @@ const MainMenu: FC<IMainMenuProps> = () => {
         </div>
 
         {/* Desktop Controls */}
-        <div className="hidden lg:flex items-center justify-between px-1 mb-3">
+        <div className="hidden lg:flex items-start justify-between gap-2 px-1 mb-3">
           <div className="flex items-center justify-end gap-1">
             <DrinkMix className="w-fit" />
+          </div>
+          <div className="flex items-center justify-end gap-1 flex-1 overflow-auto custom-scrollbar pb-[10px]">
+            <DrinkFilter className="w-full" />
           </div>
         </div>
 
@@ -204,7 +211,7 @@ const MainMenu: FC<IMainMenuProps> = () => {
       {/* Title - visible only on desktop */}
       <Text
         as="h1"
-        className="hidden lg:block lg:text-3xl font-bold text-center lg:mt-0"
+        className="hidden mt-0 mb-4 lg:block lg:text-3xl font-bold text-center"
       >
         {t('menu.drinks_menu')}
       </Text>
