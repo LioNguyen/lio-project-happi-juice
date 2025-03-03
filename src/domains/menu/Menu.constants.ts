@@ -3,15 +3,15 @@ import { i18n } from '@/shared/locale'
 import {
   default as appleguavaUrl,
   default as generalUrl,
-} from '@/shared/assets/appleguava.jpg'
-import celeryUrl from '@/shared/assets/celery.jpg'
-import guavaUrl from '@/shared/assets/guava.jpg'
-import guavapineappleUrl from '@/shared/assets/guavapineapple.jpg'
-import orangeUrl from '@/shared/assets/orange.jpg'
-import pineappleUrl from '@/shared/assets/pineapple.jpg'
-import pomeloUrl from '@/shared/assets/pomelo.jpg'
-import cornMilkUrl from '@/shared/assets/corn-milk.jpg'
-import pumpkinMilkUrl from '@/shared/assets/pumpkin-milk.jpg'
+} from '@/shared/assets/appleguava.png'
+import celeryUrl from '@/shared/assets/celery.png'
+import guavaUrl from '@/shared/assets/guava.png'
+import guavapineappleUrl from '@/shared/assets/guavapineapple.png'
+import orangeUrl from '@/shared/assets/orange.png'
+import pineappleUrl from '@/shared/assets/pineapple.png'
+import pomeloUrl from '@/shared/assets/pomelo.png'
+import cornMilkUrl from '@/shared/assets/corn-milk.png'
+import pumpkinMilkUrl from '@/shared/assets/pumpkin-milk.png'
 
 const DRINK_TYPE = {
   mix: 'mix',

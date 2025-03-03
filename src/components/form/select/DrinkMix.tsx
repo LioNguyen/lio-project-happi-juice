@@ -101,7 +101,7 @@ const DrinkMix = ({ className }: IDrinkMixProps) => {
           open={open}
           onOpenChange={setOpen}
           side="bottom"
-          align="end"
+          align="start"
           trigger={
             <Button
               className="relative p-2 rounded-full bg-primary/10 text-primary w-9 hover:bg-primary/10"
