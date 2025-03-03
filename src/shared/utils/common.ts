@@ -1,8 +1,9 @@
-import { format, isValid, parseISO } from 'date-fns'
+import { format, isValid, Locale, parseISO } from 'date-fns'
+import { enUS, vi } from 'date-fns/locale'
 import _ from 'lodash'
 
-import { ISelectOption } from '@/shared/types'
 import { IOrderItem } from '@/domains/order'
+import { ISelectOption } from '@/shared/types'
 
 interface INumberFormatOptions {
   decimals?: number
@@ -49,6 +50,11 @@ function parseDate(value: Date | string | undefined): Date | undefined {
  */
 function formatDateTime(date: string, dateFormat?: string) {
   return format(date, dateFormat || 'yyyy-MM-dd')
+}
+
+const localeMap: Record<string, Locale> = {
+  vi: vi,
+  en: enUS,
 }
 
 // ==================== Number & Price Utilities ====================
@@ -117,9 +123,12 @@ export {
   // Date utils
   parseDate,
   formatDateTime,
+  localeMap,
+
   // Number & Price utils
   formatNumber,
   formatPrice,
+
   // Array utils
   transformToSortedString,
   // Order utils

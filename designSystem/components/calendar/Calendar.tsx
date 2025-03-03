@@ -1,4 +1,4 @@
-import { vi } from 'date-fns/locale'
+import { Locale, vi } from 'date-fns/locale'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import * as React from 'react'
 import { DayPicker } from 'react-day-picker'
@@ -6,51 +6,78 @@ import { DayPicker } from 'react-day-picker'
 import { cn } from '@/shared/utils'
 import { buttonVariants } from '@designSystem/components/button'
 
-type CalendarProps = React.ComponentProps<typeof DayPicker>
+type CalendarProps = React.ComponentProps<typeof DayPicker> & {
+  fontClassName?: string
+  calendarLocale?: Locale
+  customFormatCaption?: (date: Date) => string
+  compact?: boolean
+}
 
 function Calendar({
   className,
   classNames,
   showOutsideDays = true,
+  fontClassName,
+  calendarLocale = vi,
+  customFormatCaption,
+  compact = false,
   ...props
 }: CalendarProps) {
+  const defaultFormatCaption = (date: Date) => {
+    return `Tháng ${date.getMonth() + 1} năm ${date.getFullYear()}`
+  }
+
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn('p-3 w-full', className)}
-      locale={vi}
+      className={cn(compact ? 'p-1.5 w-full text-sm' : 'p-3 w-full', className)}
+      locale={calendarLocale}
       formatters={{
-        formatCaption: (date) => {
-          return `Tháng ${date.getMonth() + 1} năm ${date.getFullYear()}`
-        },
+        formatCaption: customFormatCaption || defaultFormatCaption,
       }}
       classNames={{
-        months:
-          'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 w-full',
-        month: 'w-full space-y-4',
-        caption: 'flex justify-center pt-1 relative items-center',
-        caption_label: 'text-sm font-medium',
+        months: cn(
+          'flex flex-col sm:flex-row sm:space-x-4 w-full',
+          compact ? 'space-y-2 sm:space-y-0' : 'space-y-4 sm:space-y-0',
+        ),
+        month: cn('w-full', compact ? 'space-y-2' : 'space-y-4'),
+        caption: cn(
+          'flex justify-center relative items-center',
+          compact ? 'pt-0.5' : 'pt-1',
+          fontClassName,
+        ),
+        caption_label: cn(
+          compact ? 'text-xs font-medium' : 'text-sm font-medium',
+          fontClassName,
+        ),
         nav: 'space-x-1 flex items-center',
         nav_button: cn(
           buttonVariants({ variant: 'outline' }),
-          'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
+          compact ? 'h-5 w-5 p-0' : 'h-7 w-7 p-0',
+          'bg-transparent opacity-50 hover:opacity-100',
         ),
         nav_button_previous: 'absolute left-1',
         nav_button_next: 'absolute right-1',
-        table: 'w-full border-collapse space-y-1',
-        head_row: 'flex justify-between',
-        head_cell:
-          'text-text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]',
-        row: 'flex w-full justify-between mt-2',
+        table: 'w-full border-collapse',
+        head_row: cn('flex justify-between', compact ? 'my-0.5' : 'mb-1'),
+        head_cell: cn(
+          'text-text-muted-foreground rounded-md font-normal',
+          compact ? 'text-[0.7rem] w-7' : 'text-[0.8rem] w-9',
+          fontClassName,
+        ),
+        row: cn('flex w-full justify-between', compact ? 'mt-1' : 'mt-2'),
         cell: cn(
-          'relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md',
+          'relative p-0 text-center focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md',
+          compact ? 'text-xs' : 'text-sm',
           props.mode === 'range'
             ? '[&:has(>.day-range-end)]:rounded-r-md [&:has(>.day-range-start)]:rounded-l-md first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md'
             : '[&:has([aria-selected])]:rounded-md',
         ),
         day: cn(
           buttonVariants({ variant: 'ghost' }),
-          'h-9 w-9 p-0 font-normal aria-selected:opacity-100',
+          compact ? 'h-7 w-7 p-0 text-xs' : 'h-9 w-9 p-0 text-sm',
+          'font-normal aria-selected:opacity-100',
+          fontClassName,
         ),
         day_range_start: 'day-range-start',
         day_range_end: 'day-range-end',
@@ -67,10 +94,16 @@ function Calendar({
       }}
       components={{
         IconLeft: ({ className, ...props }) => (
-          <ChevronLeft className={cn('h-4 w-4', className)} {...props} />
+          <ChevronLeft
+            className={cn(compact ? 'h-3 w-3' : 'h-4 w-4', className)}
+            {...props}
+          />
         ),
         IconRight: ({ className, ...props }) => (
-          <ChevronRight className={cn('h-4 w-4', className)} {...props} />
+          <ChevronRight
+            className={cn(compact ? 'h-3 w-3' : 'h-4 w-4', className)}
+            {...props}
+          />
         ),
       }}
       {...props}

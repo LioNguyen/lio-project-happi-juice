@@ -51,7 +51,7 @@
     "orderSuccess": {
       "title": "Yeahhh! Đặt hàng thành công rồi! 🎉",
       "description": "Cảm ơn bạn đã chọn Happi nha! 💚 Chúng mình rất vui được phục vụ bạn!",
-      "phoneNotice": "Happi sẽ gọi cho người đẹp trong thời gian sớm nhất để xác nhận đơn hàng xinh xắn này nhé! ✨📱",
+      "phoneNotice": "Happi sẽ gọi người đẹp trong thời gian sớm nhất để xác nhận đơn hàng xinh xắn này nhé! ✨📱",
       "action": {
         "cancel": "Đặt thêm",
         "confirm": "OK nha!"

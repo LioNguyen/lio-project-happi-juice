@@ -16,6 +16,7 @@ import { Text } from '@designSystem/components/text'
 import { MODAL_NAME, useGlobal } from '@/domains/global'
 import { IOrderItem, useOrder, useOrderStore } from '@/domains/order'
 import emptyStateUrl from '@/shared/assets/empty-state.png'
+import { useAnalytics } from '@/shared/hooks/useAnalytics'
 import {
   calculateTotalPrice,
   getLocalStorage,
@@ -23,7 +24,6 @@ import {
 } from '@/shared/utils'
 import { Badge } from '@designSystem/components/badge'
 import { Image } from '@designSystem/components/image'
-import { useAnalytics } from '@/shared/hooks/useAnalytics'
 
 interface IOrderFormProps {
   onSubmit?: () => void
@@ -58,7 +58,7 @@ const OrderItemHeader = ({
   item: IOrderItem
   onDelete: () => void
 }) => (
-  <div className="flex items-center justify-between mb-3">
+  <div className="flex items-center justify-between mb-1">
     <Text className="font-semibold flex-1">
       {index + 1}. {item.name}
     </Text>
@@ -99,7 +99,7 @@ const OrderItemControls = ({
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 scale-[0.9] -translate-x-5">
       {/* Quantity and Date Row */}
       <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
         {/* Quantity Control */}
@@ -134,7 +134,7 @@ const OrderItemControls = ({
             {t('order.date')}:
           </Text>
           <FormDatePicker
-            className="flex-1 max-w-[180px]"
+            className="flex-1 max-w-[195px]"
             value={item.date}
             onChange={(value) => onUpdate(item.id, { date: value })}
           />
@@ -147,10 +147,10 @@ const OrderItemControls = ({
           {t('order.note')}:
         </Text>
         <Input
+          className="flex-1 max-w-[400px]"
           placeholder={t('form.inputs.note')}
           value={item.note}
           onChange={(e) => onUpdate(item.id, { note: e.target.value })}
-          className="flex-1"
         />
       </div>
     </div>
@@ -173,10 +173,7 @@ const OrderItem = ({
   onDelete: (id: string) => void
   t: (key: string) => string
 }) => (
-  <div
-    key={index}
-    className="flex flex-col border rounded-lg p-3 md:p-4 hover:bg-gray-50"
-  >
+  <div className="border-b pb-4 mb-4 last:border-b-0 last:mb-0 last:pb-0">
     <OrderItemHeader
       index={index}
       item={item}
@@ -323,7 +320,7 @@ const OrderForm: FC<IOrderFormProps> = ({ onSubmit }) => {
 
       {renderCustomerInfo()}
 
-      <div className="border rounded-lg p-4 mt-4 bg-white flex-1 flex flex-col min-h-0">
+      <div className="border rounded-lg p-4 mt-4 bg-gray-50 flex-1 flex flex-col min-h-0">
         {orders.items.length > 0 && (
           <Text as="h3" className="font-medium mb-4 flex-none">
             {t('order.selected_drinks')}

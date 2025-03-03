@@ -6,6 +6,7 @@ import {
   startOfDay,
   startOfToday,
 } from 'date-fns'
+import { vi } from 'date-fns/locale'
 import _ from 'lodash'
 import { CalendarIcon, HelpCircle, X } from 'lucide-react'
 import { type FC, memo, useEffect, useState } from 'react'
@@ -16,7 +17,7 @@ import { AppSheet } from '@/components/appSheet'
 import { DATE_PICKER_OPTIONS } from '@/shared/constants'
 import { useIsMobile } from '@/shared/hooks/useMobile'
 import { IFormBase } from '@/shared/types'
-import { cn, parseDate } from '@/shared/utils'
+import { cn, localeMap, parseDate } from '@/shared/utils'
 import { Button } from '@designSystem/components/button'
 import { Calendar } from '@designSystem/components/calendar'
 import {
@@ -45,13 +46,18 @@ const CalendarContent = ({
   onDateChange,
   onQuickSelect,
   className,
+  compact,
 }: {
   date?: Date
   onDateChange: (date: Date | undefined) => void
   onQuickSelect: (days: string) => void
   className?: string
+  compact?: boolean
 }) => {
-  const { t } = useTranslation()
+  const { i18n, t } = useTranslation()
+
+  const baseLanguage = i18n.language.split('-')[0]
+  const dateLocale = localeMap[baseLanguage] || vi
 
   const isDateDisabled = (date: Date) => {
     const tomorrow = addDays(startOfToday(), 1)
@@ -78,6 +84,8 @@ const CalendarContent = ({
           selected={date}
           onSelect={onDateChange}
           disabled={isDateDisabled}
+          compact={compact}
+          locale={dateLocale}
         />
       </div>
     </div>
@@ -286,6 +294,7 @@ const FormDatePicker: FC<IFormDatePickerProps> = ({
                 date={date}
                 onDateChange={handleDateChange}
                 onQuickSelect={handleQuickSelect}
+                compact
               />
             </PopoverContent>
           </Popover>
