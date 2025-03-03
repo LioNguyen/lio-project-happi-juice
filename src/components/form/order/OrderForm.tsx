@@ -99,7 +99,7 @@ const OrderItemControls = ({
   }
 
   return (
-    <div className="space-y-3 scale-[0.9] -translate-x-5">
+    <div className="space-y-3">
       {/* Quantity and Date Row */}
       <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
         {/* Quantity Control */}
