@@ -297,31 +297,6 @@ const DRINK_MENU = [
   },
   {
     // Basic Information
-    id: '12',
-    name: `${i18n.t('menu.drinks.guava')} + ${i18n.t('menu.drinks.pineapple')}`,
-    value: 'guava,pineapple',
-    type: DRINK_TYPE.mix,
-    description: i18n.t('menu.drinks.descriptions.guavapineapple'),
-    image: guavapineappleUrl,
-
-    // Pricing & Promotion
-    price: 25000,
-    promotionalPrice: null,
-    discount: 0,
-
-    // Display & Marketing
-    isBestSeller: false,
-    priority: 3,
-
-    // Health & Diet
-    isDietFriendly: true,
-    tags: ['vitamin c', 'digestive', 'mixed'],
-
-    // Inventory
-    inStock: true,
-  },
-  {
-    // Basic Information
     id: '13',
     name: i18n.t('menu.drinks.corn_milk'),
     value: 'corn_milk',

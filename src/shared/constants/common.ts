@@ -1,8 +1,30 @@
 import { i18n } from '@/shared/locale'
 
-const MIXED_DRINK_PRICE = 25000
-
 const SHEET_OFFSET = 32
+
+// =============================================================================
+// UI CONFIGURATION
+// UI-related constants, layout settings, and display options
+// =============================================================================
+
+/**
+ * Element alignment options
+ */
+const ALIGN = {
+  center: 'center',
+  end: 'end',
+  start: 'start',
+} as const
+
+/**
+ * Positioning options for UI elements
+ */
+const SIDE = {
+  left: 'left',
+  right: 'right',
+  top: 'top',
+  bottom: 'bottom',
+} as const
 
 /**
  * Responsive design breakpoints
@@ -42,7 +64,10 @@ const DATE_PICKER_OPTIONS = [
 
 export {
   DATE_PICKER_OPTIONS,
-  MIXED_DRINK_PRICE,
-  SCREEN_BREAKPOINTS,
   SHEET_OFFSET,
+
+  // UI Configuration
+  ALIGN,
+  SIDE,
+  SCREEN_BREAKPOINTS,
 }

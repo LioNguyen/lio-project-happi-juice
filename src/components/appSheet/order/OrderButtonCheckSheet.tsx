@@ -36,7 +36,7 @@ const OrderButtonCheckSheet: FC<IOrderButtonCheckSheetProps> = ({ isOpen }) => {
   return (
     <div className={cn('order-button-check-sheet')}>
       <AppSheet
-        className="h-fit lg:hidden px-4 pt-4 pb-4 rounded-t-2xl"
+        className="h-fit lg:hidden px-4 pt-3 pb-3 rounded-t-2xl"
         modal={false}
         open={isOpen}
         side="bottom"
@@ -46,9 +46,11 @@ const OrderButtonCheckSheet: FC<IOrderButtonCheckSheetProps> = ({ isOpen }) => {
         onInteractOutside={(e) => e.preventDefault()}
         closeProps={{ className: 'hidden' }}
       >
-        <Button className="w-full" onClick={handleButtonClick}>
-          {t('order.title')}
-        </Button>
+        <div className="flex items-center justify-center w-full">
+          <Button className="w-[90%]" onClick={handleButtonClick}>
+            {t('order.title')}
+          </Button>
+        </div>
       </AppSheet>
     </div>
   )

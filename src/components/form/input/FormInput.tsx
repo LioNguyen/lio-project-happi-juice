@@ -119,10 +119,9 @@ const FormInput: FC<IFormInputProps> = ({
             )}
           </Text>
           {tooltip && (
-            <AppPopover
-              trigger={<HelpCircle className="h-4 w-4" />}
-              content={tooltip}
-            />
+            <AppPopover trigger={<HelpCircle className="h-4 w-4" />}>
+              {tooltip}
+            </AppPopover>
           )}
         </div>
       )}

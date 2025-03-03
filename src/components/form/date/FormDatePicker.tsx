@@ -255,10 +255,9 @@ const FormDatePicker: FC<IFormDatePickerProps> = ({
             )}
           </Text>
           {tooltip && (
-            <AppPopover
-              trigger={<HelpCircle className="h-4 w-4" />}
-              content={tooltip}
-            />
+            <AppPopover trigger={<HelpCircle className="h-4 w-4" />}>
+              {tooltip}
+            </AppPopover>
           )}
         </div>
       )}
@@ -270,7 +269,7 @@ const FormDatePicker: FC<IFormDatePickerProps> = ({
             <AppSheet
               className="h-fit flex flex-col"
               title={t('form.select_date')}
-              sheetTrigger={<CalendarIcon className="h-4 w-4" />}
+              trigger={<CalendarIcon className="h-4 w-4" />}
             >
               <CalendarContent
                 date={tempDate}

@@ -38,7 +38,7 @@
     "date_picker_option_tomorrow": "Ngày mai nha",
     "date_picker_option_day_after_tomorrow": "Ngày mốt nha",
     "date_picker_option_next_week": "Tuần sau",
-    "select_date": "Chọn ngày",
+    "select_date": "Chọn ngày nhận nước nhé",
     "inputs": {
       "name": "Tên người đẹp là gì nè?",
       "contact": "Thông tin liên hệ người đẹp ơi",
@@ -90,7 +90,7 @@
       "info_tooltip": "Mix từ {{min}} đến {{max}} loại đồ uống để tạo thức uống độc đáo của riêng bạn",
       "price_unit": "đ/chai",
       "popular_mixes": "Mix phổ biến",
-      "mix_button": "Mix ({{count}})",
+      "mix_button": "Mix ({{count}}/{{max}})",
       "selected_count": "{{current}}/{{max}}",
       "max_selections_reached": "Đã đạt giới hạn chọn",
       "no_selection": "Chưa chọn loại nước nào"
@@ -118,8 +118,8 @@
         "applepineapple": "Táo thơm ngọt thanh, giải nhiệt cực đã",
         "applecelery": "Táo cần tây detox, thanh lọc cơ thể hiệu quả",
         "guavapineapple": "Ổi thơm ngọt mát, vitamin C tràn trề cực đã",
-        "corn_milk": "Sữa bắp ngọt thơm béo ngậy, nguồn năng lượng tuyệt vời cho ngày năng động. !",
-        "pumpkin_milk": "Sữa bí đỏ thơm ngon đặc biệt, vừa healthy vừa cực đã. Bổ sung vitamin A, protein và năng lượng tràn trề!"
+        "corn_milk": "Sữa bắp ngọt thơm béo ngậy, nguồn năng lượng tuyệt vời!",
+        "pumpkin_milk": "Sữa bí đỏ thơm ngon, bổ sung vitamin A, protein và năng lượng tràn trề!"
       }
     }
   },

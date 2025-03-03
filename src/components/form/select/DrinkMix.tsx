@@ -1,26 +1,22 @@
 import _ from 'lodash'
-import { Check, ChevronsUpDown, Plus } from 'lucide-react'
-import { memo, useState } from 'react'
+import { Check, FlaskConical } from 'lucide-react'
+import { memo, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
+import { AppPopover } from '@/components/appPopover'
 import { DRINK_TYPE, useMenuStore } from '@/domains/menu'
 import { useOrderStore } from '@/domains/order'
-import { MIXED_DRINK_PRICE } from '@/shared/constants'
+import { MIXED_DRINK_MAX, MIXED_DRINK_PRICE } from '@/shared/constants'
 import { IComponentBase } from '@/shared/types'
 import { cn, transformToSortedString } from '@/shared/utils'
 import { Badge } from '@designSystem/components/badge'
 import { Button } from '@designSystem/components/button'
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
   CommandItem,
   CommandList,
 } from '@designSystem/components/command'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@designSystem/components/popover'
 
 interface Option {
   value: string
@@ -34,17 +30,12 @@ interface IDrinkMixProps extends IComponentBase {
     note: string
     price: number
   }) => void
-  placeholder?: string
-  error?: string
 }
 
 const MAX_SELECTIONS = 3
 
-const DrinkMix = ({
-  placeholder = 'Chọn loại nước',
-  error,
-  className,
-}: IDrinkMixProps) => {
+const DrinkMix = ({ className }: IDrinkMixProps) => {
+  const { t } = useTranslation()
   const [open, setOpen] = useState<boolean>(false)
   const [selectedItems, setSelectedItems] = useState<Option[]>([])
 
@@ -58,6 +49,21 @@ const DrinkMix = ({
       label: drink.name,
     }))
 
+  // Xử lý đóng popover khi cửa sổ thay đổi kích thước
+  useEffect(() => {
+    const handleResize = () => {
+      if (open) {
+        setOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [open])
+
   const handleSelect = (item: Option) => {
     setSelectedItems((prev) => {
       const isSelected = prev.some((i) => i.value === item.value)
@@ -69,7 +75,7 @@ const DrinkMix = ({
     })
   }
 
-  const handleAddRow = () => {
+  const handleAddOrder = () => {
     if (selectedItems.length === 0) return
 
     addOrder({
@@ -87,114 +93,75 @@ const DrinkMix = ({
     setOpen(false)
   }
 
-  const renderSelectedBadges = () => {
-    if (selectedItems.length === 0) return placeholder
-
-    return (
-      <div className="flex gap-1 flex-wrap">
-        {/* Desktop view */}
-        <div className="hidden lg:flex gap-1 flex-wrap">
-          {selectedItems.map((item) => (
-            <Badge
-              key={item.value}
-              className="bg-[#F85C2C] hover:bg-[#E04A1B] text-white"
-            >
-              {item.label}
-            </Badge>
-          ))}
-        </div>
-
-        {/* Mobile view */}
-        <div className="flex lg:hidden gap-1 flex-wrap">
-          {selectedItems.slice(0, 1).map((item) => (
-            <Badge
-              key={item.value}
-              className="bg-orange-500 hover:bg-orange-600 text-white"
-            >
-              {item.label}
-            </Badge>
-          ))}
-          {selectedItems.length > 1 && (
-            <Badge className="bg-orange-100 hover:bg-orange-200 text-orange-700">
-              +{selectedItems.length - 1}
-            </Badge>
-          )}
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div className={cn('w-full space-y-4', className)}>
-      <div className="flex gap-2 w-full lg:w-[450px]">
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
+      <div className="hidden lg:flex gap-2 w-full">
+        <AppPopover
+          className="p-0 w-[200px]"
+          open={open}
+          onOpenChange={setOpen}
+          side="bottom"
+          align="end"
+          trigger={
             <Button
-              variant="outline"
-              role="combobox"
-              aria-expanded={open}
-              className={cn(
-                'w-full justify-between',
-                error && 'border-red-500',
-                !selectedItems.length && 'text-text-muted-foreground',
-              )}
+              className="relative p-2 rounded-full bg-primary/10 text-primary w-9 hover:bg-primary/10"
+              size="icon"
             >
-              {renderSelectedBadges()}
-              <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
+              <FlaskConical className="h-5 w-5" />
+              {selectedItems.length > 0 && (
+                <Badge className="absolute -top-1.5 -right-1.5 h-4 w-4 p-0 flex items-center justify-center text-[10px] bg-teal-500 border border-white shadow-sm text-white rounded-full">
+                  {selectedItems.length}
+                </Badge>
+              )}
             </Button>
-          </PopoverTrigger>
-          <PopoverContent
-            className="w-[--radix-popover-trigger-width] p-0"
-            side="bottom"
-            align="start"
-            sideOffset={4}
-            collisionPadding={8}
-            avoidCollisions={false}
-          >
-            <Command>
-              <CommandList>
-                <CommandEmpty>Không tìm thấy kết quả</CommandEmpty>
-                <CommandGroup>
-                  {DRINK_OPTIONS.map((option) => {
-                    const isSelected = selectedItems.some(
-                      (i) => i.value === option.value,
-                    )
-                    const isDisabled =
-                      selectedItems.length >= MAX_SELECTIONS && !isSelected
-
-                    return (
-                      <CommandItem
-                        key={option.value}
-                        onSelect={() => handleSelect(option)}
-                        disabled={isDisabled}
-                        className={cn(
-                          isDisabled && 'opacity-50 cursor-not-allowed',
-                        )}
-                      >
-                        <Check
-                          className={cn(
-                            'mr-2 h-4 w-4',
-                            isSelected ? 'opacity-100' : 'opacity-0',
-                          )}
-                        />
-                        {option.label}
-                      </CommandItem>
-                    )
-                  })}
-                </CommandGroup>
-              </CommandList>
-            </Command>
-          </PopoverContent>
-        </Popover>
-
-        <Button
-          onClick={handleAddRow}
-          disabled={selectedItems.length === 0}
-          className="w-16"
-          variant="outline"
+          }
         >
-          <Plus className="h-4 w-4" />
-        </Button>
+          <Command>
+            <CommandList className="px-1 py-2">
+              <CommandGroup>
+                {DRINK_OPTIONS.map((option) => {
+                  const isSelected = selectedItems.some(
+                    (i) => i.value === option.value,
+                  )
+                  const isDisabled =
+                    selectedItems.length >= MAX_SELECTIONS && !isSelected
+
+                  return (
+                    <CommandItem
+                      key={option.value}
+                      onSelect={() => handleSelect(option)}
+                      disabled={isDisabled}
+                      className={cn(
+                        'transition-colors rounded-lg',
+                        isSelected ? 'bg-orange-100' : 'hover:bg-orange-100',
+                        isDisabled && 'opacity-50 cursor-not-allowed',
+                      )}
+                    >
+                      {isSelected ? (
+                        <Check className="mr-2 h-5 w-5 text-orange-500" />
+                      ) : (
+                        <div className="mr-2 h-5 w-5" />
+                      )}
+                      {option.label}
+                    </CommandItem>
+                  )
+                })}
+              </CommandGroup>
+            </CommandList>
+            <div className="p-2 border-t">
+              <Button
+                onClick={handleAddOrder}
+                disabled={selectedItems.length === 0}
+                className="w-full"
+              >
+                {t('menu.mix_drink.mix_button', {
+                  count: selectedItems.length,
+                  max: MIXED_DRINK_MAX,
+                })}
+              </Button>
+            </div>
+          </Command>
+        </AppPopover>
       </div>
     </div>
   )

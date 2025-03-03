@@ -14,7 +14,7 @@ export default function MainLayout() {
     >
       <div
         id="main-body"
-        className="bg-white rounded-2xl h-[92vh] lg:h-[90vh] w-[95vw] relative"
+        className="bg-white rounded-2xl h-[92vh] lg:h-[90vh] w-[95vw] max-w-[1920px] relative"
       >
         <div className="absolute -top-[35px] lg:-top-[45px] z-10 left-1/2 -translate-x-1/2">
           <Image

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { AppSheet } from '@/components/appSheet'
 import { DRINK_TYPE, useMenuStore } from '@/domains/menu'
 import { useOrderStore } from '@/domains/order'
-import { MIXED_DRINK_PRICE } from '@/shared/constants'
+import { MIXED_DRINK_MAX, MIXED_DRINK_PRICE } from '@/shared/constants'
 import { cn, transformToSortedString } from '@/shared/utils'
 import { Badge } from '@designSystem/components/badge'
 import { Button } from '@designSystem/components/button'
@@ -27,9 +27,6 @@ interface IDrinkMixMobileProps {
   }) => void
   className?: string
 }
-
-// Constants
-const MAX_SELECTIONS = 3
 
 /**
  * DrinkMixMobile Component
@@ -82,7 +79,7 @@ const DrinkMixMobile = ({ className }: IDrinkMixMobileProps) => {
       if (isSelected) {
         return prev.filter((i) => i.value !== item.value)
       }
-      if (prev.length >= MAX_SELECTIONS) return prev
+      if (prev.length >= MIXED_DRINK_MAX) return prev
       return [...prev, item]
     })
   }, [])
@@ -113,7 +110,7 @@ const DrinkMixMobile = ({ className }: IDrinkMixMobileProps) => {
    */
   const renderOptionItem = (option: Option) => {
     const isSelected = selectedItems.some((i) => i.value === option.value)
-    const isDisabled = selectedItems.length >= MAX_SELECTIONS && !isSelected
+    const isDisabled = selectedItems.length >= MIXED_DRINK_MAX && !isSelected
 
     return (
       <div
@@ -141,9 +138,9 @@ const DrinkMixMobile = ({ className }: IDrinkMixMobileProps) => {
         className="h-[50vh] flex flex-col"
         title={t('menu.mix_drink.sheet_title')}
         description=""
-        sheetTrigger={
+        trigger={
           <Button
-            className="relative p-2 rounded-full bg-primary/10 text-primary w-9 lg:hidden hover:bg-primary/10"
+            className="relative p-2 rounded-full bg-primary/10 text-primary w-9 hover:bg-primary/10"
             size="icon"
           >
             <FlaskConical className="h-5 w-5" />
@@ -154,7 +151,7 @@ const DrinkMixMobile = ({ className }: IDrinkMixMobileProps) => {
             )}
           </Button>
         }
-        sheetFooter={
+        footer={
           <div className="bg-white">
             <Button
               className="w-full"
@@ -164,6 +161,7 @@ const DrinkMixMobile = ({ className }: IDrinkMixMobileProps) => {
               <Text as="span" className="text-inherit">
                 {t('menu.mix_drink.mix_button', {
                   count: selectedItems.length,
+                  max: MIXED_DRINK_MAX,
                 })}
               </Text>
             </Button>

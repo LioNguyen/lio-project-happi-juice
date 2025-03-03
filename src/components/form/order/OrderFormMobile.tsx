@@ -139,7 +139,7 @@ const OrderItemControls = ({
           <AppSheet
             className="h-fit flex flex-col"
             title={t('order.note')}
-            sheetTrigger={
+            trigger={
               <StickyNote
                 className={cn(
                   'h-4 w-4',

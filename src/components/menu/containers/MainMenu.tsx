@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { isEqual } from 'lodash'
-import { Info, ShoppingCart } from 'lucide-react'
+import { ShoppingCart } from 'lucide-react'
 import { FC, memo, useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -15,12 +15,6 @@ import { transformToSortedString } from '@/shared/utils'
 import { Badge } from '@designSystem/components/badge'
 import { Button } from '@designSystem/components/button'
 import { Text } from '@designSystem/components/text'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@designSystem/components/tooltip'
 
 interface IMainMenuProps {}
 
@@ -53,7 +47,7 @@ const MainMenu: FC<IMainMenuProps> = () => {
     const calculateDrinkMenuHeight = () => {
       if (!mainMenuRef.current) return
       const mainMenuHeight = mainMenuRef.current.clientHeight
-      setDrinkMenuHeight(Math.max(mainMenuHeight - (isMobile ? 60 : 220), 200)) // Minimum height 200px
+      setDrinkMenuHeight(Math.max(mainMenuHeight - (isMobile ? 60 : 100), 200)) // Minimum height 200px
     }
 
     calculateDrinkMenuHeight()
@@ -107,70 +101,15 @@ const MainMenu: FC<IMainMenuProps> = () => {
     [handleAddMixedDrink],
   )
 
-  // renderMixDrinkSection
-  const renderMixDrinkSection = () => (
-    <div className="hidden lg:block bg-[#FFF9F5] rounded-lg shadow-sm border border-[#FFE4D9] mt-8 lg:mt-0">
-      <div className="p-4">
-        <div className="hidden lg:flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <Text
-              as="h2"
-              className="text-sm md:text-base font-bold text-[#C4361D]"
-            >
-              {t('menu.mix_drink.title')}
-            </Text>
-            <TooltipProvider delayDuration={0}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Info
-                    size={16}
-                    className="text-[#F85C2C] hidden lg:block cursor-help"
-                  />
-                </TooltipTrigger>
-                <TooltipContent
-                  className="max-w-[280px] font-semibold"
-                  side="right"
-                  sideOffset={5}
-                >
-                  <Text className="text-sm text-inherit">
-                    {t('menu.mix_drink.info_tooltip', {
-                      min: MIN_MIXED_ITEMS,
-                      max: MAX_MIXED_ITEMS,
-                    })}
-                  </Text>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </div>
-          <Text
-            as="span"
-            className="text-xs md:text-sm font-semibold text-[#F85C2C]"
-          >
-            {MIXED_DRINK_PRICE.toLocaleString()}
-            {t('menu.mix_drink.price_unit')}
-          </Text>
-        </div>
-
-        <DrinkMix
-          className="w-full"
-          placeholder={t('menu.mix_drink.placeholder')}
-          onChange={handleDrinkChange}
-        />
-      </div>
-    </div>
-  )
-
   const renderMenuSection = () => (
-    <div className="flex-1 min-h-0 lg:mt-4">
-      <div className="flex items-center justify-between lg:justify-between px-1 mb-3">
-        <Text as="h2" className="hidden lg:block text-base font-semibold">
-          {t('menu.title')}
-        </Text>
-
+    <div className="flex-1 min-h-0 lg:mt-1">
+      {/* Mobile View */}
+      <div className="flex lg:hidden items-center justify-between lg:justify-between px-1 mb-3">
         <div className="flex items-center gap-1">
           <DrinkFilterMobile />
           <DrinkMixMobile onChange={handleDrinkChange} />
         </div>
+
         <div className="flex items-center gap-1">
           <Button
             className="relative p-2 rounded-full bg-primary/10 text-primary w-9 lg:hidden hover:bg-primary/10"
@@ -189,6 +128,14 @@ const MainMenu: FC<IMainMenuProps> = () => {
         </div>
       </div>
 
+      {/* Desktop View */}
+      <div className="hidden lg:flex items-center justify-between lg:justify-between px-1 mb-3">
+        <div>{/* Filter icon */}</div>
+        <div className="flex items-center justify-end gap-1">
+          <DrinkMix className="w-fit" />
+        </div>
+      </div>
+
       <div
         className="h-full rounded-xl overflow-y-auto custom-scrollbar"
         style={{ height: `${drinkMenuHeight}px` }}
@@ -202,12 +149,11 @@ const MainMenu: FC<IMainMenuProps> = () => {
     <div ref={mainMenuRef} className="flex flex-col h-full">
       <Text
         as="h1"
-        className="hidden lg:block lg:text-3xl font-bold text-center lg:mt-0 lg:mb-6"
+        className="hidden lg:block lg:text-3xl font-bold text-center lg:mt-0"
       >
         {t('menu.drinks_menu')}
       </Text>
 
-      {renderMixDrinkSection()}
       {renderMenuSection()}
     </div>
   )

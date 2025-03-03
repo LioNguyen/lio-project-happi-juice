@@ -148,7 +148,7 @@ const DrinkFilterMobile = ({ className }: IDrinkFilterMobileProps) => {
         className="h-[50vh] flex flex-col"
         title={t('menu.filter.sheet_title')}
         description=""
-        sheetTrigger={
+        trigger={
           <Button
             className="relative p-2 rounded-full bg-primary/10 text-primary w-9 lg:hidden hover:bg-primary/10"
             size="icon"
@@ -164,7 +164,7 @@ const DrinkFilterMobile = ({ className }: IDrinkFilterMobileProps) => {
             )}
           </Button>
         }
-        sheetFooter={
+        footer={
           <div className="bg-white">
             <Button
               className="w-full"

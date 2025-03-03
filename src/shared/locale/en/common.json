@@ -38,7 +38,7 @@
     "date_picker_option_tomorrow": "Tomorrow please",
     "date_picker_option_day_after_tomorrow": "Day After Tomorrow please",
     "date_picker_option_next_week": "Next week",
-    "select_date": "Select date",
+    "select_date": "Pick your delivery time",
     "inputs": {
       "name": "What's your name?",
       "contact": "Your contact info",
@@ -90,7 +90,7 @@
       "info_tooltip": "Mix between {{min}} to {{max}} drinks to create your unique beverage",
       "price_unit": "đ/bottle",
       "popular_mixes": "Popular Mixes",
-      "mix_button": "Mix ({{count}})",
+      "mix_button": "Mix ({{count}}/{{max}})",
       "selected_count": "{{current}}/{{max}}",
       "max_selections_reached": "Selection limit reached",
       "no_selection": "No drinks selected"
@@ -119,7 +119,7 @@
         "applecelery": "Apple celery detox, effective body cleansing",
         "guavapineapple": "Sweet and cool guava pineapple mix, loaded with vitamin C",
         "corn_milk": "Creamy sweet corn milk, the perfect energy boost for your active day.",
-        "pumpkin_milk": "Special pumpkin milk blend - where healthy meets tasty! Packed with vitamin A, protein and vibrant energy!"
+        "pumpkin_milk": "Tasty pumpkin milk blend, Ppacked with vitamin A, protein and vibrant energy!"
       }
     }
   },

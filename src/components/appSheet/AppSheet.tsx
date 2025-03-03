@@ -17,8 +17,8 @@ interface IAppSheetProps extends ComponentPropsWithoutRef<typeof SheetContent> {
   modal?: boolean
   open?: boolean
   onOpenChange?: (open: boolean) => void
-  sheetFooter?: React.ReactNode
-  sheetTrigger?: React.ReactNode
+  footer?: React.ReactNode
+  trigger?: React.ReactNode
 }
 
 const AppSheet: FC<IAppSheetProps> = ({
@@ -30,13 +30,13 @@ const AppSheet: FC<IAppSheetProps> = ({
   modal = true,
   open,
   onOpenChange,
-  sheetFooter,
-  sheetTrigger,
+  footer,
+  trigger,
   ...props
 }) => {
   return (
     <Sheet open={open} onOpenChange={onOpenChange} modal={modal}>
-      {sheetTrigger && <SheetTrigger asChild>{sheetTrigger}</SheetTrigger>}
+      {trigger && <SheetTrigger asChild>{trigger}</SheetTrigger>}
       <SheetContent
         side={side}
         className={cn('h-[85vh] lg:hidden px-4 py-6 rounded-t-2xl', className)}
@@ -53,7 +53,7 @@ const AppSheet: FC<IAppSheetProps> = ({
           )}
         </SheetHeader>
         {children}
-        {sheetFooter && <SheetFooter>{sheetFooter}</SheetFooter>}
+        {footer && <SheetFooter>{footer}</SheetFooter>}
       </SheetContent>
     </Sheet>
   )
