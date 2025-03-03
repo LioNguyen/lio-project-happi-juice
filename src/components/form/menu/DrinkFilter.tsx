@@ -137,7 +137,7 @@ const DrinkFilter = ({ className }: IDrinkFilterProps) => {
           'py-1 px-3 rounded-full font-medium border-0 text-sm',
           isSelected
             ? 'bg-primary text-white'
-            : 'bg-primary/10 text-primary hover:bg-primary/15',
+            : 'bg-primary/5 text-primary hover:bg-primary/15',
         )}
         onClick={() => handleFilter(option)}
       >
@@ -149,33 +149,33 @@ const DrinkFilter = ({ className }: IDrinkFilterProps) => {
   /**
    * Renders sort icon based on current sort order
    */
-  const renderSortIcon = () => {
-    return (
-      <Button
-        variant="ghost"
-        size="sm"
-        className={cn(
-          'rounded-full transition-all duration-200',
-          'p-1.5 min-w-[32px] min-h-[32px]',
-          sortOrder !== 'none'
-            ? 'bg-primary text-white hover:bg-primary/90 hover:text-white'
-            : 'bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary',
-        )}
-        onClick={handleSort}
-        title={t('menu.filter.sort_by_price')}
-      >
-        {sortOrder === 'none' && <ArrowUpDown className="h-4 w-4" />}
-        {sortOrder === 'asc' && <ArrowUp className="h-4 w-4" />}
-        {sortOrder === 'desc' && <ArrowDown className="h-4 w-4" />}
-      </Button>
-    )
-  }
+  // const renderSortIcon = () => {
+  //   return (
+  //     <Button
+  //       variant="ghost"
+  //       size="sm"
+  //       className={cn(
+  //         'rounded-full transition-all duration-200',
+  //         'p-1.5 min-w-[32px] min-h-[32px]',
+  //         sortOrder !== 'none'
+  //           ? 'bg-primary text-white hover:bg-primary/90 hover:text-white'
+  //           : 'bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary',
+  //       )}
+  //       onClick={handleSort}
+  //       title={t('menu.filter.sort_by_price')}
+  //     >
+  //       {sortOrder === 'none' && <ArrowUpDown className="h-4 w-4" />}
+  //       {sortOrder === 'asc' && <ArrowUp className="h-4 w-4" />}
+  //       {sortOrder === 'desc' && <ArrowDown className="h-4 w-4" />}
+  //     </Button>
+  //   )
+  // }
 
   return (
     <div className={cn('block', className)}>
       <div className="flex items-center gap-2">
         {FILTER_OPTIONS.map(renderFilterBadge)}
-        {renderSortIcon()}
+        {/* {renderSortIcon()} */}
       </div>
     </div>
   )

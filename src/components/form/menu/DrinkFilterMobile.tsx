@@ -128,14 +128,16 @@ const DrinkFilterMobile = ({ className }: IDrinkFilterMobileProps) => {
         key={option.id}
         className={cn(
           'flex items-center justify-between p-2 rounded-lg transition-colors cursor-pointer',
-          isSelected ? 'bg-orange-100' : 'hover:bg-orange-50',
+          isSelected
+            ? 'bg-primary/15 text-primary hover:bg-primary/5'
+            : 'hover:bg-primary/5',
         )}
         onClick={() => handleFilter(option)}
       >
         <Text as="span" className="font-medium">
           {option.label}
         </Text>
-        {isSelected && <Check className="h-5 w-5 text-orange-500" />}
+        {isSelected && <Check className="h-5 w-5 text-primary" />}
       </div>
     )
   }

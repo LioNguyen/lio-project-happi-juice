@@ -105,8 +105,8 @@ const DrinkMix = ({ className }: IDrinkMixProps) => {
         trigger={
           <Button
             className={cn(
-              'relative h-9 gap-2 px-4 rounded-full',
-              'bg-primary/10 text-primary hover:bg-primary/15',
+              'relative h-9 gap-2 px-4 rounded-full shadow',
+              'bg-primary/5 text-primary hover:bg-primary/15',
               'font-medium text-sm',
               'transition-all duration-200',
             )}
