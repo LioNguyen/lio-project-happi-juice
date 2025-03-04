@@ -28,7 +28,7 @@ const DRINK_MENU = [
     type: DRINK_TYPE.original,
     description: i18n.t('menu.drinks.descriptions.orange'),
     image:
-      'https://res.cloudinary.com/dklrfrbg1/image/upload/v1741011669/Happi%20Juice/orange_sz2mdp.png',
+      'https://res.cloudinary.com/dklrfrbg1/image/upload/f_auto,q_auto,w_auto,c_limit,dpr_auto/v1741011669/Happi%20Juice/orange_sz2mdp.png',
 
     // Pricing & Promotion
     price: 20000,
@@ -54,7 +54,7 @@ const DRINK_MENU = [
     type: DRINK_TYPE.original,
     description: i18n.t('menu.drinks.descriptions.apple'),
     image:
-      'https://res.cloudinary.com/dklrfrbg1/image/upload/v1741011730/Happi%20Juice/appleguava_vrq9up.png',
+      'https://res.cloudinary.com/dklrfrbg1/image/upload/f_auto,q_auto,w_auto,c_limit,dpr_auto/v1741011730/Happi%20Juice/appleguava_vrq9up.png',
 
     // Pricing & Promotion
     price: 30000,
@@ -80,7 +80,7 @@ const DRINK_MENU = [
     type: DRINK_TYPE.original,
     description: i18n.t('menu.drinks.descriptions.pomelo'),
     image:
-      'https://res.cloudinary.com/dklrfrbg1/image/upload/v1741011696/Happi%20Juice/pomelo_nxarek.png',
+      'https://res.cloudinary.com/dklrfrbg1/image/upload/f_auto,q_auto,w_auto,c_limit,dpr_auto/v1741011696/Happi%20Juice/pomelo_nxarek.png',
 
     // Pricing & Promotion
     price: 25000,
@@ -106,7 +106,7 @@ const DRINK_MENU = [
     type: DRINK_TYPE.original,
     description: i18n.t('menu.drinks.descriptions.pineapple'),
     image:
-      'https://res.cloudinary.com/dklrfrbg1/image/upload/v1741011781/Happi%20Juice/pineapple_nrifuu.png',
+      'https://res.cloudinary.com/dklrfrbg1/image/upload/f_auto,q_auto,w_auto,c_limit,dpr_auto/v1741011781/Happi%20Juice/pineapple_nrifuu.png',
 
     // Pricing & Promotion
     price: 25000,
@@ -132,7 +132,7 @@ const DRINK_MENU = [
     type: DRINK_TYPE.original,
     description: i18n.t('menu.drinks.descriptions.watermelon'),
     image:
-      'https://res.cloudinary.com/dklrfrbg1/image/upload/v1741011730/Happi%20Juice/appleguava_vrq9up.png',
+      'https://res.cloudinary.com/dklrfrbg1/image/upload/f_auto,q_auto,w_auto,c_limit,dpr_auto/v1741011730/Happi%20Juice/appleguava_vrq9up.png',
 
     // Pricing & Promotion
     price: 20000,
@@ -158,7 +158,7 @@ const DRINK_MENU = [
     type: DRINK_TYPE.original,
     description: i18n.t('menu.drinks.descriptions.celery'),
     image:
-      'https://res.cloudinary.com/dklrfrbg1/image/upload/v1741011763/Happi%20Juice/celery_hfx19i.png',
+      'https://res.cloudinary.com/dklrfrbg1/image/upload/f_auto,q_auto,w_auto,c_limit,dpr_auto/v1741011763/Happi%20Juice/celery_hfx19i.png',
 
     // Pricing & Promotion
     price: 30000,
@@ -184,7 +184,7 @@ const DRINK_MENU = [
     type: DRINK_TYPE.original,
     description: i18n.t('menu.drinks.descriptions.guava'),
     image:
-      'https://res.cloudinary.com/dklrfrbg1/image/upload/v1741012390/Happi%20Juice/guava_rvfuqe.png',
+      'https://res.cloudinary.com/dklrfrbg1/image/upload/f_auto,q_auto,w_auto,c_limit,dpr_auto/v1741012390/Happi%20Juice/guava_rvfuqe.png',
 
     // Pricing & Promotion
     price: 20000,
@@ -210,7 +210,7 @@ const DRINK_MENU = [
     type: DRINK_TYPE.mix,
     description: i18n.t('menu.drinks.descriptions.appleguava'),
     image:
-      'https://res.cloudinary.com/dklrfrbg1/image/upload/v1741011730/Happi%20Juice/appleguava_vrq9up.png',
+      'https://res.cloudinary.com/dklrfrbg1/image/upload/f_auto,q_auto,w_auto,c_limit,dpr_auto/v1741011730/Happi%20Juice/appleguava_vrq9up.png',
 
     // Pricing & Promotion
     price: 25000,
@@ -236,7 +236,7 @@ const DRINK_MENU = [
     type: DRINK_TYPE.mix,
     description: i18n.t('menu.drinks.descriptions.applepineapple'),
     image:
-      'https://res.cloudinary.com/dklrfrbg1/image/upload/v1741011730/Happi%20Juice/appleguava_vrq9up.png',
+      'https://res.cloudinary.com/dklrfrbg1/image/upload/f_auto,q_auto,w_auto,c_limit,dpr_auto/v1741011730/Happi%20Juice/appleguava_vrq9up.png',
 
     // Pricing & Promotion
     price: 25000,
@@ -262,7 +262,7 @@ const DRINK_MENU = [
     type: DRINK_TYPE.mix,
     description: i18n.t('menu.drinks.descriptions.applecelery'),
     image:
-      'https://res.cloudinary.com/dklrfrbg1/image/upload/v1741011730/Happi%20Juice/appleguava_vrq9up.png',
+      'https://res.cloudinary.com/dklrfrbg1/image/upload/f_auto,q_auto,w_auto,c_limit,dpr_auto/v1741011730/Happi%20Juice/appleguava_vrq9up.png',
 
     // Pricing & Promotion
     price: 30000,
@@ -288,7 +288,7 @@ const DRINK_MENU = [
     type: DRINK_TYPE.mix,
     description: i18n.t('menu.drinks.descriptions.guavapineapple'),
     image:
-      'https://res.cloudinary.com/dklrfrbg1/image/upload/v1741012393/Happi%20Juice/guavapineapple_zlsm8i.png',
+      'https://res.cloudinary.com/dklrfrbg1/image/upload/f_auto,q_auto,w_auto,c_limit,dpr_auto/v1741012393/Happi%20Juice/guavapineapple_zlsm8i.png',
 
     // Pricing & Promotion
     price: 25000,
@@ -314,7 +314,7 @@ const DRINK_MENU = [
     type: DRINK_TYPE.milk,
     description: i18n.t('menu.drinks.descriptions.corn_milk'),
     image:
-      'https://res.cloudinary.com/dklrfrbg1/image/upload/v1741011712/Happi%20Juice/corn-milk_izihza.png',
+      'https://res.cloudinary.com/dklrfrbg1/image/upload/f_auto,q_auto,w_auto,c_limit,dpr_auto/v1741011712/Happi%20Juice/corn-milk_izihza.png',
 
     // Pricing & Promotion
     price: 20000,
@@ -340,7 +340,7 @@ const DRINK_MENU = [
     type: DRINK_TYPE.milk,
     description: i18n.t('menu.drinks.descriptions.pumpkin_milk'),
     image:
-      'https://res.cloudinary.com/dklrfrbg1/image/upload/v1741011797/Happi%20Juice/pumpkin-milk_wthha1.png',
+      'https://res.cloudinary.com/dklrfrbg1/image/upload/f_auto,q_auto,w_auto,c_limit,dpr_auto/v1741011797/Happi%20Juice/pumpkin-milk_wthha1.png',
 
     // Pricing & Promotion
     price: 20000,

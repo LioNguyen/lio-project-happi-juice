@@ -15,6 +15,7 @@ export default defineConfig({
       exclude: ['/admin/*', '/private/*'],
     }),
     VitePWA({
+      registerType: 'autoUpdate',
       manifest: {
         theme_color: '#00c2a2',
         background_color: '#00c2a2',
@@ -22,7 +23,56 @@ export default defineConfig({
         // ... other manifest options
       },
       workbox: {
-        // ... workbox options
+        globPatterns: ['**/*.{js,css,html}'],
+        // Cấu hình cache
+        runtimeCaching: [
+          {
+            urlPattern: /^https?:\/\/.*\.cloudinary\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'cloudinary-images',
+              expiration: {
+                maxEntries: 30, // Giảm mạnh số lượng hình ảnh được cache
+                maxAgeSeconds: 60 * 60 * 24 * 3, // Chỉ lưu 3 ngày
+                purgeOnQuotaError: true, // Xóa cache khi vượt quá quota
+              },
+            },
+          },
+          {
+            urlPattern: /\.(?:png|jpg|jpeg|svg|gif)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'local-images',
+              expiration: {
+                maxEntries: 10, // Rất ít hình ảnh được cache
+                maxAgeSeconds: 60 * 60 * 24 * 3, // 3 ngày
+                purgeOnQuotaError: true,
+              },
+            },
+          },
+          {
+            urlPattern: /.*\.(?:js|css)/,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'static-resources',
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24, // 1 ngày
+              },
+            },
+          },
+          {
+            urlPattern: /.*/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'default-cache',
+              expiration: {
+                maxEntries: 30,
+                maxAgeSeconds: 60 * 60 * 24, // 1 ngày
+              },
+            },
+          },
+        ],
       },
       // Ensures meta tags are injected
       includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'masked-icon.svg'],
