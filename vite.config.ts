@@ -33,7 +33,7 @@ export default defineConfig({
               cacheName: 'cloudinary-images',
               expiration: {
                 maxEntries: 30, // Giảm mạnh số lượng hình ảnh được cache
-                maxAgeSeconds: 60 * 60 * 24 * 3, // Chỉ lưu 3 ngày
+                maxAgeSeconds: 60 * 60 * 24, // Chỉ lưu 1 ngày
                 purgeOnQuotaError: true, // Xóa cache khi vượt quá quota
               },
             },

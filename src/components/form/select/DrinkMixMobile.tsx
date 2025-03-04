@@ -131,7 +131,7 @@ const DrinkMixMobile = ({ className }: IDrinkMixMobileProps) => {
       <AppSheet
         open={open}
         onOpenChange={handleSheetChange}
-        className="h-[50vh] flex flex-col"
+        className="h-[55vh] flex flex-col"
         title={t('menu.mix_drink.sheet_title')}
         description=""
         trigger={

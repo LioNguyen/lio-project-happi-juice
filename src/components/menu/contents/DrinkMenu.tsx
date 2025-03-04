@@ -202,7 +202,7 @@ const DrinkMenu: FC<IDrinkMenuProps> = ({ className, onChange }) => {
           className={cn(
             'grid gap-3',
             'grid-cols-2 md:grid-cols-3 2xl:grid-cols-4',
-            'auto-rows-fr pr-4',
+            'auto-rows-fr pr-1 lg:pr-4 py-1',
             'custom-scrollbar',
           )}
         >
