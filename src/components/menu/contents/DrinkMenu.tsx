@@ -10,8 +10,8 @@ import {
 } from '@designSystem/components/card'
 import { Text } from '@designSystem/components/text'
 
-import { useMenuStore } from '@/domains/menu'
-import { IMenuItem, IOrderItem, useOrderStore } from '@/domains/order'
+import { IMenuItem, useMenuStore } from '@/domains/menu'
+import { IOrderItem, useOrderStore } from '@/domains/order'
 import { IComponentBase } from '@/shared/types'
 import { cn, formatNumber } from '@/shared/utils'
 import { Image } from '@designSystem/components/image'
@@ -37,6 +37,34 @@ const getQuantityForDrink = (
     return total
   }, 0)
 }
+
+// Flame Icon Component - Thay Award bằng Flame
+const BestsellerBadge = memo(() => (
+  <div
+    className={cn(
+      'absolute top-1 right-2 z-10',
+      'flex items-center justify-center',
+      'text-xl drop-shadow-lg',
+      'animate-pulse-subtle',
+    )}
+    style={{
+      filter: 'drop-shadow(0 0 3px rgba(255,255,255,0.7))',
+    }}
+  >
+    🔥
+  </div>
+))
+
+// Thêm animation style mới
+const globalStyles = `  
+  @keyframes pulse-subtle {  
+    0%, 100% { opacity: 1; transform: scale(1); }  
+    50% { opacity: 0.95; transform: scale(1.05); }  
+  }  
+  .animate-pulse-subtle {  
+    animation: pulse-subtle 2s infinite ease-in-out;  
+  }  
+`
 
 // Components
 const AddButton = memo(
@@ -84,6 +112,9 @@ const DrinkImageOverlay = memo(
   }) => {
     return (
       <div className="relative min-h-[150px]">
+        {/* Hiển thị Flame icon trong góc hình ảnh */}
+        {drink.isBestSeller && <BestsellerBadge />}
+
         <Image
           src={drink.image}
           alt={drink.name}
@@ -162,24 +193,30 @@ const DrinkMenu: FC<IDrinkMenuProps> = ({ className, onChange }) => {
   }
 
   return (
-    <div className={cn('drink-menu w-full h-full relative', className)}>
-      <div
-        className={cn(
-          'grid gap-3',
-          'grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 ',
-          'auto-rows-fr',
-        )}
-      >
-        {filteredMenu.map((drink) => (
-          <DrinkCard
-            key={drink.id}
-            drink={drink}
-            quantity={getQuantityForDrink(drink.name, orders.items)}
-            onAddDrink={(e) => handleAddDrink(e, drink)}
-          />
-        ))}
+    <>
+      {/* Thêm style toàn cục cho animation */}
+      <style>{globalStyles}</style>
+
+      <div className={cn('drink-menu w-full h-full relative', className)}>
+        <div
+          className={cn(
+            'grid gap-3',
+            'grid-cols-2 md:grid-cols-3 2xl:grid-cols-4',
+            'auto-rows-fr pr-4',
+            'custom-scrollbar',
+          )}
+        >
+          {filteredMenu.map((drink) => (
+            <DrinkCard
+              key={drink.id}
+              drink={drink}
+              quantity={getQuantityForDrink(drink.name, orders.items)}
+              onAddDrink={(e) => handleAddDrink(e, drink)}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

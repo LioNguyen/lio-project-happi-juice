@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'
+import { ArrowDown, ArrowUp, ArrowUpDown, X } from 'lucide-react' // Thêm X vào imports
 import { memo, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -102,27 +102,6 @@ const DrinkFilter = ({ className }: IDrinkFilterProps) => {
   )
 
   /**
-   * Handles sort order cycling
-   */
-  const handleSort = useCallback(() => {
-    const nextSortOrder: Record<SortOrder, SortOrder> = {
-      none: 'asc',
-      asc: 'desc',
-      desc: 'none',
-    }
-
-    const newSortOrder = nextSortOrder[sortOrder]
-    setSortOrder(newSortOrder)
-
-    // Apply sort with current filter
-    const currentFilter = activeFilter
-      ? FILTER_OPTIONS.find((o) => o.id === activeFilter) || null
-      : null
-
-    applyFilterAndSort(currentFilter, newSortOrder)
-  }, [sortOrder, activeFilter, FILTER_OPTIONS, applyFilterAndSort])
-
-  /**
    * Renders individual filter option as a badge
    */
   const renderFilterBadge = (option: FilterOption) => {
@@ -142,40 +121,15 @@ const DrinkFilter = ({ className }: IDrinkFilterProps) => {
         onClick={() => handleFilter(option)}
       >
         {option.label}
+        {isSelected && <X className="h-3 w-3 ml-1" />}
       </Badge>
     )
   }
-
-  /**
-   * Renders sort icon based on current sort order
-   */
-  // const renderSortIcon = () => {
-  //   return (
-  //     <Button
-  //       variant="ghost"
-  //       size="sm"
-  //       className={cn(
-  //         'rounded-full transition-all duration-200',
-  //         'p-1.5 min-w-[32px] min-h-[32px]',
-  //         sortOrder !== 'none'
-  //           ? 'bg-primary text-white hover:bg-primary/90 hover:text-white'
-  //           : 'bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary',
-  //       )}
-  //       onClick={handleSort}
-  //       title={t('menu.filter.sort_by_price')}
-  //     >
-  //       {sortOrder === 'none' && <ArrowUpDown className="h-4 w-4" />}
-  //       {sortOrder === 'asc' && <ArrowUp className="h-4 w-4" />}
-  //       {sortOrder === 'desc' && <ArrowDown className="h-4 w-4" />}
-  //     </Button>
-  //   )
-  // }
 
   return (
     <div className={cn('block', className)}>
       <div className="flex items-center gap-2">
         {FILTER_OPTIONS.map(renderFilterBadge)}
-        {/* {renderSortIcon()} */}
       </div>
     </div>
   )

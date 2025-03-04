@@ -112,7 +112,7 @@ const DrinkMixMobile = ({ className }: IDrinkMixMobileProps) => {
         className={cn(
           'flex items-center justify-between p-2 rounded-lg transition-colors',
           isSelected
-            ? 'bg-primary/15 text-primary hover:bg-primary/5'
+            ? 'bg-primary/10 text-primary hover:bg-primary/5'
             : 'hover:bg-primary/5',
           isDisabled && 'opacity-50 cursor-not-allowed',
         )}
